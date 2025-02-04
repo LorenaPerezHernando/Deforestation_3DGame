@@ -75,6 +75,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c838e27d07f163940bbd5797b39309b0,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: -3828855721138464459}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c838e27d07f163940bbd5797b39309b0,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 958456356510413312}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c838e27d07f163940bbd5797b39309b0,
         type: 3}
@@ -87,6 +91,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9216284317045589452}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3828855721138464459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8297803218496043165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4357400ee3c6564a983f609daee3491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Count>k__BackingField: 5
+  <Type>k__BackingField: 0
+  _interactableInfo:
+    Action: 
+    Type: 
 --- !u!136 &958456356510413312
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -119,7 +140,7 @@ Rigidbody:
   m_GameObject: {fileID: 8297803218496043165}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 20
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

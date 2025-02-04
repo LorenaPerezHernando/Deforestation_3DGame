@@ -27,7 +27,7 @@ namespace Deforestation.UI
 		[Header("Inventory")]
 		[SerializeField] private TextMeshProUGUI _crystal1Text;
 		[SerializeField] private TextMeshProUGUI _crystal2Text;
-		[Header("Interacytion")]
+		[Header("Interaction")]
 		[SerializeField] private InteractionPanel _interactionPanel;
 		[Header("Live")]
 		[SerializeField] private Slider _machineSlider;
@@ -38,7 +38,6 @@ namespace Deforestation.UI
 		#endregion
 
 		#region Unity Callbacks
-		// Start is called before the first frame update
 		void Start()
 		{
 			_settingsPanel.SetActive(false);

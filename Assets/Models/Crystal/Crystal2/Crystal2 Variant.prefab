@@ -118,6 +118,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crystal2 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9957d3dab2c961e49a2c10b77dd284d5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Crystal
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -126,6 +131,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 672816678529901378}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9957d3dab2c961e49a2c10b77dd284d5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8729746530565404492}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9957d3dab2c961e49a2c10b77dd284d5,
         type: 3}
       insertIndex: -1
@@ -143,6 +152,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3544928072858165464}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8729746530565404492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4464039873531633033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4357400ee3c6564a983f609daee3491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Count>k__BackingField: 5
+  <Type>k__BackingField: 1
+  _interactableInfo:
+    Action: 
+    Type: 
 --- !u!54 &5939744986034460206
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,7 +178,7 @@ Rigidbody:
   m_GameObject: {fileID: 4464039873531633033}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 30
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

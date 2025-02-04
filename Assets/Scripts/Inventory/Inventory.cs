@@ -12,12 +12,6 @@ namespace Deforestation.Recolectables
 		public Action OnInventoryUpdated;
 		#endregion
 
-		#region Fields
-		#endregion
-
-		#region Unity Callbacks
-		#endregion
-
 		#region Public Methods
 		public void AddRecolectable(RecolectableType type, int count)
 		{
@@ -47,9 +41,20 @@ namespace Deforestation.Recolectables
 
 			return false;
 		}
-		#endregion
+        #endregion
 
-		#region Private Methods
-		#endregion
-	}
+        #region Private Methods
+
+        private void OnTriggerEnter(Collider collision)
+        {
+			if (collision.gameObject.tag.Equals("Crystal"))
+			{
+				Recolectable item = collision.gameObject.GetComponent<Recolectable>();
+				AddRecolectable(item.Type, item.Count);
+				Destroy(collision.gameObject);
+				Debug.Log("Recolected");
+			}
+        }
+        #endregion
+    }
 }
