@@ -5,9 +5,12 @@ using Deforestation.Machine.Weapon;
 namespace Deforestation.Machine
 {
 	[RequireComponent (typeof(HealthSystem))]
+	[RequireComponent(typeof(Animator))]
 	public class MachineController : MonoBehaviour
 	{
 		#region Properties
+		public bool isDriving { get; private set; }
+
 		public HealthSystem HealthSystem => _health;
 		public WeaponController WeaponController;
 		public Action<bool> OnMachineDriveChange;
@@ -35,15 +38,17 @@ namespace Deforestation.Machine
 			_movement.enabled = false;
 		}
 
-		// Update is called once per frame
+		
 		void Update()
 		{
-			//TODO: Mover a Input System
-			if (Input.GetKeyUp(KeyCode.Escape))
-			{
-				StopDriving();
-			}
-		}		
+            //Input en MachineMovement
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                StopDriving();
+
+            }
+
+        }		
 
 		#endregion
 

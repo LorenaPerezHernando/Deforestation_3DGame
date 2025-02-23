@@ -3,13 +3,15 @@ using Deforestation.Recolectables;
 using UnityEngine;
 namespace Deforestation.Machine
 {
-	public class MachineMovement : MonoBehaviour
+	[RequireComponent(typeof(Rigidbody))]
+    public class MachineMovement : MonoBehaviour
 	{
 		#region Fields
 		[SerializeField] private float _speedForce = 50;
 		[SerializeField] private float _speedRotation = 15;
 		private Rigidbody _rb;
 		private Vector3 _movementDirection;
+		private MachineController _machineController;
 		private Inventory _inventory => GameController.Instance.Inventory;
 
 		[Header("Energy")]
@@ -24,14 +26,20 @@ namespace Deforestation.Machine
 		private void Awake()
 		{
 			_rb = GetComponent<Rigidbody>();
+			_machineController = GetComponent<MachineController>();
 		}
 
 		private void Update()
 		{
 			if (_inventory.HasResource(RecolectableType.HyperCrystal))
 			{
-				//Movement
-				_movementDirection = new Vector3(Input.GetAxis("Vertical"), 0, 0);
+                //Movement
+                if (Input.GetKeyUp(KeyCode.Escape))
+                {
+					_machineController.StopDriving();
+                   
+                }
+                _movementDirection = new Vector3(Input.GetAxis("Vertical"), 0, 0);
 				transform.Rotate(Vector3.up * _speedRotation * Time.deltaTime * Input.GetAxis("Horizontal"));
 				Debug.DrawRay(transform.position, transform.InverseTransformDirection(_movementDirection.normalized) * _speedForce);
 
@@ -96,15 +104,7 @@ namespace Deforestation.Machine
 
 		#endregion
 
-		#region Private Methods
-		#endregion
 
-		#region Public Methods
-
-		#endregion
-		private void OnDrawGizmos()
-		{
-		}
 	}
 	
 }
