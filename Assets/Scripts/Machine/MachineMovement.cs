@@ -34,11 +34,7 @@ namespace Deforestation.Machine
 			if (_inventory.HasResource(RecolectableType.HyperCrystal))
 			{
                 //Movement
-                if (Input.GetKeyUp(KeyCode.Escape))
-                {
-					_machineController.StopDriving();
-                   
-                }
+                
                 _movementDirection = new Vector3(Input.GetAxis("Vertical"), 0, 0);
 				transform.Rotate(Vector3.up * _speedRotation * Time.deltaTime * Input.GetAxis("Horizontal"));
 				Debug.DrawRay(transform.position, transform.InverseTransformDirection(_movementDirection.normalized) * _speedForce);
