@@ -4952,15 +4952,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9957d3dab2c961e49a2c10b77dd284d5,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8898662544398122824}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9957d3dab2c961e49a2c10b77dd284d5,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 7106714926009537435}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9957d3dab2c961e49a2c10b77dd284d5,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3512920794108700868}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9957d3dab2c961e49a2c10b77dd284d5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8898662544398122824}
   m_SourcePrefab: {fileID: 100100000, guid: 9957d3dab2c961e49a2c10b77dd284d5, type: 3}
 --- !u!1 &1266612675375492439 stripped
 GameObject:
@@ -4968,6 +4968,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2112892280230531078}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8898662544398122824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266612675375492439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4357400ee3c6564a983f609daee3491, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Count>k__BackingField: 10
+  <Type>k__BackingField: 1
+  _interactableInfo:
+    Action: Take
+    Type: 
 --- !u!54 &7106714926009537435
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5018,23 +5035,6 @@ CapsuleCollider:
   m_Height: 1.33
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8898662544398122824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1266612675375492439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4357400ee3c6564a983f609daee3491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <Count>k__BackingField: 5
-  <Type>k__BackingField: 1
-  _interactableInfo:
-    Action: Take
-    Type: 
 --- !u!4 &1934358887900854253 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9957d3dab2c961e49a2c10b77dd284d5,

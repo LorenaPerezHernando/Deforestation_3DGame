@@ -1,5 +1,6 @@
 using Deforestation.Dinosaurus;
 using Deforestation.Recolectables;
+using Unity.VisualScripting;
 using UnityEngine;
 namespace Deforestation.Machine
 {
@@ -7,6 +8,10 @@ namespace Deforestation.Machine
     public class MachineMovement : MonoBehaviour
 	{
 		#region Fields
+		[SerializeField] private float jumpForce = 500000;
+		[SerializeField] private float groundCheckDistance = 2;
+		[SerializeField] private bool isGrounded;
+
 		[SerializeField] private float _speedForce = 50;
 		[SerializeField] private float _speedRotation = 15;
 		private Rigidbody _rb;
@@ -46,10 +51,19 @@ namespace Deforestation.Machine
 					if (energyTimer >= energyDecayRate)
 						_inventory.UseResource(RecolectableType.HyperCrystal);
 				}
+
+				
+				//Salto 
+				if (Input.GetKeyUp(KeyCode.Space) && isGrounded)
+				{
+					_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+					isGrounded = false; 
+				}
 			}
 			else
 			{
 				GameController.Instance.MachineController.StopMoving();
+				Debug.Log("Not enough Cristals");
 			}
 
 			CheckGround();
@@ -65,7 +79,7 @@ namespace Deforestation.Machine
 			RaycastHit hit;
 			float maxDistance = 4f;
 			float force = 100000;
-			Vector3 direction = -transform.up;
+			Vector3 direction = Vector3.down;
 			
 			// Dibuja el rayo en el editor
 			Debug.DrawRay(transform.position, direction * maxDistance, Color.red);
@@ -76,6 +90,12 @@ namespace Deforestation.Machine
 			// Lanza un rayo hacia abajo desde la posición del objeto
 			if (!Physics.Raycast(transform.position, direction, out hit, maxDistance, layerMask))
 				_rb.AddRelativeForce(direction * force);
+
+			//CheckGround
+			if (Physics.Raycast(transform.position, direction, out hit, groundCheckDistance, layerMask))
+				isGrounded = true;
+			else
+				isGrounded = false;
 		}
 
 		private void OnTriggerEnter(Collider other)
@@ -86,8 +106,13 @@ namespace Deforestation.Machine
 				GameController.Instance.TerrainController.DestroyTree(index, other.transform.position);
 			}
 
-			
-		}
+            if (other.tag == "Terrain")
+                isGrounded = true;
+            else
+                isGrounded = false;
+
+
+        }
 		private void OnCollisionEnter(Collision collision)
 		{
 			//Hacemos daño por contacto a los Stegasaurus
@@ -96,7 +121,11 @@ namespace Deforestation.Machine
 			{
 				target.TakeDamage(10);
 			}
+
+			 
 		}
+
+		
 
 		#endregion
 

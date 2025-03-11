@@ -8,8 +8,6 @@ namespace Deforestation
 	[RequireComponent(typeof(HealthSystem))]
 	public class Rock : MonoBehaviour
 	{
-		#region Properties
-		#endregion
 
 		#region Fields
 		[Header("Prefabs")]

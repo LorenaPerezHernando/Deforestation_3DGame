@@ -4960,7 +4960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4357400ee3c6564a983f609daee3491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Count>k__BackingField: 5
+  <Count>k__BackingField: 10
   <Type>k__BackingField: 0
   _interactableInfo:
     Action: Take

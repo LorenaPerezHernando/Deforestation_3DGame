@@ -41,7 +41,7 @@ namespace Deforestation.Interaction
 		void FixedUpdate()
 		{
 			RaycastHit hit;
-			if (Physics.SphereCast(Camera.main.transform.position, 0.5f, Camera.main.transform.forward, out hit, 5))
+			if (Physics.SphereCast(Camera.main.transform.position, 0.8f, Camera.main.transform.forward, out hit, 5))
 			{
 				//print(hit.collider.name); //Para saber que estamos detectando para depurar si alguna deteccion falla.
 				IInteractable interaction = hit.collider.GetComponent<IInteractable>();
