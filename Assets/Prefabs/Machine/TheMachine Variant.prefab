@@ -11816,8 +11816,8 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7727517703898130515}
   - {fileID: 1775273085626455341}
+  - {fileID: 7727517703898130515}
   - {fileID: 1904660580708678109}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11836,7 +11836,6 @@ MonoBehaviour:
   jumpForce: 10
   groundCheckDistance: 1
   isGrounded: 0
-  collisionGround: {fileID: 0}
   _speedForce: 30000
   _speedRotation: 25
   energyDecayRate: 20
