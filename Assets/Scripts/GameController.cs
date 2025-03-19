@@ -13,6 +13,7 @@ namespace Deforestation
 		#region Properties
 		public MachineController MachineController => _machine;
 		public Inventory Inventory => _inventory;
+		public HealthSystem HealthSystem => _playerHealth;
 		public InteractionSystem InteractionSystem => _interactionSystem;
 		public TreeTerrainController TerrainController => _terrainController;
 		public Camera MainCamera;

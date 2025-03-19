@@ -46,6 +46,7 @@ namespace Deforestation
 		private void Die()
 		{
 			OnDeath?.Invoke();
+			print("Died)");
 			// Aquí puedes añadir lógica adicional para la muerte, como destruir el objeto.
 		}
 	}
