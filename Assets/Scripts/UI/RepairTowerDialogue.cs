@@ -22,13 +22,14 @@ namespace Deforestation.Tower
 
         private void Awake()
         {
+            
             _text = GetComponent<TextMeshProUGUI>();
             _uiTowerText = _towerUI.GetComponentInChildren<TextMeshProUGUI>();
             _mensajeActual = 0; 
         }
         void Start()
         {
-            _dialoguePanel.SetActive(true);
+            //_dialoguePanel.SetActive(true);
             _text.text = _initialMessages[_mensajeActual]; // Mostrar primer mensaje
 
         }

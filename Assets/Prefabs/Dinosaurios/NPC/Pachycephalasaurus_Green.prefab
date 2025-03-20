@@ -4360,6 +4360,7 @@ GameObject:
   - component: {fileID: -1169098326218900124}
   - component: {fileID: -1450391065507018985}
   - component: {fileID: -8342282016701199857}
+  - component: {fileID: 2946513435264833625}
   m_Layer: 0
   m_Name: Pachycephalasaurus_Green
   m_TagString: Untagged
@@ -4518,7 +4519,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1.1
-  MinDistance: 4
+  MinDistance: 4.984131
   MaxDistance: 80
   Pan2D: 0
   rolloffMode: 0
@@ -4649,8 +4650,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.37, y: 1, z: 0.58}
+  m_Center: {x: 0.37, y: 0.45, z: -0.15}
 --- !u!54 &-1169098326218900124
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4713,6 +4714,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &2946513435264833625
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8772693103843231552}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37, y: 1, z: 0.58}
+  m_Center: {x: -0.35, y: 0.45, z: -0.15}
 --- !u!1 &8851812646417037569
 GameObject:
   m_ObjectHideFlags: 0

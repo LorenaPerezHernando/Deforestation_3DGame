@@ -1653,6 +1653,9 @@ GameObject:
   - component: {fileID: 8799625916938022753}
   - component: {fileID: 261178202376010864}
   - component: {fileID: 4885030110726113474}
+  - component: {fileID: 4329034176831000286}
+  - component: {fileID: 7781237383828144480}
+  - component: {fileID: 2462754582658610139}
   m_Layer: 0
   m_Name: Stegasaurus
   m_TagString: Untagged
@@ -1668,7 +1671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5375888394331946749}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 157.71716, y: -69.386444, z: 28.818542}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
@@ -1912,8 +1915,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 4.189556, z: 2.2837193}
-  m_Center: {x: 0, y: 1.9978666, z: -0.64185965}
+  m_Size: {x: 0.43, y: 1.99, z: 0.58}
+  m_Center: {x: 0.52, y: 1, z: 0.24}
 --- !u!54 &261178202376010864
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1963,6 +1966,69 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &4329034176831000286
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375888394331946749}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.43, y: 1.99, z: 0.58}
+  m_Center: {x: -0.52, y: 1.03, z: 0.19}
+--- !u!65 &7781237383828144480
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375888394331946749}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.58, y: 1.99, z: 0.58}
+  m_Center: {x: 0.62, y: 1, z: -1.35}
+--- !u!65 &2462754582658610139
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375888394331946749}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.58, y: 1.99, z: 0.58}
+  m_Center: {x: -0.68, y: 1, z: -1.47}
 --- !u!1 &5558664162554028677
 GameObject:
   m_ObjectHideFlags: 0

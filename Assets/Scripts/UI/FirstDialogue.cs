@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using static UnityEngine.AudioSettings;
 
 namespace Deforestation.Dialogue
 {
@@ -11,7 +12,7 @@ namespace Deforestation.Dialogue
         //TODO Icono de un movil sonando
         [SerializeField] private GameObject _movilIcon;
         [SerializeField] private GameObject _dialoguePanel;
-        [SerializeField] private GameObject _dialogoRepararTorre;
+       
 
 
         [SerializeField] private string[] _initialMessages; // Array de mensajes
@@ -25,9 +26,9 @@ namespace Deforestation.Dialogue
         }
         void Start()
         {
-            _dialogoRepararTorre.SetActive(false);
+
             _movilIcon.SetActive(true);
-            _dialoguePanel.SetActive(true);
+
             _uiText.text = _initialMessages[_mensajeActual]; // Mostrar primer mensaje
 
         }
@@ -38,15 +39,13 @@ namespace Deforestation.Dialogue
             if (Input.GetKeyUp(KeyCode.Return))
             {
                 _mensajeActual++;
+                if(_mensajeActual == 5)
+                    _movilIcon?.SetActive(false);
                 InitialMessages();
 
             }
         }
-
-        private void NextMessage()
-        {
-            _mensajeActual++;
-        }
+       
 
         public void InitialMessages()
         {
@@ -56,6 +55,8 @@ namespace Deforestation.Dialogue
                 movil.enabled = false;
                 _uiText.text = _initialMessages[_mensajeActual];
 
+                
+
             }
 
 
@@ -64,8 +65,8 @@ namespace Deforestation.Dialogue
                 //TODO Camera enfoca a la torre destrozandose, explosion
                 //Particulas de explosion
                 //SONIDOS de explosion y de colgar la llamada
+                _dialoguePanel.SetActive(false);
                 _movilIcon?.SetActive(false);
-                _dialogoRepararTorre?.SetActive(true);
                 Destroy(gameObject);
             }
         }

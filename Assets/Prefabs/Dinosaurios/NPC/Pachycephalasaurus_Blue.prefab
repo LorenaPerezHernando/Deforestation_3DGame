@@ -997,6 +997,7 @@ GameObject:
   - component: {fileID: 2404295065115490137}
   - component: {fileID: 5864914427537054018}
   - component: {fileID: 7335089997303243968}
+  - component: {fileID: 1848950675192221242}
   m_Layer: 0
   m_Name: Pachycephalasaurus_Blue
   m_TagString: Untagged
@@ -1286,8 +1287,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.37, y: 1, z: 0.58}
+  m_Center: {x: 0.37, y: 0.45, z: -0.15}
 --- !u!54 &2404295065115490137
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1350,6 +1351,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &1848950675192221242
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772353503318334649}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37, y: 1, z: 0.58}
+  m_Center: {x: -0.31, y: 0.45, z: -0.15}
 --- !u!1 &1814898147390210858
 GameObject:
   m_ObjectHideFlags: 0

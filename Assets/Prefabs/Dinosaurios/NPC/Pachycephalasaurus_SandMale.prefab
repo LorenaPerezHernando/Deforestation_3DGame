@@ -868,6 +868,7 @@ GameObject:
   - component: {fileID: 5489924698661654334}
   - component: {fileID: 6401410267329478457}
   - component: {fileID: 933089854010722818}
+  - component: {fileID: 3603517820932844010}
   m_Layer: 0
   m_Name: Pachycephalasaurus_SandMale
   m_TagString: Untagged
@@ -1157,8 +1158,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.37, y: 1, z: 0.58}
+  m_Center: {x: -0.36, y: 0.45, z: -0.15}
 --- !u!54 &5489924698661654334
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1221,6 +1222,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &3603517820932844010
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153705350900027791}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37, y: 1, z: 0.58}
+  m_Center: {x: 0.37, y: 0.45, z: -0.15}
 --- !u!1 &1276122634125119004
 GameObject:
   m_ObjectHideFlags: 0
