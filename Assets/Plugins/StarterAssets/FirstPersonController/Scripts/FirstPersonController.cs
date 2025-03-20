@@ -11,6 +11,7 @@ namespace StarterAssets
 #endif
 	public class FirstPersonController : MonoBehaviour
 	{
+		
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
@@ -35,7 +36,8 @@ namespace StarterAssets
 
 		[Header("Player Grounded")]
 		[Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
-		public bool Grounded = true;
+		[SerializeField] private Transform groundCheck;
+		public bool Grounded;
 		[Tooltip("Useful for rough ground")]
 		public float GroundedOffset = -0.14f;
 		[Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
@@ -88,6 +90,7 @@ namespace StarterAssets
 
 		private void Awake()
 		{
+			
 			// get a reference to our main camera
 			if (_mainCamera == null)
 			{
@@ -122,11 +125,26 @@ namespace StarterAssets
 			CameraRotation();
 		}
 
-		private void GroundedCheck()
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+            {
+                Grounded = false;
+            }
+            else
+            {
+                Grounded = true;
+            }
+        }
+        private void GroundedCheck()
 		{
 			// set sphere position, with offset
-			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-			Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
+			//Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+			Grounded = Physics.CheckSphere(groundCheck.position, GroundLayers);
+			bool isWater = (GroundLayers  & (1 << LayerMask.NameToLayer("Water"))) != 0;
+
+            if (isWater) 
+				Grounded = false;
 		}
 
 		private void CameraRotation()
