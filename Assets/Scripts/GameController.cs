@@ -13,7 +13,6 @@ namespace Deforestation
 		#region Properties
 		public MachineController MachineController => _machine;
 		public Inventory Inventory => _inventory;
-		public HealthSystem HealthSystem => _playerHealth;
 		public InteractionSystem InteractionSystem => _interactionSystem;
 		public TreeTerrainController TerrainController => _terrainController;
 		public Camera MainCamera;
@@ -61,20 +60,7 @@ namespace Deforestation
 
         #region Unity Callbacks
 
-        private void Awake()
-        {
-			_thePlayer = GameObject.FindWithTag("Player");
-			_player = _thePlayer.GetComponent<CharacterController>();
-			_inventory = _thePlayer.GetComponent<Inventory>();
-			_interactionSystem = _thePlayer.GetComponent<InteractionSystem>();
-
-			_virtualCamera = FindAnyObjectByType<CinemachineVirtualCamera>();
-			_playerFollow = _thePlayer.GetComponentInChildren<Transform>();
-
-			_theMachine = GameObject.FindWithTag("Machine");
-			_machineFollow = _theMachine.GetComponentInChildren<Transform>();
-			_machine = _theMachine.GetComponent<MachineController>();
-        }
+   
         void Start()
 		{
 			//UI Update

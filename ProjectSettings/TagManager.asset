@@ -9,7 +9,6 @@ TagManager:
   - Tree
   - Terrain
   - Machine
-  - Player Fire Particle
   layers:
   - Default
   - TransparentFX
