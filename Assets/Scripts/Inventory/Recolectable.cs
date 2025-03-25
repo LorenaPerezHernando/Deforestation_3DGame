@@ -13,6 +13,7 @@ namespace Deforestation.Recolectables
 	public class Recolectable : MonoBehaviour, IInteractable
 	{
 		#region Properties
+		
 		[field: SerializeField] public int Count { get; set; }
 		[field: SerializeField] public RecolectableType Type { get; set; }
 
@@ -45,6 +46,7 @@ namespace Deforestation.Recolectables
 
 		public void Interact()
 		{
+			
 			Destroy(gameObject);
 		}
 		#endregion

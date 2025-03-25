@@ -10,10 +10,11 @@ namespace Deforestation.Interaction
 		#region Properties
 		public event Action<string> OnShowInteraction;
 		public event Action OnHideInteraction;
-		#endregion
+        public event Action OnCollect;
+        #endregion
 
-		#region Fields
-		[SerializeField] float _widthDetector = 1;
+        #region Fields
+        [SerializeField] float _widthDetector = 1;
 		[SerializeField] float _distanceDetector = 5;
 		[SerializeField] Inventory _inventory;
 		private bool _interactebleDetected = false;
@@ -28,7 +29,8 @@ namespace Deforestation.Interaction
 				//Si la interaccion es Recolectable, la guardamos como tal
 				if (_currentInteraction is Recolectable recolectable)
 				{
-					_inventory.AddRecolectable(recolectable.Type, recolectable.Count);
+                    OnCollect?.Invoke();
+                    _inventory.AddRecolectable(recolectable.Type, recolectable.Count);
 					recolectable.Interact();
 				}
 				//Mahine Interaction

@@ -10,6 +10,7 @@ namespace Deforestation.Tower
 
     public class TowerRepairDialogue : MonoBehaviour
     {
+        
         [SerializeField] private GameObject _dialoguePanel;
         [SerializeField] private GameObject _towerUI;
         private TextMeshProUGUI _uiTowerText; // UI para mostrar los mensajes

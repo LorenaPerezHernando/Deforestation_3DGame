@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using System;
+using Deforestation.Recolectables;
 
 namespace Deforestation.Audio
 {
@@ -10,10 +11,14 @@ namespace Deforestation.Audio
 
 		#region Fields
 		[Header("FX")]
+		[SerializeField] private AudioSource _explosionTower;
+		[SerializeField] private AudioSource _machineMotor;
 		[SerializeField] private AudioSource _steps;
 		[SerializeField] private AudioSource _machineOn;
 		[SerializeField] private AudioSource _machineOff;
 		[SerializeField] private AudioSource _shoot;
+		[SerializeField] private AudioSource _grabObject;
+
 
 		[Space(10)]
 
@@ -31,6 +36,8 @@ namespace Deforestation.Audio
 			GameController.Instance.OnMachineModeChange += SetMachineMusicState;
 			GameController.Instance.MachineController.OnMachineDriveChange += SetMachineDriveEffect;
 			GameController.Instance.MachineController.WeaponController.OnMachineShoot += ShootFX;
+			GameController.Instance.FirstDialogue.OnTowerJustDestroyed += ExplosionTower;
+			GameController.Instance.InteractionSystem.OnCollect += GrabObject;
 		}		
 
 		private void Start()
@@ -72,14 +79,32 @@ namespace Deforestation.Audio
 		private void SetMachineDriveEffect(bool startDriving)
 		{
 			if (startDriving)
+			{
 				_machineOn.Play();
+				_machineMotor.Play();
+
+			}
 			else
+			{
+				_machineMotor.Stop();
 				_machineOff.Play();
+			}
 
 		}
 		private void ShootFX()
 		{
 			_shoot.Play();
+		}
+
+		private void ExplosionTower()
+		{
+			_explosionTower.Play();
+
+			
+		}
+		private void GrabObject()
+		{
+			_grabObject.Play();
 		}
 		#endregion
 

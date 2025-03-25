@@ -41,7 +41,7 @@ namespace Deforestation.Machine
 		
 		void Update()
 		{
-            //Input en MachineMovement
+            //TODO Input en MachineMovement
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 StopDriving();
@@ -67,6 +67,7 @@ namespace Deforestation.Machine
 			_movement.enabled = machineMode;
 			_anim.SetTrigger("WakeUp");
 			_anim.SetBool("Move", machineMode);
+			//OnDriveSound?.Invoke();
 			OnMachineDriveChange?.Invoke(true);
 		}
 

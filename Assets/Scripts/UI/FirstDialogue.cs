@@ -4,12 +4,14 @@ using UnityEngine;
 using TMPro;
 using System;
 using static UnityEngine.AudioSettings;
+using Unity.VisualScripting;
 
 namespace Deforestation.Dialogue
 {
     public class FirstDialogue : MonoBehaviour
     {
-        //TODO Icono de un movil sonando
+        public Action OnTowerJustDestroyed;
+        
         [SerializeField] private GameObject _movilIcon;
         [SerializeField] private GameObject _dialoguePanel;
        
@@ -39,8 +41,14 @@ namespace Deforestation.Dialogue
             if (Input.GetKeyUp(KeyCode.Return))
             {
                 _mensajeActual++;
-                if(_mensajeActual == 5)
+
+                
+                if (_mensajeActual == 5)
+                {
+                    OnTowerJustDestroyed?.Invoke();
                     _movilIcon?.SetActive(false);
+                    
+                }
                 InitialMessages();
 
             }
@@ -70,6 +78,8 @@ namespace Deforestation.Dialogue
                 Destroy(gameObject);
             }
         }
+
+       
     }
 }
 
