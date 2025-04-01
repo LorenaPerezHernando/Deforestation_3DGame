@@ -43,11 +43,6 @@ namespace Deforestation
 
 		#endregion
 
-		#region Private Methods
-		#endregion
-
-		#region Public Methods
-		#endregion
 
 	}
 }

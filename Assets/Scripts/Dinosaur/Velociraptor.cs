@@ -30,10 +30,11 @@ namespace Deforestation.Dinosaurus
 
         void Update()
         {
-           
+            //Vector3 _playerPosition = GameController.Instance.Inventory.transform.position; //Actualizar pos del player
             //Idle
             if (!_chase && !_attack && Vector3.Distance(transform.position, _playerPosition) < _distanceDetection)
             {
+                print("Chase");
                 ChasePlayer();
                 return;
             }
@@ -41,18 +42,25 @@ namespace Deforestation.Dinosaurus
             //Chase
             if (_chase)
             {
+                print("Chase");
                 NavMeshHit hit;
                 if (NavMesh.SamplePosition(_playerPosition, out hit, _attackDistance, 1))
                     _agent.SetDestination(hit.position);
+
+                if (_agent.isStopped)
+                    _agent.isStopped = false;
+                else { print("No se encontró pos"); }
             }
 
             if (_chase && Vector3.Distance(transform.position, _playerPosition) < _attackDistance)
             {
+                print("Atacar");
                 Attack();
                 return;
             }
             if (_chase && Vector3.Distance(transform.position, _playerPosition) > _distanceDetection)
             {
+                print("Idle");
                 Idle();
                 return;
             }

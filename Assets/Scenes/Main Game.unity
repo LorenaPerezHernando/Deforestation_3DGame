@@ -5780,8 +5780,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aea71256ff44c74d884d7e1ce1bf37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distanceDetection: 50
-  _attackDistance: 7
+  _distanceDetection: 30
+  _attackDistance: 5
   _attackTime: 2
   _attackDamage: 5
 --- !u!195 &707504334
@@ -19744,13 +19744,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4742623214083810375, guid: 496ed2959385720418ab652aff3bb105,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.8067002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742623214083810375, guid: 496ed2959385720418ab652aff3bb105,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.8067002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742623214083810375, guid: 496ed2959385720418ab652aff3bb105,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3.8067002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4742623214083810375, guid: 496ed2959385720418ab652aff3bb105,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 157.71716
       objectReference: {fileID: 0}
     - target: {fileID: 4742623214083810375, guid: 496ed2959385720418ab652aff3bb105,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -69.386444
+      value: -67.2
       objectReference: {fileID: 0}
     - target: {fileID: 4742623214083810375, guid: 496ed2959385720418ab652aff3bb105,
         type: 3}
