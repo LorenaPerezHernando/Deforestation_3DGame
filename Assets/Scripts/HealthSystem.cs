@@ -25,6 +25,7 @@ namespace Deforestation
 
 			if (_currentHealth <= 0)
 			{
+				print("Died");
 				Die();
 			}
 		}

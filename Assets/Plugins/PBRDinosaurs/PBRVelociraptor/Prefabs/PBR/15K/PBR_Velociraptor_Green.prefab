@@ -336,7 +336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1087673175124980606
 Transform:
   m_ObjectHideFlags: 0
@@ -1907,14 +1907,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5257702589886698378}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.6868338, y: -0, z: 0, w: 0.7268145}
   m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 24.964155, y: 24.964153, z: 24.964153}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7182948293786213166}
   m_Father: {fileID: 8938114855089051513}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -86.76, y: 0, z: 0}
 --- !u!1 &5259909281324654603
 GameObject:
   m_ObjectHideFlags: 0
@@ -2943,7 +2943,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7433976435638668561}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.24964154, y: 0.24964154, z: 0.24964154}
   m_ConstrainProportionsScale: 0
@@ -4107,13 +4107,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5359991864150564430}
+  - component: {fileID: 6140939939442318009}
+  - component: {fileID: 4405655987858858581}
   - component: {fileID: 2659525053879235380}
   - component: {fileID: 1087673174070670680}
   - component: {fileID: 1087673174070670683}
   - component: {fileID: 6826720673868234807}
+  - component: {fileID: 5925380187525191342}
   m_Layer: 0
   m_Name: PBR_Velociraptor_Green
-  m_TagString: Untagged
+  m_TagString: Dinosaur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4128,7 +4131,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.779434, y: 0.779434, z: 0.779434}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3125031460754743505}
@@ -4136,6 +4139,35 @@ Transform:
   - {fileID: 8938114855089051513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6140939939442318009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8951429737276468317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4360ec04653ff4a97ccfa15b9b1f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+--- !u!114 &4405655987858858581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8951429737276468317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aea71256ff44c74d884d7e1ce1bf37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distanceDetection: 30
+  _attackDistance: 5
+  _attackTime: 2
+  _attackDamage: 5
 --- !u!95 &2659525053879235380
 Animator:
   serializedVersion: 5
@@ -4146,7 +4178,7 @@ Animator:
   m_GameObject: {fileID: 8951429737276468317}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 923da24417bde954e8eb93a36c143958, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a9fe76cc55d917e4c89bd06c275454ff, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -4314,6 +4346,28 @@ MonoBehaviour:
   useTimerVariation: 1
   shapeTimer: 3
   blendSpeed: 1200
+--- !u!195 &5925380187525191342
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8951429737276468317}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &9041897777905351009
 GameObject:
   m_ObjectHideFlags: 0

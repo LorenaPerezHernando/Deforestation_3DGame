@@ -11,6 +11,7 @@ TagManager:
   - Machine
   - Player Fire Particle
   - Machine Fire Particle
+  - Dinosaur
   layers:
   - Default
   - TransparentFX

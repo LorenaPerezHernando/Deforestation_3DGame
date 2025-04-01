@@ -9,6 +9,9 @@ namespace Deforestation.Recolectables
 		SuperCrystal,
 		HyperCrystal,
 		MegaCrystal,
+
+		TowerPart,
+		Dagger,
 	}
 	public class Recolectable : MonoBehaviour, IInteractable
 	{
@@ -21,20 +24,7 @@ namespace Deforestation.Recolectables
 
 		#region Fields
 		[SerializeField] private InteractableInfo _interactableInfo;
-		#endregion
 
-		#region Unity Callbacks
-		// Start is called before the first frame update
-		void Start()
-		{
-
-		}
-
-		// Update is called once per frame
-		void Update()
-		{
-
-		}
 		#endregion
 
 		#region Public Methods
@@ -46,8 +36,11 @@ namespace Deforestation.Recolectables
 
 		public void Interact()
 		{
-			
-			Destroy(gameObject);
+            if (_interactableInfo.Type == "Dagger")
+            {
+				GetComponent<InteractDagger>().DaggerActives();
+            }
+            Destroy(gameObject);
 		}
 		#endregion
 
