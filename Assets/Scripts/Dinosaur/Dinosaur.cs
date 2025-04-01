@@ -25,15 +25,16 @@ namespace Deforestation.Dinosaurus
 			_anim = GetComponent<Animator>();
 			_agent = GetComponent<NavMeshAgent>();
 
-			_health.OnDeath += Die;
 		}
 
 		private void Die()
 		{
-			_anim.SetTrigger("Die");
-			Destroy(_agent);
-			Destroy(this);
-		}
+			_health.OnDeath += Die;
+            _anim.SetTrigger("Die");
+            Destroy(_agent);
+            Destroy(this);
+            Destroy(gameObject);
+        }
 		#endregion
 
 		#region Private Methods

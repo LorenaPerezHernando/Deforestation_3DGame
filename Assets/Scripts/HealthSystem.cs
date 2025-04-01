@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Deforestation
 {
@@ -46,9 +49,25 @@ namespace Deforestation
 
 		private void Die()
 		{
-			OnDeath?.Invoke();
-			// Aquí puedes añadir lógica adicional para la muerte, como destruir el objeto.
-		}
+            Animator _anim = GetComponent<Animator>();
+            _anim.SetTrigger("Die");
+            OnDeath?.Invoke();
+			StartCoroutine(Died());
+			
+            // Aquí puedes añadir lógica adicional para la muerte, como destruir el objeto.
+        }
+
+		IEnumerator Died()
+		{
+			yield return new WaitForSeconds(3f);
+            //TODO Particula de nubes
+            NavMeshAgent _agent = GetComponent<NavMeshAgent>();
+            
+            Destroy(_agent);
+            Destroy(this);
+            Destroy(gameObject);
+        }
+		
 	}
 
 }
