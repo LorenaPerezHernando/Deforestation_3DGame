@@ -40,6 +40,8 @@ namespace Deforestation.Tower
             }
 
         } 
+
+
         
         IEnumerator FixTheTower()
         {
@@ -48,6 +50,8 @@ namespace Deforestation.Tower
             yield return new WaitForSeconds(1);
             _goodTower.SetActive(true );
             _badTower.SetActive(false );
+            yield return new WaitForSeconds(1);
+            Destroy(_badTower); Destroy(this);
         }
         
     }

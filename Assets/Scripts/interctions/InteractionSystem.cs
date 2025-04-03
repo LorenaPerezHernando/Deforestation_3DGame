@@ -57,7 +57,7 @@ namespace Deforestation.Interaction
 				}
 			}
 			_interactebleDetected = false;
-			OnHideInteraction.Invoke();
+			OnHideInteraction?.Invoke();
 			
 		}
 		#endregion

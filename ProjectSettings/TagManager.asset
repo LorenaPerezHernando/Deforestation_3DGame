@@ -13,6 +13,7 @@ TagManager:
   - Machine Fire Particle
   - Dinosaur
   - TowerPart
+  - DeathParticle
   layers:
   - Default
   - TransparentFX

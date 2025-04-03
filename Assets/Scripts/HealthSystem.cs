@@ -13,15 +13,25 @@ namespace Deforestation
 		public event Action OnDeath;
 
 		[SerializeField]
+		private GameObject _deathParticle;
+		//private ParticleSystem _deathParticle;
 		private float _maxHealth = 100f;
 		private float _currentHealth;
 
 		private void Awake()
 		{
-			_currentHealth = _maxHealth;
+			_deathParticle = GameObject.FindWithTag("DeathParticle");
+			//_deathParticle = GetComponentInChildren<ParticleSystem>();
+            _currentHealth = _maxHealth;
 		}
 
-		public void TakeDamage(float damage)
+        private void Start()
+        {
+            _deathParticle.gameObject.SetActive(false);
+            
+        }
+
+        public void TakeDamage(float damage)
 		{
 			_currentHealth -= damage;
 			OnHealthChanged?.Invoke(_currentHealth);
@@ -53,7 +63,9 @@ namespace Deforestation
 			{
 				Animator _anim = GetComponent<Animator>();
 				_anim.SetTrigger("Die");
-				OnDeath?.Invoke();
+                if (_deathParticle != null)
+                    _deathParticle.gameObject.SetActive(true);
+                OnDeath?.Invoke();
 				StartCoroutine(Died());
 
 			}
@@ -63,10 +75,10 @@ namespace Deforestation
 
 		IEnumerator Died()
 		{
+            
 			yield return new WaitForSeconds(3f);
             //TODO Particula de nubes
             NavMeshAgent _agent = GetComponent<NavMeshAgent>();
-            
             Destroy(_agent);
             Destroy(this);
             Destroy(gameObject);

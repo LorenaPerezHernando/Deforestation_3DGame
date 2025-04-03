@@ -6,6 +6,7 @@ using UnityEngine;
 public class DaggerHurts : MonoBehaviour
 {
     [SerializeField] private Animator _anim;
+    [SerializeField] private ParticleSystem _bloodParticle;
 
     private void Awake()
     {
@@ -24,8 +25,12 @@ public class DaggerHurts : MonoBehaviour
         {
             HealthSystem dinosaurHealth = other.gameObject.GetComponent<HealthSystem>();
             print("Hit dinosaur");
+            _bloodParticle = other.GetComponent<ParticleSystem>();
             if (dinosaurHealth != null)
+            {
                 dinosaurHealth.TakeDamage(20f);
+                _bloodParticle.Play();
+            }
 
         }
     }
