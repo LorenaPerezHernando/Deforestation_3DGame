@@ -6,12 +6,14 @@ using Deforestation.Interaction;
 using Cinemachine;
 using System;
 using Deforestation.Dialogue;
+using Deforestation.Tower;
 
 namespace Deforestation
 {
 	public class GameController : Singleton<GameController>
 	{
 		#region Properties
+		public TowerInteraction TowerInteraction => _towerInteraction;
 		public FirstDialogue FirstDialogue => _firstDialogue;
 		public MachineController MachineController => _machine;
 		public HealthSystem HealthSystem => _playerHealth;
@@ -45,7 +47,8 @@ namespace Deforestation
 		[SerializeField] protected Inventory _inventory;
 		[SerializeField] protected InteractionSystem _interactionSystem;
 		[SerializeField] protected FirstDialogue _firstDialogue;
-		
+
+		[SerializeField] protected TowerInteraction _towerInteraction;
 
 		[Header("Camera")]
 		[SerializeField] protected CinemachineVirtualCamera _virtualCamera;

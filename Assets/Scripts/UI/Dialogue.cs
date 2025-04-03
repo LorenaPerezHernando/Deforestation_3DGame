@@ -14,7 +14,7 @@ namespace Deforestation.Dialogue
         [SerializeField] private int _mensajeActual = 0;
         void Start()
         {
-
+            _dialoguePanel.SetActive(true);
             _uiText.text = _initialMessages[_mensajeActual]; // Mostrar primer mensaje
 
         }

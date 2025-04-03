@@ -30,10 +30,7 @@ namespace Deforestation.Dinosaurus
 		private void Die()
 		{
 			_health.OnDeath += Die;
-            _anim.SetTrigger("Die");
-            Destroy(_agent);
-            Destroy(this);
-            Destroy(gameObject);
+
         }
 		#endregion
 

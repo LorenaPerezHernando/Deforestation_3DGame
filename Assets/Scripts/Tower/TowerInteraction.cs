@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Deforestation.Tower
@@ -8,9 +9,15 @@ namespace Deforestation.Tower
 
     public class TowerInteraction : MonoBehaviour
     {
+        public Action OnRepairTower;
+        
+        [Header("Tower Repaired")]
+        public bool isRepaired;
+        [SerializeField] private GameObject _goodTower;
+        [SerializeField] private GameObject _badTower;
 
-        [SerializeField] private GameObject _prefabRepairTowerDialogue;
-        private bool ifInstantiate;
+        [Header("Tower NOT Repaired")]
+        [SerializeField] private GameObject _prefabRepairTowerDialogue;      
         [SerializeField] private GameObject _dialoguePanel;
 
         private void OnTriggerEnter(Collider other)
@@ -19,21 +26,29 @@ namespace Deforestation.Tower
             {
 
                 if (_prefabRepairTowerDialogue != null)
-                {
-
-                    //if(ifInstantiate == false)
-                    //{
-                    //    //GameObject Towerdialogue = Instantiate(_prefabRepairTowerDialogue, _dialoguePanel.transform);
-                    //    ifInstantiate = true;
-                    //} 
-
+                { 
                     _dialoguePanel.SetActive(true);
                     _prefabRepairTowerDialogue.SetActive(true);
-                    //_prefabRepairTowerDialogue.SetActive(true);
-                }            
+                }
+
+                if (isRepaired)
+                {
+                    StartCoroutine(FixTheTower());
+                    
+                }
                 //DIALOGUE FOR PIECES
             }
 
-        }        
+        } 
+        
+        IEnumerator FixTheTower()
+        {
+            OnRepairTower?.Invoke(); //Audio, Dialogo
+            //TODO Particulas
+            yield return new WaitForSeconds(1);
+            _goodTower.SetActive(true );
+            _badTower.SetActive(false );
+        }
+        
     }
 }

@@ -49,10 +49,14 @@ namespace Deforestation
 
 		private void Die()
 		{
-            Animator _anim = GetComponent<Animator>();
-            _anim.SetTrigger("Die");
-            OnDeath?.Invoke();
-			StartCoroutine(Died());
+			if(gameObject.tag == "Dinosaur")
+			{
+				Animator _anim = GetComponent<Animator>();
+				_anim.SetTrigger("Die");
+				OnDeath?.Invoke();
+				StartCoroutine(Died());
+
+			}
 			
             // Aquí puedes añadir lógica adicional para la muerte, como destruir el objeto.
         }

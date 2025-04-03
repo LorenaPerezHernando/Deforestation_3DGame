@@ -5,6 +5,7 @@ using System;
 using Deforestation.Interaction;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using Deforestation.Tower;
 
 namespace Deforestation.UI
 {
@@ -15,7 +16,9 @@ namespace Deforestation.UI
 
 		#region Fields
 		private Inventory _inventory => GameController.Instance.Inventory;		
+		private TowerInteraction _towerInteraction => GameController.Instance.TowerInteraction;
 		private InteractionSystem _interactionSystem => GameController.Instance.InteractionSystem;
+        
 
 		[Header("Settings")]
 		[SerializeField] private AudioMixer _mixer;
@@ -34,6 +37,12 @@ namespace Deforestation.UI
 		[SerializeField] private Slider _machineSlider;
 		[SerializeField] private Slider _playerSlider;
 
+		[Header("Tower")]
+		[SerializeField] private GameObject _dialoguePanel;
+		[SerializeField] private GameObject _fixTowerDialogue;
+		[SerializeField] private GameObject _repairedTowerDialogue;
+		[SerializeField] private TextMeshProUGUI _towerPartText;
+
 		private bool _settingsOn = false;
 		private
 		#endregion
@@ -41,7 +50,9 @@ namespace Deforestation.UI
 		#region Unity Callbacks
 		void Start()
 		{
-			_settingsPanel.SetActive(false);
+            GameController.Instance.TowerInteraction.OnRepairTower += RepairedTower;
+            _settingsPanel.SetActive(false);
+			_fixTowerDialogue.SetActive(false);
 
 			//My Events
 			_inventory.OnInventoryUpdated += UpdateUIInventory;
@@ -99,6 +110,21 @@ namespace Deforestation.UI
 				_crystal3Text.text = _inventory.InventoryStack[RecolectableType.MegaCrystal].ToString();
 			else
 				_crystal3Text.text = "0";
+			if(_inventory.InventoryStack.ContainsKey(RecolectableType.TowerPart))
+				_towerPartText.text = _inventory.InventoryStack[RecolectableType.TowerPart].ToString() + " /10";
+			else
+				_towerPartText.text = "0/10";
+            if (_inventory.InventoryStack.TryGetValue(RecolectableType.TowerPart, out int cantidad) && cantidad >= 10)
+            {
+                _towerInteraction.isRepaired = true;
+                _dialoguePanel.SetActive(true);
+                _fixTowerDialogue.SetActive(true);
+            }
+        }
+
+		private void RepairedTower()
+		{
+			_repairedTowerDialogue.SetActive(true );
 		}
 
 		private void FXVolumeChange(float value)

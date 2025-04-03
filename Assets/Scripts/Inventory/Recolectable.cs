@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using Deforestation.Interaction;
+using System.Linq;
 
 namespace Deforestation.Recolectables
 {
@@ -31,7 +32,11 @@ namespace Deforestation.Recolectables
 		public InteractableInfo GetInfo()
 		{
 			_interactableInfo.Type = Type.ToString();
+			
 			return _interactableInfo;
+
+			
+
 		}
 
 		public void Interact()
@@ -40,6 +45,10 @@ namespace Deforestation.Recolectables
             {
 				GetComponent<InteractDagger>().DaggerActives();
             }
+
+		
+
+			
             Destroy(gameObject);
 		}
 		#endregion

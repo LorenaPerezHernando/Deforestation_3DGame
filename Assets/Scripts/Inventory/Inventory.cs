@@ -54,6 +54,16 @@ namespace Deforestation.Recolectables
 				Destroy(collision.gameObject);
 				Debug.Log("Recolected");
 			}
+
+			if (collision.gameObject.tag.Equals("TowerPart"))
+			{
+                Recolectable itemPart = collision.gameObject.GetComponent<Recolectable>();
+                AddRecolectable(itemPart.Type, itemPart.Count);
+                Destroy(collision.gameObject);
+                Debug.Log("Recolected");
+
+				
+            }
         }
         #endregion
     }

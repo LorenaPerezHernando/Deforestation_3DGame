@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 1341145957775966026}
   - component: {fileID: 1478951081889785738}
+  - component: {fileID: 6948446456859471031}
+  - component: {fileID: 8940831537415602375}
   m_Layer: 0
   m_Name: rock4
   m_TagString: Untagged
@@ -28,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.69396204, y: 0.7140687, z: 0.019924333, w: -0.09014219}
+  m_LocalRotation: {x: 0.6939626, y: -0.714068, z: -0.019921841, w: 0.09014418}
   m_LocalPosition: {x: 2.5860863, y: 2.5387568, z: -4.735576}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.3, y: 0.30000004, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 5.547, y: -170.96, z: -87.925}
 --- !u!33 &3300000
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -133,3 +135,39 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 15
   m_Center: {x: 1.8369203, y: -2.50058, z: 0.34731495}
+--- !u!114 &6948446456859471031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4360ec04653ff4a97ccfa15b9b1f29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+--- !u!114 &8940831537415602375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8f247359f0cc3b4b84b56d908ae187d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _crystalPrefab:
+  - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}
+  - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}
+  - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}
+  - {fileID: 1266612675375492439, guid: c5051c32e9dfda94e9ba3da162752cc4, type: 3}
+  _rockPrefab:
+  - {fileID: 100000, guid: 857d22af654fa504c856c2b69095df3b, type: 3}
+  - {fileID: 100000, guid: a9692a32d610c514b8dd2397c351bebc, type: 3}
+  - {fileID: 100000}
+  _maxSpawnCount: 10
+  _spawnRadius: 5

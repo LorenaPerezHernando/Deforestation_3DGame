@@ -11,6 +11,7 @@ namespace Deforestation.Audio
 
 		#region Fields
 		[Header("FX")]
+		[SerializeField] private AudioSource _repairTower;
 		[SerializeField] private AudioSource _explosionTower;
 		[SerializeField] private AudioSource _machineMotor;
 		[SerializeField] private AudioSource _steps;
@@ -38,7 +39,10 @@ namespace Deforestation.Audio
 			GameController.Instance.MachineController.WeaponController.OnMachineShoot += ShootFX;
 			GameController.Instance.FirstDialogue.OnTowerJustDestroyed += ExplosionTower;
 			GameController.Instance.InteractionSystem.OnCollect += GrabObject;
-		}		
+			GameController.Instance.TowerInteraction.OnRepairTower += FixTower;
+			
+
+        }		
 
 		private void Start()
 		{
@@ -98,13 +102,16 @@ namespace Deforestation.Audio
 
 		private void ExplosionTower()
 		{
-			_explosionTower.Play();
-
-			
+			_explosionTower.Play();			
 		}
 		private void GrabObject()
 		{
 			_grabObject.Play();
+		}
+
+		private void FixTower()
+		{
+			_repairTower.Play();
 		}
 		#endregion
 
