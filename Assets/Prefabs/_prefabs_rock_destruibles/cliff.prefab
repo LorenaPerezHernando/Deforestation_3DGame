@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -4824217205244016919}
   m_Layer: 0
   m_Name: cliff
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -171,4 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4360ec04653ff4a97ccfa15b9b1f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _deathParticle: {fileID: 0}
+  _bloodParticle: {fileID: 0}
+  _currentHealth: 0

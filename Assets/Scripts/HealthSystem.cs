@@ -42,11 +42,11 @@ namespace Deforestation
 		{
 			_currentHealth -= damage;
 			OnHealthChanged?.Invoke(_currentHealth);
-
-			_bloodParticle.Play();
+			if(_bloodParticle != null)
+				_bloodParticle.Play();
 			if (_currentHealth <= 0)
 			{
-				print("Died");
+				print("Died"); print( "Died" +name + ": " + _currentHealth.ToString());
 				Die();
 			}
 		}
@@ -77,6 +77,10 @@ namespace Deforestation
 				StartCoroutine(Died());
 
 			}
+			if(gameObject.tag == "Rock")
+				Destroy(gameObject);
+
+			
 			
         }
 

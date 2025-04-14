@@ -19,19 +19,15 @@ namespace Deforestation
                 if (_currentScene == 0)
                     Application.Quit();
 
-                //TODO ACTIVAR EN LA BUILD
+                //TODO ACTIVAR EN LA BUILD 2a parte 
                 //if (_currentScene == 1) Desactivado pq sino no puedo darle a esc para ver los componentes de la escena 1
                 //{
                 //    SceneManager.LoadScene(0);
                 //    Cursor.visible = true;
                 //}
             }
-            if (Input.GetKeyUp(KeyCode.P))
-                if (_currentScene == 1)
-                {
-                    SceneManager.LoadScene(0);
-                    Cursor.visible = true;
-                }
+
+                
             if (_currentScene == 0)
             {
                 Cursor.visible = true;
