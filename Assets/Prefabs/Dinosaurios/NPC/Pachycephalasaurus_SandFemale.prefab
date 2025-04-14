@@ -1877,7 +1877,7 @@ GameObject:
   - component: {fileID: 4642507999387609636}
   - component: {fileID: 7979054796114084698}
   m_Layer: 0
-  m_Name: Retopo_LOD5
+  m_Name: PachySandFemale_LOD5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2240,7 +2240,7 @@ GameObject:
   - component: {fileID: 1617243616616985767}
   - component: {fileID: 8845388154872918349}
   m_Layer: 0
-  m_Name: Retopo_LOD0
+  m_Name: PachySandFemale_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2408,7 +2408,7 @@ GameObject:
   - component: {fileID: 111700136056250192}
   - component: {fileID: 2178702103211839611}
   m_Layer: 0
-  m_Name: Retopo_LOD2
+  m_Name: PachySandFemale_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2958,7 +2958,7 @@ GameObject:
   - component: {fileID: 1582024713602438171}
   - component: {fileID: 7153632218052614466}
   m_Layer: 0
-  m_Name: Retopo_LOD1
+  m_Name: PachySandFemale_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3480,6 +3480,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 115392693577758257}
+  - {fileID: 2901931699283056244}
   - {fileID: 2345045001379198691}
   - {fileID: 3272573093457810528}
   - {fileID: 1617243616616985767}
@@ -3770,6 +3771,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathParticle: {fileID: 0}
+  _bloodParticle: {fileID: 0}
+  _currentHealth: 0
 --- !u!195 &-7639556577698763693
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -9258,7 +9261,7 @@ GameObject:
   - component: {fileID: 671986273242443126}
   - component: {fileID: 9168007652138980677}
   m_Layer: 0
-  m_Name: Retopo_LOD3
+  m_Name: PachySandFemale_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9489,7 +9492,7 @@ GameObject:
   - component: {fileID: 1830921030283306234}
   - component: {fileID: 5501453215192000649}
   m_Layer: 0
-  m_Name: Retopo_LOD4
+  m_Name: PachySandFemale_LOD4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9740,6 +9743,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6437564396966840793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2730019074559164953
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6646067663685084797}
+    m_Modifications:
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 985483039366664255, guid: f91edac4d13fc4343ba96bb6a843ad05,
+        type: 3}
+      propertyPath: m_Name
+      value: BloodParticle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f91edac4d13fc4343ba96bb6a843ad05, type: 3}
+--- !u!4 &2901931699283056244 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 983828037429990509, guid: f91edac4d13fc4343ba96bb6a843ad05,
+    type: 3}
+  m_PrefabInstance: {fileID: 2730019074559164953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6853786787042527639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9801,7 +9878,7 @@ PrefabInstance:
     - target: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3,
         type: 3}
       propertyPath: m_Name
-      value: DeathParticle_ Smoke 4
+      value: DeathParticle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

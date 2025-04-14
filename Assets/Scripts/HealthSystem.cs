@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 
 namespace Deforestation
 {
@@ -12,22 +13,28 @@ namespace Deforestation
 		public event Action<float> OnHealthChanged;
 		public event Action OnDeath;
 
-		[SerializeField]
-		private GameObject _deathParticle;
-		//private ParticleSystem _deathParticle;
-		private float _maxHealth = 100f;
-		private float _currentHealth;
+
+        [SerializeField] private ParticleSystem _deathParticle;
+		[SerializeField] private ParticleSystem _bloodParticle;
+        private float _maxHealth = 100f;
+        [SerializeField] private float _currentHealth;
 
 		private void Awake()
 		{
-			_deathParticle = GameObject.FindWithTag("DeathParticle");
-			//_deathParticle = GetComponentInChildren<ParticleSystem>();
-            _currentHealth = _maxHealth;
+			
+			_deathParticle = GetComponentInChildren<ParticleSystem>();
+			if( _deathParticle != null )
+			_deathParticle.gameObject.SetActive(false);
+
+			_bloodParticle = GetComponentInChildren<ParticleSystem>();
+			
+
+			
 		}
 
         private void Start()
         {
-            _deathParticle.gameObject.SetActive(false);
+			
             
         }
 
@@ -36,6 +43,7 @@ namespace Deforestation
 			_currentHealth -= damage;
 			OnHealthChanged?.Invoke(_currentHealth);
 
+			_bloodParticle.Play();
 			if (_currentHealth <= 0)
 			{
 				print("Died");
@@ -70,7 +78,6 @@ namespace Deforestation
 
 			}
 			
-            // Aquí puedes añadir lógica adicional para la muerte, como destruir el objeto.
         }
 
 		IEnumerator Died()

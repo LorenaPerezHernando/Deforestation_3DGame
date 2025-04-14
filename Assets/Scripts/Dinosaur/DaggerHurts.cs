@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Deforestation;
 using UnityEngine;
+using System;
 
 public class DaggerHurts : MonoBehaviour
 {
     [SerializeField] private Animator _anim;
     [SerializeField] private ParticleSystem _bloodParticle;
+    private ParticleSystem _stegasaurusBloodParticle;
+
 
     private void Awake()
     {
@@ -23,12 +26,25 @@ public class DaggerHurts : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Dinosaur"))
         {
-            HealthSystem dinosaurHealth = other.gameObject.GetComponent<HealthSystem>();
+            print("Trigger with Dino");
+            HealthSystem stegasaurusHealth = other.gameObject.GetComponentInParent<HealthSystem>();
+            HealthSystem healthSystem = other.gameObject.GetComponent<HealthSystem>();
+
             print("Hit dinosaur");
             _bloodParticle = other.GetComponent<ParticleSystem>();
-            if (dinosaurHealth != null)
+            _stegasaurusBloodParticle = other.GetComponentInParent<ParticleSystem>();
+            
+            if (stegasaurusHealth != null)
             {
-                dinosaurHealth.TakeDamage(20f);
+                print("Hit Stega");
+                
+                stegasaurusHealth.TakeDamage(5f);
+                _stegasaurusBloodParticle.Play();
+            }
+            if(healthSystem != null)
+            {
+                print("Hit Dino");
+                healthSystem.TakeDamage(20f);
                 _bloodParticle.Play();
             }
 

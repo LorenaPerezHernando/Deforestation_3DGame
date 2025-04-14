@@ -40,7 +40,13 @@ namespace Deforestation.Interaction
 				}
 			}
 		}
-		void FixedUpdate()
+        void LateUpdate()
+        {
+            Vector3 rotation = transform.eulerAngles;
+            rotation.z = 0f; // bloquea la rotación en Z
+            transform.eulerAngles = rotation;
+        }
+        void FixedUpdate()
 		{
 			RaycastHit hit;
 			if (Physics.SphereCast(Camera.main.transform.position, 0.8f, Camera.main.transform.forward, out hit, 5))

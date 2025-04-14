@@ -15,7 +15,8 @@ namespace Deforestation.Dinosaurus
 		private void Start()
 		{
 			_health.OnHealthChanged += Damage;
-		}
+
+        }
 
 		void Update()
 		{
@@ -41,7 +42,9 @@ namespace Deforestation.Dinosaurus
 		}
 		void MoverAdestinoAleatorio()
 		{
-			Vector3 destinoAleatorio = Random.insideUnitSphere * _radiusMovement;
+			
+           
+            Vector3 destinoAleatorio = Random.insideUnitSphere * _radiusMovement;
 			destinoAleatorio += transform.position;
 			UnityEngine.AI.NavMeshHit hit;
 			if (UnityEngine.AI.NavMesh.SamplePosition(destinoAleatorio, out hit, _radiusMovement, 1))

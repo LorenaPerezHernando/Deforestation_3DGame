@@ -62,6 +62,7 @@ namespace Deforestation.Dinosaurus
 				_attackColdDown -= Time.deltaTime;
 				if (_attackColdDown <= 0)
 				{
+					print("Pachy hurts Machine");
 					_attackColdDown = _attackTime;
 					GameController.Instance.MachineController.HealthSystem.TakeDamage(_attackDamage);
 				}

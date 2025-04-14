@@ -30,7 +30,7 @@ namespace Deforestation.Dinosaurus
 
         void Update()
         {
-            //Vector3 _playerPosition = GameController.Instance.Inventory.transform.position; //Actualizar pos del player
+
             //Idle
             if (!_chase && !_attack && Vector3.Distance(transform.position, _playerPosition) < _distanceDetection)
             {

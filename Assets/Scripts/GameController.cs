@@ -21,6 +21,7 @@ namespace Deforestation
 		public InteractionSystem InteractionSystem => _interactionSystem;
 		public TreeTerrainController TerrainController => _terrainController;
 		public Camera MainCamera;
+		public DaggerHurts DaggerHurts => _dagger;
 
 		//Events
 		public Action<bool> OnMachineModeChange;
@@ -62,8 +63,11 @@ namespace Deforestation
 		[SerializeField] protected UIGameController _uiController;
 		[Header("Trees Terrain")]
 		[SerializeField] protected TreeTerrainController _terrainController;
+		[Header("Dinosaurs")]
+		[SerializeField] protected DaggerHurts _dagger;
 
 		private bool _machineModeOn;
+		private Quaternion _originalPlayerRotation;
         #endregion
 
         #region Unity Callbacks
@@ -75,6 +79,7 @@ namespace Deforestation
 			_playerHealth.OnHealthChanged += _uiController.UpdatePlayerHealth;
 			_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
 			MachineModeOn = false;
+			_originalPlayerRotation =_player.transform.rotation;
 		}
 
 		// Update is called once per frame
@@ -96,6 +101,7 @@ namespace Deforestation
 			MachineModeOn = machineMode;
 			//Player
 			_player.gameObject.SetActive(!machineMode);
+			
 			_player.enabled = !machineMode;
 
 			//Cursor + UI
@@ -121,6 +127,7 @@ namespace Deforestation
 				_machine.enabled = false;
 				_machine.WeaponController.enabled = false;
 				_machine.GetComponent<MachineMovement>().enabled = false;
+				_player.transform.rotation = _originalPlayerRotation;
 				_player.transform.parent = null;
 
 				//Camera
