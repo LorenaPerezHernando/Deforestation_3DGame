@@ -15,6 +15,7 @@ namespace Deforestation.Tower
         public bool isRepaired;
         [SerializeField] private GameObject _goodTower;
         [SerializeField] private GameObject _badTower;
+        [SerializeField] private GameObject _panelMisionCompleted;
 
         [Header("Tower NOT Repaired")]
         [SerializeField] private GameObject _prefabRepairTowerDialogue;      
@@ -51,7 +52,9 @@ namespace Deforestation.Tower
             _goodTower.SetActive(true );
             _badTower.SetActive(false );
             yield return new WaitForSeconds(1);
-            Destroy(_badTower); Destroy(this);
+            _dialoguePanel?.SetActive(false);
+            _panelMisionCompleted.SetActive(true );   
+            //Destroy(_badTower); Destroy(this);
         }
         
     }

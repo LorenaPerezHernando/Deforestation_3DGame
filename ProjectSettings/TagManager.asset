@@ -16,6 +16,8 @@ TagManager:
   - DeathParticle
   - BloodParticle
   - Rock
+  - DialoguePanel
+  - HurtDialogue
   layers:
   - Default
   - TransparentFX

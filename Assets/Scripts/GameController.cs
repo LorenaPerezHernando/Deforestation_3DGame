@@ -72,7 +72,7 @@ namespace Deforestation
 
         #region Unity Callbacks
 
-   
+
         void Start()
 		{
 			//UI Update

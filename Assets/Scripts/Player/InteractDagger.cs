@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractDagger : MonoBehaviour
+namespace Deforestation.Recolectables
 {
-    [SerializeField] private GameObject _dialogueDagger;
-    [SerializeField] private GameObject _daggerPlayer;
 
-    public void DaggerActives()
+
+    public class InteractDagger : MonoBehaviour
     {
-        if (_dialogueDagger != null && _daggerPlayer != null)
+        [SerializeField] private GameObject _dialogueDagger;
+        [SerializeField] private GameObject _daggerPlayer;
+
+        public void DaggerActives()
         {
-            _dialogueDagger.SetActive(true);
-            _daggerPlayer.SetActive(true);
+            if (_dialogueDagger != null && _daggerPlayer != null)
+            {
+                _dialogueDagger.SetActive(true);
+                _daggerPlayer.SetActive(true);
+            }
         }
     }
 }

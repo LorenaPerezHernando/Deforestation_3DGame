@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Deforestation;
 using UnityEngine;
-
 namespace Deforestation.Player
 {
     public class DetectsWater : MonoBehaviour
     {
         #region Fields
-
+        [Header("Tower NOT Repaired")]
+        [SerializeField] private GameObject _hurtDialogue;
+        [SerializeField] private GameObject _dialoguePanel;
+        [Header("Fire")]
         [SerializeField] private GameObject _prefabfireParticles;
         private bool _fireOn;
         [SerializeField] private GameObject[] _playerFireParticle;
@@ -31,12 +33,12 @@ namespace Deforestation.Player
                 {
                     _prefabfireParticles.SetActive(true);
                     _attackCoolDown = _attackTime;
-
+                    _hurtDialogue.SetActive(true);
+                    _dialoguePanel.SetActive(true);
 
                     if (_fireOn == false)
                     {
                         GameObject fire = Instantiate(_prefabfireParticles, transform.position, Quaternion.identity, transform);
-
                         _fireOn = true;
                     }
 
@@ -80,6 +82,8 @@ namespace Deforestation.Player
 
         private void OnTriggerExit(Collider other)
         {
+            _hurtDialogue.SetActive(false);
+            _dialoguePanel.SetActive(false);
             _attackCoolDown = 0;
             foreach(GameObject fireParticle in _playerFireParticle) 
                 Destroy(fireParticle);

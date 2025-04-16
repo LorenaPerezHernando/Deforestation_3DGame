@@ -10,10 +10,17 @@ namespace Deforestation.Dinosaurus
     public class Velociraptor : Dinosaur
     {
         #region Fields
+        [Header("Hurt Dialogue")]
+        [Header("Tower NOT Repaired")]
+        [SerializeField] private GameObject _hurtDialogue;
+        [SerializeField] private GameObject _dialoguePanel;
+        [Header("Attack")]
         [SerializeField] private float _distanceDetection = 50;
         [SerializeField] private float _attackDistance = 7;
-        private Vector3 _playerPosition => GameController.Instance.Inventory.transform.position;
+        //private Vector3 _playerPos => GameController.Instance.Inventory.transform.position;
 
+        [SerializeField] private Transform _playerPos;
+        
         private bool _chase;
         private bool _attack;
 
@@ -26,13 +33,35 @@ namespace Deforestation.Dinosaurus
 
         #region Unity Callbacks
 
+        private void Awake()
+        {
+            _dialoguePanel = GameObject.FindGameObjectWithTag("DialoguePanel");
+            _hurtDialogue = GameObject.FindGameObjectWithTag("HurtDialogue");
+            _anim = GetComponent<Animator>();
+           
+        }
+        private void Start()
+        {
+            _playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+            _agent = GetComponent<NavMeshAgent>();
+            _hurtDialogue.SetActive(false);
+            if (_playerPos != null)
+            {
+                _playerPos = _playerPos.transform;
+            }
+            else
+            {
+                Debug.LogError(" No se encontró el jugador con el tag 'Player'");
+            }
+        }
 
 
         void Update()
         {
 
+
             //Idle
-            if (!_chase && !_attack && Vector3.Distance(transform.position, _playerPosition) < _distanceDetection)
+            if (!_chase && !_attack && Vector3.Distance(transform.position, _playerPos.position) < _distanceDetection)
             {
                 print("Chase");
                 ChasePlayer();
@@ -44,7 +73,7 @@ namespace Deforestation.Dinosaurus
             {
                 print("Chase");
                 NavMeshHit hit;
-                if (NavMesh.SamplePosition(_playerPosition, out hit, _attackDistance, 1))
+                if (NavMesh.SamplePosition(_playerPos.position, out hit, _attackDistance, 1))
                     _agent.SetDestination(hit.position);
 
                 if (_agent.isStopped)
@@ -52,13 +81,13 @@ namespace Deforestation.Dinosaurus
                 else { print("No se encontró pos"); }
             }
 
-            if (_chase && Vector3.Distance(transform.position, _playerPosition) < _attackDistance)
+            if (_chase && Vector3.Distance(transform.position, _playerPos.position) < _attackDistance)
             {
                 print("Atacar");
                 Attack();
                 return;
             }
-            if (_chase && Vector3.Distance(transform.position, _playerPosition) > _distanceDetection)
+            if (_chase && Vector3.Distance(transform.position, _playerPos.position) > _distanceDetection)
             {
                 print("Idle");
                 Idle();
@@ -68,16 +97,18 @@ namespace Deforestation.Dinosaurus
             //Attack
             if (_attack)
             {
+
                 //Atack damage to player
                 _attackColdDown -= Time.deltaTime;
                 if (_attackColdDown <= 0)
                 {
+
                     print("Haciendo daño al player");
                     _attackColdDown = _attackTime;
                     GameController.Instance.HealthSystem.TakeDamage(_attackDamage);
                 }
             }
-            if (_attack && Vector3.Distance(transform.position, _playerPosition) > _attackDistance)
+            if (_attack && Vector3.Distance(transform.position, _playerPos.position) > _attackDistance)
             {
                 ChasePlayer();
                 return;
@@ -89,7 +120,9 @@ namespace Deforestation.Dinosaurus
         #region Private Methods
         private void Idle()
         {
-            
+            if (_hurtDialogue != null)
+                _hurtDialogue.SetActive(false);
+            _dialoguePanel.SetActive(false);
             _anim.SetBool("Run", false);
             _anim.SetBool("Attack", false);
             _agent.isStopped = true;
@@ -98,11 +131,13 @@ namespace Deforestation.Dinosaurus
 
         }
         private void ChasePlayer()
-        {       
-
+        {
+            _agent.SetDestination(_playerPos.position);
+            if(_hurtDialogue != null) 
+                _hurtDialogue.SetActive(false);
+            _dialoguePanel.SetActive(false);
             _anim.SetBool("Run", true);
             _anim.SetBool("Attack", false); 
-            _agent.SetDestination(_playerPosition);
             
             _chase = true;
             _attack = false;
@@ -111,6 +146,9 @@ namespace Deforestation.Dinosaurus
 
         private void Attack()
         {
+            
+            _hurtDialogue.SetActive(true);
+            _dialoguePanel.SetActive(true);
             _anim.SetBool("Run", false);
             _anim.SetBool("Attack", true);
             _agent.isStopped = true;

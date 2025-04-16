@@ -16,7 +16,7 @@ namespace Deforestation
 
         [SerializeField] private ParticleSystem _deathParticle;
 		[SerializeField] private ParticleSystem _bloodParticle;
-        private float _maxHealth = 100f;
+        [SerializeField] private float _maxHealth = 100f;
         [SerializeField] private float _currentHealth;
 
 		private void Awake()
@@ -35,7 +35,7 @@ namespace Deforestation
         private void Start()
         {
 			
-            
+            _currentHealth = _maxHealth;
         }
 
         public void TakeDamage(float damage)
