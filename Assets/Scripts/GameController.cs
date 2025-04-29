@@ -14,6 +14,7 @@ namespace Deforestation
 	public class GameController : Singleton<GameController>
 	{
 		#region Properties
+		public RespawnPanel RespawnPanel => _respawnPanel;
 		public MidCheckpoint MidCheckpoint => _midCheckpoint;
 		public TowerInteraction TowerInteraction => _towerInteraction;
 		public FirstDialogue FirstDialogue => _firstDialogue;
@@ -44,6 +45,8 @@ namespace Deforestation
 		#endregion
 
 		#region Fields
+		[Header("Respawn")]
+		[SerializeField] protected RespawnPanel _respawnPanel;
 		[Header("Checkpoint")]
 		[SerializeField] protected MidCheckpoint _midCheckpoint;
 		private Vector3 _savedPlayerPos;
@@ -80,9 +83,9 @@ namespace Deforestation
 
         #region Unity Callbacks
 
-
         void Start()
 		{
+			SaveCheckpoint(_savedPlayerPos, _savedMachinePos);
 			//UI Update
 			_playerHealth.OnHealthChanged += _uiController.UpdatePlayerHealth;
 			_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
@@ -90,6 +93,14 @@ namespace Deforestation
 			_originalPlayerRotation =_player.transform.rotation;
             _firstDialogue.OnNextImage += _initialStory.ShowNextImage;
 			_firstDialogue.OnFinishImages += _initialStory.NoImages;
+
+            //Respawn
+            _playerHealth.OnDeath += _respawnPanel.Died;
+            _playerHealth.OnDeath += _inventory.RestartCrystals;
+            _playerHealth.OnDeath += _midCheckpoint.Check;
+            _playerHealth.OnDeath += () => TeleportPlayer(_savedPlayerPos);
+
+
         }
 		void Update()
 		{
@@ -97,20 +108,19 @@ namespace Deforestation
 		#endregion
 
 		#region Public Methods
-		
-		public void NextImage()
-		{
-			_firstDialogue.OnNextImage += _initialStory.ShowNextImage;
-		}
-		//public void SaveCheckpoint(Vector3 _savedplayerPos, Vector3 _savedMachinePos)
-		//{
-		//	_player.transform.position = _savedPlayerPos;
-		//	_machine.transform.position = _savedMachinePos;	
 
-		//}
+
+		public void SaveCheckpoint(Vector3 _savedPlayerPos, Vector3 _savedMachinePos)
+		{
+			_savedMachinePos = _player.transform.position;
+			_savedMachinePos = _machine.transform.position;
+			_midCheckpoint.Check();
+
+		}
 		public void RespawnAtCheckpoint()
 		{
-			
+			Debug.Log("Died eventSys");
+			_playerHealth.OnDeath += _respawnPanel.Died;
 			_playerHealth.OnDeath += _inventory.RestartCrystals;
 			_playerHealth.OnDeath += _midCheckpoint.Check;
             _playerHealth.OnDeath += () => TeleportPlayer(_savedPlayerPos);

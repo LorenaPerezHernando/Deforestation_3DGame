@@ -74,22 +74,23 @@ namespace Deforestation
                 if (_deathParticle != null)
                     _deathParticle.gameObject.SetActive(true);
                 OnDeath?.Invoke();
-				StartCoroutine(Died());
+				StartCoroutine(DinoDied());
 
 			}
 			if(gameObject.tag == "Rock")
 				Destroy(gameObject);
 
-			if(gameObject.tag == "Player")
+			if(gameObject.tag == "Player" || gameObject.tag == "Machine")
 			{
+				Debug.Log("Player Died");
 				OnDeath?.Invoke();
+				Debug.Log("Invoke Player Death");
 			}
 			
         }
 
-		IEnumerator Died()
+		IEnumerator DinoDied()
 		{
-            
 			yield return new WaitForSeconds(3f);
             //TODO Particula de nubes
             NavMeshAgent _agent = GetComponent<NavMeshAgent>();

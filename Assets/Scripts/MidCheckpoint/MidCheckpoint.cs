@@ -12,8 +12,8 @@ namespace Deforestation.Checkpoints
 
         public Action<Vector3, Vector3> OnCheckpoint;
         [SerializeField] GameObject _dialogueCheckpoint;
-        [SerializeField] private Transform _playerPos;
-        [SerializeField] private Transform _maquinePos;
+        [SerializeField] private Vector3 _playerPos;
+        [SerializeField] private Vector3 _maquinePos;
         void Start()
         {
             Check();
@@ -27,7 +27,7 @@ namespace Deforestation.Checkpoints
 
         internal void Check()
         {
-            OnCheckpoint?.Invoke(_playerPos.position, _maquinePos.position);
+            OnCheckpoint?.Invoke(_playerPos, _maquinePos);
             _dialogueCheckpoint?.SetActive(true);
             StartCoroutine(CheckFalse());
         }

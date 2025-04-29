@@ -49,10 +49,12 @@ namespace Deforestation.Dialogue
                 if (_mensajeActual == 5)
                 {
                     OnTowerJustDestroyed?.Invoke();
-                    OnNextImage?.Invoke();
                     _movilIcon?.SetActive(false);
                     
                 }
+                if(_mensajeActual == 6)
+                    OnNextImage?.Invoke();
+
                 InitialMessages();
 
             }
