@@ -10,8 +10,9 @@ namespace Deforestation.Dialogue
 {
     public class FirstDialogue : MonoBehaviour
     {
-        public Action OnNextPic;
         public Action OnTowerJustDestroyed;
+        public Action OnNextImage;
+        public Action OnFinishImages;
         
         [SerializeField] private GameObject _movilIcon;
         [SerializeField] private GameObject _dialoguePanel;
@@ -44,11 +45,11 @@ namespace Deforestation.Dialogue
                 _mensajeActual++;
 
                 if(_mensajeActual == 2)
-                    OnNextPic?.Invoke();
+                    OnNextImage?.Invoke();
                 if (_mensajeActual == 5)
                 {
-                    OnNextPic?.Invoke();
                     OnTowerJustDestroyed?.Invoke();
+                    OnNextImage?.Invoke();
                     _movilIcon?.SetActive(false);
                     
                 }
@@ -58,7 +59,7 @@ namespace Deforestation.Dialogue
         }
        
 
-        public void InitialMessages()
+        internal void InitialMessages()
         {
             if (_mensajeActual < _initialMessages.Length)
             {
@@ -76,6 +77,7 @@ namespace Deforestation.Dialogue
                 //SONIDOS de explosion y de colgar la llamada
                 _dialoguePanel.SetActive(false);
                 _movilIcon?.SetActive(false);
+                OnFinishImages?.Invoke();
                 Destroy(gameObject);
             }
         }

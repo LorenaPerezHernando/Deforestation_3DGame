@@ -88,23 +88,26 @@ namespace Deforestation
 			_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
 			MachineModeOn = false;
 			_originalPlayerRotation =_player.transform.rotation;
-		}
+            _firstDialogue.OnNextImage += _initialStory.ShowNextImage;
+			_firstDialogue.OnFinishImages += _initialStory.NoImages;
+        }
 		void Update()
 		{
 		}
 		#endregion
 
 		#region Public Methods
-		public void NextPicInitial()
+		
+		public void NextImage()
 		{
-			_firstDialogue.OnNextPic += _initialStory.ShowNextImage;
+			_firstDialogue.OnNextImage += _initialStory.ShowNextImage;
 		}
-		public void SaveCheckpoint(Vector3 _savedplayerPos, Vector3 _savedMachinePos)
-		{
-			_player.transform.position = _savedPlayerPos;
-			_machine.transform.position = _savedMachinePos;	
+		//public void SaveCheckpoint(Vector3 _savedplayerPos, Vector3 _savedMachinePos)
+		//{
+		//	_player.transform.position = _savedPlayerPos;
+		//	_machine.transform.position = _savedMachinePos;	
 
-		}
+		//}
 		public void RespawnAtCheckpoint()
 		{
 			
