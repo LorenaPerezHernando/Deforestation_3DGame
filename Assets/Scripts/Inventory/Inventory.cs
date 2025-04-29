@@ -65,6 +65,24 @@ namespace Deforestation.Recolectables
 				
             }
         }
+
+		internal void RestartCrystals()
+		{
+            SetToZeroIfExists(RecolectableType.SuperCrystal);
+            SetToZeroIfExists(RecolectableType.HyperCrystal);
+            SetToZeroIfExists(RecolectableType.MegaCrystal);
+            SetToZeroIfExists(RecolectableType.TowerPart);
+
+            OnInventoryUpdated?.Invoke();
+		}
+
+		private void SetToZeroIfExists(RecolectableType type) //Por si ya estan a 0
+		{
+			if(!InventoryStack.ContainsKey(type))
+				InventoryStack[type] = 0;
+		}
+
+		
         #endregion
     }
 }

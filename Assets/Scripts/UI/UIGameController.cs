@@ -121,8 +121,9 @@ namespace Deforestation.UI
                 _fixTowerDialogue.SetActive(true);
             }
         }
+        
 
-		private void RepairedTower()
+        private void RepairedTower()
 		{
 			_repairedTowerDialogue.SetActive(true );
 		}

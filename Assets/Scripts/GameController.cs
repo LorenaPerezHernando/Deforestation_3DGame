@@ -7,14 +7,17 @@ using Cinemachine;
 using System;
 using Deforestation.Dialogue;
 using Deforestation.Tower;
+using Deforestation.Checkpoints;
 
 namespace Deforestation
 {
 	public class GameController : Singleton<GameController>
 	{
 		#region Properties
+		public MidCheckpoint MidCheckpoint => _midCheckpoint;
 		public TowerInteraction TowerInteraction => _towerInteraction;
 		public FirstDialogue FirstDialogue => _firstDialogue;
+		public InitialStory InitialStory => _initialStory;
 		public MachineController MachineController => _machine;
 		public HealthSystem HealthSystem => _playerHealth;
 		public Inventory Inventory => _inventory;
@@ -41,13 +44,16 @@ namespace Deforestation
 		#endregion
 
 		#region Fields
+		[Header("Checkpoint")]
+		[SerializeField] protected MidCheckpoint _midCheckpoint;
+		private Vector3 _savedPlayerPos;
+		private Vector3 _savedMachinePos;
 		[Header("Player")]
 		private GameObject _thePlayer;
 		[SerializeField] protected CharacterController _player;
 		[SerializeField] protected HealthSystem _playerHealth;
 		[SerializeField] protected Inventory _inventory;
 		[SerializeField] protected InteractionSystem _interactionSystem;
-		[SerializeField] protected FirstDialogue _firstDialogue;
 
 		[SerializeField] protected TowerInteraction _towerInteraction;
 
@@ -60,7 +66,9 @@ namespace Deforestation
 		private GameObject _theMachine;
 		[SerializeField] protected MachineController _machine;
 		[Header("UI")]
+		[SerializeField] protected FirstDialogue _firstDialogue;
 		[SerializeField] protected UIGameController _uiController;
+		[SerializeField] protected InitialStory _initialStory;
 		[Header("Trees Terrain")]
 		[SerializeField] protected TreeTerrainController _terrainController;
 		[Header("Dinosaurs")]
@@ -81,14 +89,29 @@ namespace Deforestation
 			MachineModeOn = false;
 			_originalPlayerRotation =_player.transform.rotation;
 		}
-
-		// Update is called once per frame
 		void Update()
 		{
 		}
 		#endregion
 
 		#region Public Methods
+		public void NextPicInitial()
+		{
+			_firstDialogue.OnNextPic += _initialStory.ShowNextImage;
+		}
+		public void SaveCheckpoint(Vector3 _savedplayerPos, Vector3 _savedMachinePos)
+		{
+			_player.transform.position = _savedPlayerPos;
+			_machine.transform.position = _savedMachinePos;	
+
+		}
+		public void RespawnAtCheckpoint()
+		{
+			
+			_playerHealth.OnDeath += _inventory.RestartCrystals;
+			_playerHealth.OnDeath += _midCheckpoint.Check;
+            _playerHealth.OnDeath += () => TeleportPlayer(_savedPlayerPos);
+        }
 		public void TeleportPlayer(Vector3 target)
 		{
 			_player.enabled = false;

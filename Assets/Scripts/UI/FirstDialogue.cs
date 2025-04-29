@@ -10,6 +10,7 @@ namespace Deforestation.Dialogue
 {
     public class FirstDialogue : MonoBehaviour
     {
+        public Action OnNextPic;
         public Action OnTowerJustDestroyed;
         
         [SerializeField] private GameObject _movilIcon;
@@ -42,9 +43,11 @@ namespace Deforestation.Dialogue
             {
                 _mensajeActual++;
 
-                
+                if(_mensajeActual == 2)
+                    OnNextPic?.Invoke();
                 if (_mensajeActual == 5)
                 {
+                    OnNextPic?.Invoke();
                     OnTowerJustDestroyed?.Invoke();
                     _movilIcon?.SetActive(false);
                     

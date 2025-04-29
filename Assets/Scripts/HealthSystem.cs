@@ -80,7 +80,10 @@ namespace Deforestation
 			if(gameObject.tag == "Rock")
 				Destroy(gameObject);
 
-			
+			if(gameObject.tag == "Player")
+			{
+				OnDeath?.Invoke();
+			}
 			
         }
 

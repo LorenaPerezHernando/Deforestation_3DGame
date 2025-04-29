@@ -9,37 +9,53 @@ namespace Deforestation.UI
 
     public class InitialStory : MonoBehaviour
     {
-        [SerializeField] private Image _firstImage;
-        [SerializeField] private Image _secondImage;
+        [SerializeField] private Sprite[] _imagenesIniciales;
+        [SerializeField] private Image _imagenActual;
+        private int _currentIndex = 0;
+        private float _fadeDuration = 1f;
+
 
         [SerializeField] private GameObject _firstDialogue;
         void Start()
         {
             _firstDialogue.SetActive(true);
-            _firstImage.enabled = true;
-            FadeAlpha();
+
+        }
+        internal void ShowNextImage()
+        {
+            ShowImage(_currentIndex );
+            _currentIndex++;
+            if (_currentIndex >= _imagenesIniciales.Length) _currentIndex = 0;
+            _imagenActual.sprite = _imagenesIniciales[_currentIndex];
+            FadeImage( _imagenActual );
         }
 
-        private void FadeAlpha()
+        private void ShowImage(int index)
         {
-            float fadeDuration = 5f;
+            if (index >= 0 && index < _imagenesIniciales.Length)
+                _imagenActual.sprite = _imagenesIniciales[index];
+        }
+        private IEnumerator FadeImage(Image img)
+        {
             float timeElapsed = 0f;
+            Color startColor = img.color;
 
-            // Obtén el color actual de la imagen
-            Color startColor = _firstImage.color;
+            // Asegúrate de que empiece visible
+            img.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
 
-            // La imagen debe estar completamente visible al inicio
-            while (timeElapsed < fadeDuration)
+            while (timeElapsed < _fadeDuration)
             {
                 timeElapsed += Time.deltaTime;
 
-                // Calcula el alpha en base al tiempo transcurrido
-                float alpha = Mathf.Lerp(1f, 0f, timeElapsed / fadeDuration);
+                float alpha = Mathf.Lerp(1f, 0f, timeElapsed / _fadeDuration);
 
-                // Actualiza el color de la imagen con el nuevo alpha
-                _firstImage.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+                img.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
 
+                yield return null;
             }
+
+            // Asegura que termine completamente invisible
+            img.color = new Color(startColor.r, startColor.g, startColor.b, 0f);
         }
     }
 }
