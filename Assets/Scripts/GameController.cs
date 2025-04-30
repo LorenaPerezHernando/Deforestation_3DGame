@@ -8,6 +8,8 @@ using System;
 using Deforestation.Dialogue;
 using Deforestation.Tower;
 using Deforestation.Checkpoints;
+using StarterAssets;
+using Deforestation.Player;
 
 namespace Deforestation
 {
@@ -49,8 +51,8 @@ namespace Deforestation
 		[SerializeField] protected RespawnPanel _respawnPanel;
 		[Header("Checkpoint")]
 		[SerializeField] protected MidCheckpoint _midCheckpoint;
-		private Vector3 _savedPlayerPos;
-		private Vector3 _savedMachinePos;
+		[SerializeField] private Vector3 _savedPlayerPos;
+        [SerializeField] private Vector3 _savedMachinePos;
 		[Header("Player")]
 		private GameObject _thePlayer;
 		[SerializeField] protected CharacterController _player;
@@ -85,7 +87,8 @@ namespace Deforestation
 
         void Start()
 		{
-			SaveCheckpoint(_savedPlayerPos, _savedMachinePos);
+			SaveCheckpoint();
+			_midCheckpoint.OnCheckpoint += SaveCheckpoint;
 			//UI Update
 			_playerHealth.OnHealthChanged += _uiController.UpdatePlayerHealth;
 			_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
@@ -94,11 +97,10 @@ namespace Deforestation
             _firstDialogue.OnNextImage += _initialStory.ShowNextImage;
 			_firstDialogue.OnFinishImages += _initialStory.NoImages;
 
-            //Respawn
-            _playerHealth.OnDeath += _respawnPanel.Died;
-            _playerHealth.OnDeath += _inventory.RestartCrystals;
-            _playerHealth.OnDeath += _midCheckpoint.Check;
-            _playerHealth.OnDeath += () => TeleportPlayer(_savedPlayerPos);
+			//Respawn
+			_playerHealth.OnDeath += () => Died_VariablesforRevive();
+			_respawnPanel.OnRevive += () => Revive();
+
 
 
         }
@@ -110,20 +112,48 @@ namespace Deforestation
 		#region Public Methods
 
 
-		public void SaveCheckpoint(Vector3 _savedPlayerPos, Vector3 _savedMachinePos)
+		public void SaveCheckpoint()
 		{
-			_savedMachinePos = _player.transform.position;
+			_savedPlayerPos = _inventory.transform.position;
 			_savedMachinePos = _machine.transform.position;
-			_midCheckpoint.Check();
 
 		}
-		public void RespawnAtCheckpoint()
+		public void Died_VariablesforRevive()
 		{
 			Debug.Log("Died eventSys");
-			_playerHealth.OnDeath += _respawnPanel.Died;
-			_playerHealth.OnDeath += _inventory.RestartCrystals;
-			_playerHealth.OnDeath += _midCheckpoint.Check;
-            _playerHealth.OnDeath += () => TeleportPlayer(_savedPlayerPos);
+			//Player Death Resources 
+			_playerHealth.OnDeath += _respawnPanel.Died; //Panel de respawn
+			_playerHealth.OnDeath += _inventory.RestartCrystals;  //Cristales a 0
+			_playerHealth.OnDeath += _playerHealth.RevivedHealth; //Health al max 
+			_playerHealth.OnDeath += _machine.HealthSystem.RevivedHealth;
+
+			////Details
+			//_player.GetComponent<DetectsWater>().enabled = false;
+			
+			
+			//Block Mov
+			_player.GetComponent<FirstPersonController>().enabled = false; 
+			_machine.GetComponent<MachineMovement>().enabled = false; 
+			
+			//Teleport
+            _playerHealth.OnDeath += () => TeleportPlayer(_savedPlayerPos); 
+            _machine.transform.position = _savedMachinePos;
+
+        }
+
+		public void Revive()
+		{
+			//UI Resourced 
+			_playerHealth.OnHealthChanged += _uiController.UpdatePlayerHealth;
+			_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
+
+            //Mov
+            _player.GetComponent<FirstPersonController>().enabled = true; 
+            _machine.GetComponent<MachineMovement>().enabled = true;
+
+			//Details
+			_player.GetComponent<DetectsWater>().NotWater();
+
         }
 		public void TeleportPlayer(Vector3 target)
 		{

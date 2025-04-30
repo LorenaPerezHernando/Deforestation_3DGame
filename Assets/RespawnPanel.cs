@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,11 +9,13 @@ namespace Deforestation.UI
 
     public class RespawnPanel : MonoBehaviour
     {
-        [SerializeField] private GameObject _respawnPanel;
+        public Action OnRevive;
+        [SerializeField] private GameObject _deathPanel;
 
         private void Awake()
         {
-            _respawnPanel = GetComponentInChildren<GameObject>();
+            _deathPanel = this.gameObject;
+            _deathPanel.SetActive(false);
         }
 
         void Update()
@@ -24,11 +27,13 @@ namespace Deforestation.UI
         }
         private void Revive()
         {
-            _respawnPanel.SetActive(false);
+            OnRevive?.Invoke();
+            _deathPanel.SetActive(false);
+            Debug.Log("Revive");
         }
         internal void Died()
         {
-            _respawnPanel.SetActive(true);
+            _deathPanel.SetActive(true);
         }
     }
 }

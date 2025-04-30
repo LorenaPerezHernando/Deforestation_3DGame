@@ -7,7 +7,7 @@ namespace Deforestation.Player
     public class DetectsWater : MonoBehaviour
     {
         #region Fields
-        [Header("Tower NOT Repaired")]
+        [Header("Dialogue Hurt")]
         [SerializeField] private GameObject _hurtDialogue;
         [SerializeField] private GameObject _dialoguePanel;
         [Header("Fire")]
@@ -86,6 +86,16 @@ namespace Deforestation.Player
             _dialoguePanel.SetActive(false);
             _attackCoolDown = 0;
             foreach(GameObject fireParticle in _playerFireParticle) 
+                Destroy(fireParticle);
+            _fireOn = false;
+        }
+
+        internal void NotWater()
+        {
+            _hurtDialogue.SetActive(false);
+            _dialoguePanel.SetActive(false);
+            _attackCoolDown = 0;
+            foreach (GameObject fireParticle in _playerFireParticle)
                 Destroy(fireParticle);
             _fireOn = false;
         }

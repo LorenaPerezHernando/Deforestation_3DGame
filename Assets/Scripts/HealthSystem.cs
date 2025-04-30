@@ -82,9 +82,8 @@ namespace Deforestation
 
 			if(gameObject.tag == "Player" || gameObject.tag == "Machine")
 			{
-				Debug.Log("Player Died");
 				OnDeath?.Invoke();
-				Debug.Log("Invoke Player Death");
+				Debug.Log("Invoked Player Death");
 			}
 			
         }
@@ -98,6 +97,12 @@ namespace Deforestation
             Destroy(this);
             Destroy(gameObject);
         }
+
+		internal void RevivedHealth()
+		{
+			OnHealthChanged?.Invoke(_maxHealth);
+			_currentHealth = _maxHealth;
+		}
 		
 	}
 

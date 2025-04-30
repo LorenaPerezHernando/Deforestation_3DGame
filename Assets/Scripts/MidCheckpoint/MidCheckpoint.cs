@@ -10,15 +10,21 @@ namespace Deforestation.Checkpoints
     public class MidCheckpoint : MonoBehaviour
     {
 
-        public Action<Vector3, Vector3> OnCheckpoint;
+        public Action OnCheckpoint;
         [SerializeField] GameObject _dialogueCheckpoint;
-        [SerializeField] private Vector3 _playerPos;
-        [SerializeField] private Vector3 _maquinePos;
+
+        private void Awake()
+        {
+
+        }
         void Start()
         {
+
             Check();
             _dialogueCheckpoint?.SetActive(false);
         }
+
+        
 
         private void OnTriggerEnter(Collider other)
         {
@@ -27,10 +33,13 @@ namespace Deforestation.Checkpoints
 
         internal void Check()
         {
-            OnCheckpoint?.Invoke(_playerPos, _maquinePos);
+
+            OnCheckpoint?.Invoke(); //Guarda la pos del Player y Maquina en el GameController
             _dialogueCheckpoint?.SetActive(true);
             StartCoroutine(CheckFalse());
+            Debug.Log("Partida guardada");
         }
+
 
         IEnumerator CheckFalse()
         {
