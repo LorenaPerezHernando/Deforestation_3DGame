@@ -1397,7 +1397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &137668845
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1414,7 +1414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -56.620205, y: 996}
+  m_AnchoredPosition: {x: 15, y: -252}
   m_SizeDelta: {x: 567.7813, y: 196.0576}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &137668846
@@ -3736,8 +3736,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogueCheckpoint: {fileID: 137668844}
-  _playerPos: {x: 0, y: 0, z: 0}
-  _maquinePos: {x: 0, y: 0, z: 0}
 --- !u!1001 &428403538
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5338,13 +5336,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593830534}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1047.8497, y: 1039.7681, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -668.19446, y: 962.0498, z: -725.87244}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 428169984}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2082816615}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &601105705 stripped
 Transform:
@@ -6308,7 +6306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &685124565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6341,7 +6339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f17e69e7ce5b5e4a85bcc2a09211fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _respawnPanel: {fileID: 1697922441}
+  _deathPanel: {fileID: 0}
 --- !u!114 &685124567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19331,6 +19329,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 593830535}
   - {fileID: 759261676}
   - {fileID: 212026048}
   - {fileID: 218027826}
@@ -21510,6 +21509,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1.0000305
       objectReference: {fileID: 0}
+    - target: {fileID: 3828528398229480818, guid: 2de06dbe4506e9a41bd894ab145e3177,
+        type: 3}
+      propertyPath: _initialMessages.Array.data[0]
+      value: '*LLAMADA ENTRANTE*'
+      objectReference: {fileID: 0}
     - target: {fileID: 4116148230061350866, guid: 2de06dbe4506e9a41bd894ab145e3177,
         type: 3}
       propertyPath: m_IsActive
@@ -22246,4 +22250,3 @@ SceneRoots:
   - {fileID: 530510637}
   - {fileID: 2110483489}
   - {fileID: 1440622298}
-  - {fileID: 593830535}
