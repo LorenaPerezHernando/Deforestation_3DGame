@@ -24,13 +24,15 @@ namespace Deforestation.Machine
 		[Header("Energy")]
 		[SerializeField] private float energyDecayRate = 20f;
 		private float energyTimer = 0f;
-		#endregion
+        #endregion
 
-		#region Properties
-		#endregion
+        #region Properties
+        private float _moveInput;
+        private float _rotateInput;
+        #endregion
 
-		#region Unity Callbacks	
-		private void Awake()
+        #region Unity Callbacks	
+        private void Awake()
 		{
 			
 			_rb = GetComponent<Rigidbody>();
@@ -45,11 +47,13 @@ namespace Deforestation.Machine
 
         private void Update()
 		{
-			if (_inventory.HasResource(RecolectableType.HyperCrystal))
+            Debug.DrawRay(transform.position, transform.right * 3f, Color.blue); // Hacia donde "mira" la máquina
+            if (_inventory.HasResource(RecolectableType.HyperCrystal))
 			{
-				//Movement
-
-				_movementDirection = new Vector3(Input.GetAxis("Vertical"), 0, 0);
+                //Movement
+                _moveInput = Input.GetAxis("Vertical");
+                _rotateInput = Input.GetAxis("Horizontal");
+                _movementDirection = new Vector3(Input.GetAxis("Vertical"), 0, 0);
 				transform.Rotate(Vector3.up * _speedRotation * Time.deltaTime * Input.GetAxis("Horizontal"));
 				Debug.DrawRay(transform.position, transform.InverseTransformDirection(_movementDirection.normalized) * _speedForce);
 
@@ -91,17 +95,14 @@ namespace Deforestation.Machine
 
         private void FixedUpdate()
         {
-            _rb.AddRelativeForce(_movementDirection.normalized * _speedForce, ForceMode.Impulse);
-            float moveInput = Input.GetAxis("Vertical");
-            float turnInput = Input.GetAxis("Horizontal");
+            Vector3 flatForward = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
+            Vector3 move = flatForward * _moveInput * _speedForce * Time.fixedDeltaTime/2;
+           
+            _rb.MovePosition(_rb.position + move);
 
-            //Movimiento solo en XZ
-            Vector3 flatForward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
-            Vector3 forwardForce = flatForward * moveInput * _speedForce;
-            Debug.DrawRay(transform.position, flatForward * 5f, Color.green);
-            //Rotar en Y
-            Quaternion turnRotation = Quaternion.Euler(0f, turnInput * _speedRotation * Time.fixedDeltaTime, 0f);
-            _rb.MoveRotation(_rb.rotation * turnRotation);
+            // Rotación en Y
+            Quaternion turn = Quaternion.Euler(0f, _rotateInput * _speedRotation * Time.fixedDeltaTime/2, 0f);
+            _rb.MoveRotation(_rb.rotation * turn);
         }
        
         private bool RaycastGround(Vector3 offset)

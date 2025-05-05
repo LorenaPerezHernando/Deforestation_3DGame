@@ -11,7 +11,8 @@ namespace Deforestation
 
 		#region Fields
 		[Header("Prefabs")]
-		[SerializeField]
+        public Recolectables.RecolectableType requiredCrystal;
+        [SerializeField]
 		private GameObject [] _crystalPrefab;
 		[SerializeField]
 		private GameObject [] _rockPrefab;

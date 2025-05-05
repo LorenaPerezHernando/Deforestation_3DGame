@@ -51,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathParticle: {fileID: 0}
   _bloodParticle: {fileID: 0}
+  _maxHealth: 100
   _currentHealth: 0
 --- !u!114 &4549951317997157435
 MonoBehaviour:
@@ -64,6 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f247359f0cc3b4b84b56d908ae187d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredCrystal: 2
   _crystalPrefab:
   - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}
   - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}

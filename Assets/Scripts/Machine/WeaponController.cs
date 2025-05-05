@@ -41,11 +41,32 @@ namespace Deforestation.Machine.Weapon
 				_towerWeapon.rotation = Quaternion.Slerp(transform.rotation, rotacionObjetivo, _speedRotation * Time.deltaTime);
 			}
 
-			if (Input.GetMouseButtonUp(0) && GameController.Instance.MachineModeOn && GameController.Instance.Inventory.UseResource(Recolectables.RecolectableType.SuperCrystal))
-			{
-				Shoot(hit.point);
-			}
-		}
+			//Forma simple si solo voy a poner 1 tipo de roca
+            //if (Input.GetMouseButtonUp(0) && GameController.Instance.MachineModeOn && GameController.Instance.Inventory.UseResource(Recolectables.RecolectableType.SuperCrystal))
+            //{
+            //	Shoot(hit.point);
+            //}
+            if (Input.GetMouseButtonUp(0) && GameController.Instance.MachineModeOn)
+            {
+                if (Physics.Raycast(ray, out hit))
+                {
+                    Rock rock = hit.collider.GetComponent<Rock>();
+                    if (rock != null)
+                    {
+                        var crystalNeeded = rock.requiredCrystal;
+
+                        // Solo dispara si tienes ese cristal
+                        if (GameController.Instance.Inventory.UseResource(crystalNeeded))
+                        {
+                            Shoot(hit.point);
+                        }
+                    }
+                }
+            }
+
+
+
+        }
 
 		public void Shoot(Vector3 lookAtPoint)
 		{
