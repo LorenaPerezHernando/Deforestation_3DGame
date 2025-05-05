@@ -24,11 +24,17 @@ namespace Deforestation
 				_health.OnDeath += Die;
 		}
 
-		private void Die()
+        private void OnCollisionEnter(Collision collision)
+        {
+            if(collision.gameObject.tag == "Machine")
+				Die();
+        }
+
+        private void Die()
 		{
 			Destroy(gameObject);
 
-			int veces = Random.Range(1, 5); // Genera un número aleatorio entre 1 y 4
+			int veces = Random.Range(1, 5); 
 			for (int i = 0; i < veces; i++)
 			{
 				Vector3 destinoAleatorio = Random.insideUnitSphere * 5;
