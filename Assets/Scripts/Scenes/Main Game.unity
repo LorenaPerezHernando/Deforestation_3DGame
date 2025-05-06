@@ -11399,16 +11399,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stegasaurus_Original
       objectReference: {fileID: 0}
-    - target: {fileID: 3945911203937595780, guid: 329c55f4b62b42746b94760afab107bc,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4180422942957636817, guid: 329c55f4b62b42746b94760afab107bc,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4434183034280831806, guid: 329c55f4b62b42746b94760afab107bc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13211,6 +13201,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1282231374}
     m_Modifications:
+    - target: {fileID: 1784669638330082916, guid: 496ed2959385720418ab652aff3bb105,
+        type: 3}
+      propertyPath: m_TagString
+      value: Dinosaur
+      objectReference: {fileID: 0}
     - target: {fileID: 4507560639122915314, guid: 496ed2959385720418ab652aff3bb105,
         type: 3}
       propertyPath: m_IsActive
@@ -21538,7 +21533,7 @@ PrefabInstance:
     - target: {fileID: 9108204793145450107, guid: 11a3a569d1a2b774fbeb86df1aae52a5,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Machine
       objectReference: {fileID: 0}
     - target: {fileID: 9108490481725979728, guid: 11a3a569d1a2b774fbeb86df1aae52a5,
         type: 3}

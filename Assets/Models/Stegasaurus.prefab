@@ -334,7 +334,7 @@ GameObject:
   - component: {fileID: 2293764968289078718}
   m_Layer: 0
   m_Name: Colliders
-  m_TagString: Untagged
+  m_TagString: Dinosaur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

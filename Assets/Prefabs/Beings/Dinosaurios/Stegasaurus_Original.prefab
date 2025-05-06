@@ -1107,9 +1107,9 @@ GameObject:
   - component: {fileID: 4180422942957636816}
   - component: {fileID: 452262600479776792}
   - component: {fileID: 9207516420140806921}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Stegasaurus_Original
-  m_TagString: Untagged
+  m_TagString: Dinosaur
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1189,7 +1189,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

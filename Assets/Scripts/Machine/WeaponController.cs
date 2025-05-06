@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using Deforestation.Dinosaurus;
+using static UnityEngine.UI.GridLayoutGroup;
 namespace Deforestation.Machine.Weapon
 {
 
@@ -12,18 +13,20 @@ namespace Deforestation.Machine.Weapon
 
 		#region Fields
 		[SerializeField] private Recolectables.RecolectableType crystalNeeded;
-        [SerializeField] private Transform _towerWeapon;
+		[SerializeField] private Transform _towerWeapon;
 		[SerializeField] private Transform _spawnPoint;
 		[SerializeField] private float _speedRotation = 5f;
 		[SerializeField] private Bullet _bulletPrefab;
 		[SerializeField] private Bullet _blackBulletPrefab;
 		[SerializeField] private GameObject _smokeShoot1;
 		[SerializeField] private GameObject _smokeShoot2;
+		[SerializeField] private GameObject _machine; //Para que no me de la bala
 		#endregion
 
 		#region Unity Callbacks
 		private void Awake()
 		{
+
 		}
 
 		void Update()
@@ -46,21 +49,22 @@ namespace Deforestation.Machine.Weapon
 			}
 
 			//Forma simple si solo voy a poner 1 tipo de roca
-            //if (Input.GetMouseButtonUp(0) && GameController.Instance.MachineModeOn && GameController.Instance.Inventory.UseResource(Recolectables.RecolectableType.SuperCrystal))
-            //{
-            //	Shoot(hit.point);
-            //}
-            if (Input.GetMouseButtonUp(0) && GameController.Instance.MachineModeOn)
-            {
+			//if (Input.GetMouseButtonUp(0) && GameController.Instance.MachineModeOn && GameController.Instance.Inventory.UseResource(Recolectables.RecolectableType.SuperCrystal))
+			//{
+			//	Shoot(hit.point);
+			//}
+			if (Input.GetMouseButtonUp(0) && GameController.Instance.MachineModeOn)
+			{
 				if (Physics.Raycast(ray, out hit))
 				{
+					Debug.Log("Quiere disparar " + hit.collider.name);
 					Rock rock = hit.collider.GetComponent<Rock>();
 					if (rock != null)
 					{
 
-                        crystalNeeded = rock.requiredCrystal;
-                        // Solo dispara si tienes ese cristal
-                        if (GameController.Instance.Inventory.UseResource(crystalNeeded))
+						crystalNeeded = rock.requiredCrystal;
+						// Solo dispara si tienes ese cristal
+						if (GameController.Instance.Inventory.UseResource(crystalNeeded))
 						{
 							Shoot(hit.point);
 						}
@@ -75,38 +79,48 @@ namespace Deforestation.Machine.Weapon
 					}
 
 
-                }
-            }
+				}
+			}
 
 
 
-        }
+		}
 
 		public void Shoot(Vector3 lookAtPoint)
 		{
-            transform.LookAt(lookAtPoint);
+			transform.LookAt(lookAtPoint);
 
 			////Cristales == Diferente particula
-			//if (crystalNeeded == Recolectables.RecolectableType.SuperCrystal)
-			//	Instantiate(_bulletPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
-			//if(crystalNeeded == Recolectables.RecolectableType.MegaCrystal)
-   //             Instantiate(_blackBulletPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
-			//else
-                Instantiate(_bulletPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
+			if (crystalNeeded == Recolectables.RecolectableType.MegaCrystal)
+				Instantiate(_blackBulletPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
+			else
+				Instantiate(_bulletPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
+           
 
             _smokeShoot1.SetActive(true);
 			_smokeShoot2.SetActive(true);
 
-			
+
 			OnMachineShoot?.Invoke();
 		}
-		#endregion
+        #endregion
 
-		#region Public Methods
-		#endregion
+        #region Public Methods
+        #endregion
 
-		#region Private Methods
-		#endregion
-	}
+        #region Private Methods
+        public void AvoidMyColliders(GameObject machine)
+        {
+            _machine = machine;
+            Collider bulletCollider = GetComponent<Collider>();
+            foreach (Collider ownerCollider in _machine.GetComponentsInChildren<Collider>())
+            {
+                Physics.IgnoreCollision(bulletCollider, ownerCollider);
+            }
+        }
 
+    }
+    #endregion
 }
+
+	
