@@ -126,10 +126,7 @@ namespace Deforestation
 			_playerHealth.OnDeath += _inventory.RestartCrystals;  //Cristales a 0
 			_playerHealth.OnDeath += _playerHealth.RevivedHealth; //Health al max 
 			_playerHealth.OnDeath += _machine.HealthSystem.RevivedHealth;
-
-			////Details
-			//_player.GetComponent<DetectsWater>().enabled = false;
-			
+		
 			
 			//Block Mov
 			_player.GetComponent<FirstPersonController>().enabled = false; 

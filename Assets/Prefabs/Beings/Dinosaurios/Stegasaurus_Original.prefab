@@ -1107,7 +1107,7 @@ GameObject:
   - component: {fileID: 4180422942957636816}
   - component: {fileID: 452262600479776792}
   - component: {fileID: 9207516420140806921}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stegasaurus_Original
   m_TagString: Untagged
   m_Icon: {fileID: 0}

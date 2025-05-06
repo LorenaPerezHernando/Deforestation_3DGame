@@ -6,11 +6,10 @@ namespace Deforestation.Machine.Weapon
 	[RequireComponent(typeof(Rigidbody))]
 	public class Bullet : MonoBehaviour
 	{
-		#region Properties
-		#endregion
 
-		#region Fields
-		[SerializeField] private GameObject _explosionPrefab;
+        #region Fields
+
+        [SerializeField] private GameObject _explosionPrefab;
 		[SerializeField] private float _force = 100;
 		[SerializeField] private float _damage = 10;
 		private Rigidbody _rb;
@@ -28,20 +27,24 @@ namespace Deforestation.Machine.Weapon
 		}
 		private void OnTriggerEnter(Collider other)
 		{
+            if (other.CompareTag("Player") || other.CompareTag("Machine"))
+                return;
+
+
+            Debug.Log("Hurt: " + other.name);
 			HealthSystem health = other.GetComponent<HealthSystem>();
-			if (health != null)
-				health.TakeDamage(_damage);
-			
-			Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+
+            if (health != null)
+				health.TakeDamage(_damage); Debug.Log("Health SYs: "+ other.name);
+
+
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
 			Destroy(gameObject, 1);
 			GetComponent<Collider>().enabled = false;
 		}
-		#endregion
 
-		#region Public Methods
-		#endregion
+        
+        #endregion
 
-		#region Private Methods
-		#endregion
-	}
+    }
 }

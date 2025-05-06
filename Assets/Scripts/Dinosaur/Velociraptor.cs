@@ -71,14 +71,14 @@ namespace Deforestation.Dinosaurus
             //Chase
             if (_chase)
             {
-                print("Chase");
+
                 NavMeshHit hit;
                 if (NavMesh.SamplePosition(_playerPos.position, out hit, _attackDistance, 1))
                     _agent.SetDestination(hit.position);
 
                 if (_agent.isStopped)
                     _agent.isStopped = false;
-                else { print("No se encontró pos"); }
+
             }
 
             if (_chase && Vector3.Distance(transform.position, _playerPos.position) < _attackDistance)

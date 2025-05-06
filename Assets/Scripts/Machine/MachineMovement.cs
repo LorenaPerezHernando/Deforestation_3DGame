@@ -127,9 +127,8 @@ namespace Deforestation.Machine
 			// Si no está en el suelo, aplica fuerza hacia abajo
 			if (!isGrounded)
 			{
-				Debug.Log("Not grounded");
 				_rb.AddRelativeForce(Vector3.down * 100000f);
-				Debug.Log("Should be grounded");
+
 			}
 
         }

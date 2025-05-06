@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Deforestation.Dinosaurus;
 namespace Deforestation.Machine.Weapon
 {
 
@@ -10,10 +11,12 @@ namespace Deforestation.Machine.Weapon
 		#endregion
 
 		#region Fields
-		[SerializeField] private Transform _towerWeapon;
+		[SerializeField] private Recolectables.RecolectableType crystalNeeded;
+        [SerializeField] private Transform _towerWeapon;
 		[SerializeField] private Transform _spawnPoint;
 		[SerializeField] private float _speedRotation = 5f;
 		[SerializeField] private Bullet _bulletPrefab;
+		[SerializeField] private Bullet _blackBulletPrefab;
 		[SerializeField] private GameObject _smokeShoot1;
 		[SerializeField] private GameObject _smokeShoot2;
 		#endregion
@@ -25,6 +28,7 @@ namespace Deforestation.Machine.Weapon
 
 		void Update()
 		{
+
 			//Si no estamos conduciendo no controlamos esto. 
 			if (!GameController.Instance.MachineModeOn)
 				return;
@@ -32,7 +36,7 @@ namespace Deforestation.Machine.Weapon
 			Ray ray = GameController.Instance.MainCamera.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
-			if (Physics.Raycast(ray, out hit))
+			if (Physics.Raycast(ray, out hit)) //LayerMask
 			{
 				Vector3 direccion = hit.point - transform.position;
 				direccion.y = 0; // Mantener la rotación solo en el eje Y
@@ -48,19 +52,29 @@ namespace Deforestation.Machine.Weapon
             //}
             if (Input.GetMouseButtonUp(0) && GameController.Instance.MachineModeOn)
             {
-                if (Physics.Raycast(ray, out hit))
-                {
-                    Rock rock = hit.collider.GetComponent<Rock>();
-                    if (rock != null)
-                    {
-                        var crystalNeeded = rock.requiredCrystal;
+				if (Physics.Raycast(ray, out hit))
+				{
+					Rock rock = hit.collider.GetComponent<Rock>();
+					if (rock != null)
+					{
 
+                        crystalNeeded = rock.requiredCrystal;
                         // Solo dispara si tienes ese cristal
                         if (GameController.Instance.Inventory.UseResource(crystalNeeded))
-                        {
-                            Shoot(hit.point);
-                        }
-                    }
+						{
+							Shoot(hit.point);
+						}
+					}
+					if (hit.collider.CompareTag("Dinosaur"))
+					{
+						HealthSystem health = hit.collider.GetComponentInParent<HealthSystem>();
+						if (health != null && GameController.Instance.Inventory.UseResource(Recolectables.RecolectableType.SuperCrystal))
+						{
+							Shoot(hit.point);
+						}
+					}
+
+
                 }
             }
 
@@ -70,10 +84,20 @@ namespace Deforestation.Machine.Weapon
 
 		public void Shoot(Vector3 lookAtPoint)
 		{
-			transform.LookAt(lookAtPoint);
-			Instantiate(_bulletPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
-			_smokeShoot1.SetActive(true);
+            transform.LookAt(lookAtPoint);
+
+			////Cristales == Diferente particula
+			//if (crystalNeeded == Recolectables.RecolectableType.SuperCrystal)
+			//	Instantiate(_bulletPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
+			//if(crystalNeeded == Recolectables.RecolectableType.MegaCrystal)
+   //             Instantiate(_blackBulletPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
+			//else
+                Instantiate(_bulletPrefab, _spawnPoint.transform.position, _spawnPoint.transform.rotation);
+
+            _smokeShoot1.SetActive(true);
 			_smokeShoot2.SetActive(true);
+
+			
 			OnMachineShoot?.Invoke();
 		}
 		#endregion

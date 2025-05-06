@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 5069812737832502185}
   - component: {fileID: 261178202376010864}
   - component: {fileID: 4885030110726113474}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stegasaurus
   m_TagString: Dinosaur
   m_Icon: {fileID: 0}
@@ -1841,6 +1841,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathParticle: {fileID: 0}
   _bloodParticle: {fileID: 0}
+  _maxHealth: 100
   _currentHealth: 0
 --- !u!114 &3947075132600032320
 MonoBehaviour:

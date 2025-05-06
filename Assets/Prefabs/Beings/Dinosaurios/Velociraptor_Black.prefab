@@ -1100,7 +1100,7 @@ GameObject:
   - component: {fileID: 2431494826942109353}
   - component: {fileID: 4216600313936786161}
   - component: {fileID: 1683005660031698797}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Velociraptor_Black
   m_TagString: Dinosaur
   m_Icon: {fileID: 0}
@@ -1142,6 +1142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathParticle: {fileID: 0}
   _bloodParticle: {fileID: 0}
+  _maxHealth: 100
   _currentHealth: 0
 --- !u!114 &2678589823722365632
 MonoBehaviour:
@@ -1155,8 +1156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aea71256ff44c74d884d7e1ce1bf37e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hurtDialogue: {fileID: 0}
+  _dialoguePanel: {fileID: 0}
   _distanceDetection: 30
   _attackDistance: 5
+  _playerPos: {fileID: 0}
   _attackTime: 2
   _attackDamage: 5
 --- !u!95 &4747487137248819269

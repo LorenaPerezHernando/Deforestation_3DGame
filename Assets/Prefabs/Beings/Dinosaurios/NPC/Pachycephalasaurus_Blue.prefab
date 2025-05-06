@@ -1000,7 +1000,7 @@ GameObject:
   - component: {fileID: 1848950675192221242}
   - component: {fileID: 4279780744965650278}
   - component: {fileID: 7780463787359843889}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pachycephalasaurus_Blue
   m_TagString: Dinosaur
   m_Icon: {fileID: 0}
@@ -1334,6 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathParticle: {fileID: 0}
   _bloodParticle: {fileID: 0}
+  _maxHealth: 100
   _currentHealth: 0
 --- !u!195 &7335089997303243968
 NavMeshAgent:

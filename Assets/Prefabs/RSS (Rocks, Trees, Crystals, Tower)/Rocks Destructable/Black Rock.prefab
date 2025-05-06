@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1559963264829194833}
   - component: {fileID: 1215383249701394577}
   - component: {fileID: 1742597313305358434}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Black Rock
   m_TagString: Rock
   m_Icon: {fileID: 0}
