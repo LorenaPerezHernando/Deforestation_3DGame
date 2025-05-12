@@ -1,4 +1,4 @@
-Deforestation
+##Deforestation
 
 #⌨️ Concept
 Un juego de aventura y supervivencia donde tecnología y naturaleza chocan en una isla llena de secretos... ¡y dinosaurios!
@@ -21,7 +21,7 @@ Pero cuidado… si tu máquina sufre demasiado daño, podrías quedarte atrapado
 
 ---
 
-## 🧪 Mecánicas principales
+# 🧪 Mecánicas principales
 
 - ✅ Controla tanto al jugador como al robot recolector.
 - 🔄 Cambia entre ambos para avanzar estratégicamente.
@@ -30,7 +30,7 @@ Pero cuidado… si tu máquina sufre demasiado daño, podrías quedarte atrapado
 - 📡 Repara zonas clave de la torre para recuperar cobertura.
 - 🦕 Escóndete, corre o enfrenta a los enemigos prehistóricos.
 
-## 🚀 Estado del proyecto
+#🚀 Estado del proyecto
  🔧 En desarrollo (versión demo / prototipo jugable)
 Estamos mejorando el comportamiento de la IA de los dinosaurios y ajustando los controles del robot. ¡Toda sugerencia es bienvenida!
 
