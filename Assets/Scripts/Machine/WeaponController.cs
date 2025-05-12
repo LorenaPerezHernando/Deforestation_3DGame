@@ -9,6 +9,7 @@ namespace Deforestation.Machine.Weapon
 	{
 		#region Properties
 		public Action OnMachineShoot;
+		public Action OnNoCrystals;
 		#endregion
 
 		#region Fields
@@ -57,7 +58,6 @@ namespace Deforestation.Machine.Weapon
 			{
 				if (Physics.Raycast(ray, out hit))
 				{
-					Debug.Log("Quiere disparar " + hit.collider.name);
 					Rock rock = hit.collider.GetComponent<Rock>();
 					if (rock != null)
 					{
@@ -68,6 +68,11 @@ namespace Deforestation.Machine.Weapon
 						{
 							Shoot(hit.point);
 						}
+						if (rock.requiredCrystal == 0)
+						{
+							Debug.Log("Not enough Crystals to shoot Rock ");
+							OnNoCrystals?.Invoke();
+						}
 					}
 					if (hit.collider.CompareTag("Dinosaur"))
 					{
@@ -76,7 +81,14 @@ namespace Deforestation.Machine.Weapon
 						{
 							Shoot(hit.point);
 						}
+						else
+						{
+							Debug.Log("No Crystals to shoot Dino");
+							OnNoCrystals?.Invoke();
+						}
+						
 					}
+					
 
 
 				}

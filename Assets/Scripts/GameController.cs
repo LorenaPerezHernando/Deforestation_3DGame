@@ -89,6 +89,9 @@ namespace Deforestation
 		{
 			SaveCheckpoint();
 			_midCheckpoint.OnCheckpoint += SaveCheckpoint;
+			//UI No Crystals Notification		
+            _machine.MachineMovement.OnNoCrystals += _uiController.NotEnoughCrystals;
+			_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
 			//UI Update
 			_playerHealth.OnHealthChanged += _uiController.UpdatePlayerHealth;
 			_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
@@ -106,7 +109,7 @@ namespace Deforestation
         }
 		void Update()
 		{
-		}
+        }
 		#endregion
 
 		#region Public Methods

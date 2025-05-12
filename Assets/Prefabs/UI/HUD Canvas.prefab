@@ -540,7 +540,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.55
+  m_fontSize: 10.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1640,6 +1640,7 @@ RectTransform:
   - {fileID: 4819167560419871717}
   - {fileID: 3806808466082506258}
   - {fileID: 4664995404204224741}
+  - {fileID: 2617674346246457482}
   - {fileID: 4242904082292936385}
   - {fileID: 7745809041054793752}
   - {fileID: 993919125948146474}
@@ -1670,6 +1671,7 @@ MonoBehaviour:
   _crystal1Text: {fileID: 1558550311787452414}
   _crystal2Text: {fileID: 7752046472547047243}
   _crystal3Text: {fileID: 6757842879542842913}
+  _notEnoughCrystals: {fileID: 0}
   _interactionPanel: {fileID: 5244184270082139384}
   _machineSlider: {fileID: 6639739610393649089}
   _playerSlider: {fileID: 1179033801721882633}
@@ -3292,16 +3294,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5560665202260155150}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.55561, y: 0.22884, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7745809041054793752}
+  m_Father: {fileID: 2478589281391399323}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 1215}
+  m_AnchoredPosition: {x: 27.780483, y: 158.04053}
   m_SizeDelta: {x: 924.073, y: 16.8456}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9191214718731250178
@@ -3452,9 +3454,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c0752319782fa4ebfe4fe8bd887726, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _firstImage: {fileID: 4727250902405555307}
-  _secondImage: {fileID: 0}
-  _firstDialogue: {fileID: 4116148230061350866}
+  _imagenesIniciales: []
+  _imagenActual: {fileID: 0}
+  _currentIndex: 0
+  _dialogePanel: {fileID: 0}
 --- !u!222 &3184413566565751301
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4614,7 +4617,6 @@ RectTransform:
   m_LocalScale: {x: 0.55561, y: 0.22884, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2617674346246457482}
   - {fileID: 3649384415773340893}
   - {fileID: 4406919043857576226}
   - {fileID: 63987413836069612}
@@ -5011,7 +5013,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.55
+  m_fontSize: 10.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5145,7 +5147,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 10.55
+  m_fontSize: 10.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

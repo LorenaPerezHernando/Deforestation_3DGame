@@ -41,6 +41,13 @@ namespace Deforestation.Recolectables
 
 			return false;
 		}
+		public bool NoResource(RecolectableType type)
+		{
+			return (InventoryStack.ContainsKey(type) && InventoryStack[type] == 0);
+                //return true;
+
+            //return false;
+        }
         #endregion
 
         #region Private Methods

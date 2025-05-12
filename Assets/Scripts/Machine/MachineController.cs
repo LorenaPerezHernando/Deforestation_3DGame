@@ -13,13 +13,13 @@ namespace Deforestation.Machine
 
 		public HealthSystem HealthSystem => _health;
 		public WeaponController WeaponController;
+		public MachineMovement MachineMovement;
 		public Action<bool> OnMachineDriveChange;
 
 		#endregion
 
 		#region Fields
 		private HealthSystem _health;
-		private MachineMovement _movement;
 		private Animator _anim;
 
 		#endregion
@@ -28,14 +28,14 @@ namespace Deforestation.Machine
 		private void Awake()
 		{
 			_health = GetComponent<HealthSystem>();
-			_movement = GetComponent<MachineMovement>();
+			MachineMovement = GetComponent<MachineMovement>();
 			_anim = GetComponent<Animator>();
 
 		}
 		// Start is called before the first frame update
 		void Start()
 		{
-			_movement.enabled = false;
+			MachineMovement.enabled = false;
 		}
 
 		
@@ -64,7 +64,7 @@ namespace Deforestation.Machine
 		public void StartDriving(bool machineMode)
 		{
 			enabled = machineMode;
-			_movement.enabled = machineMode;
+			MachineMovement.enabled = machineMode;
 			_anim.SetTrigger("WakeUp");
 			_anim.SetBool("Move", machineMode);
 			//OnDriveSound?.Invoke();
@@ -73,7 +73,7 @@ namespace Deforestation.Machine
 
 		public void StopMoving()
 		{
-			_movement.enabled = false;
+			MachineMovement.enabled = false;
 			_anim.SetBool("Move", false);
 		}
 		#endregion

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8301588631355083484}
   - component: {fileID: 7152655023601480371}
   - component: {fileID: 3599486885448236068}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rock1
   m_TagString: Rock
   m_Icon: {fileID: 0}
@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _deathParticle: {fileID: 0}
   _bloodParticle: {fileID: 0}
+  _maxHealth: 100
   _currentHealth: 0
 --- !u!114 &3599486885448236068
 MonoBehaviour:
@@ -162,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f247359f0cc3b4b84b56d908ae187d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredCrystal: 0
   _crystalPrefab:
   - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}
   - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}

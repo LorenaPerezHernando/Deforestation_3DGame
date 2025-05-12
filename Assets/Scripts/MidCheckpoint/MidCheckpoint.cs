@@ -21,7 +21,7 @@ namespace Deforestation.Checkpoints
         {
 
             Check();
-            _dialogueCheckpoint?.SetActive(false);
+            //_dialogueCheckpoint?.SetActive(false);
         }
 
         

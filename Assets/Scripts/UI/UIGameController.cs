@@ -6,6 +6,7 @@ using Deforestation.Interaction;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using Deforestation.Tower;
+using System.Collections;
 
 namespace Deforestation.UI
 {
@@ -31,6 +32,7 @@ namespace Deforestation.UI
 		[SerializeField] private TextMeshProUGUI _crystal1Text;
 		[SerializeField] private TextMeshProUGUI _crystal2Text;
         [SerializeField] private TextMeshProUGUI _crystal3Text;
+		[SerializeField] private TextMeshProUGUI _notEnoughCrystals; 
         [Header("Interaction")]
 		[SerializeField] private InteractionPanel _interactionPanel;
 		[Header("Live")]
@@ -92,6 +94,18 @@ namespace Deforestation.UI
 			_interactionPanel.Hide();
 
 		}
+		public void NotEnoughCrystals()
+		{
+			StartCoroutine(NotEnoughCrystalsCoroutine());
+		}
+		public IEnumerator NotEnoughCrystalsCoroutine()
+		{
+            _notEnoughCrystals.gameObject.SetActive(true);
+			yield return new WaitForSeconds(1);
+
+            _notEnoughCrystals.gameObject.SetActive(false);
+        }
+	
 
 		#endregion
 

@@ -3,12 +3,14 @@ using Deforestation.Dinosaurus;
 using Deforestation.Recolectables;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 namespace Deforestation.Machine
 {
 	[RequireComponent(typeof(Rigidbody))]
     public class MachineMovement : MonoBehaviour
 	{
 		#region Fields
+		public Action OnNoCrystals;
 		[SerializeField] private float jumpForce = 500000;
 		[SerializeField] private float groundCheckDistance = 20;
 		[SerializeField] private bool isGrounded;
@@ -41,12 +43,13 @@ namespace Deforestation.Machine
 
         private void Start()
         {
-			StartCoroutine(TextSalirMaquina());
+			//StartCoroutine(TextSalirMaquina());
 			
         }
 
         private void Update()
 		{
+			TextSalirMaquina();
             Debug.DrawRay(transform.position, transform.right * 3f, Color.blue); // Hacia donde "mira" la máquina
             if (_inventory.HasResource(RecolectableType.HyperCrystal))
 			{
@@ -77,10 +80,12 @@ namespace Deforestation.Machine
 					
 				}
 			}
+
 			else
 			{
 				GameController.Instance.MachineController.StopMoving();
-				Debug.Log("Not enough Cristals");
+				Debug.Log("Not enough Crystals");
+				OnNoCrystals?.Invoke();
 			}
 
 			CheckGround();
@@ -89,7 +94,7 @@ namespace Deforestation.Machine
 		IEnumerator TextSalirMaquina()
 		{
             _textSalirMaquina.SetActive(true);
-			yield return new WaitForSeconds(10f);
+			yield return new WaitForSeconds(5f);
 			_textSalirMaquina.SetActive(false);
         }
 
@@ -107,7 +112,7 @@ namespace Deforestation.Machine
        
         private bool RaycastGround(Vector3 offset)
         {
-            int layerMask = 1 << LayerMask.NameToLayer("Terrain"); // O usa ~0 para todo
+            int layerMask = 0 << LayerMask.NameToLayer("Terrain"); // O usa ~0 para todo
             Vector3 origin = transform.position + offset;
             Debug.DrawRay(origin, Vector3.down * groundCheckDistance, Color.red); // Para depurar
             return Physics.Raycast(origin, Vector3.down, groundCheckDistance, layerMask);
