@@ -11,6 +11,7 @@ namespace Deforestation.Audio
 
 		#region Fields
 		[Header("FX")]
+		[SerializeField] private AudioSource _brokenNoise;
 		[SerializeField] private AudioSource _repairTower;
 		[SerializeField] private AudioSource _explosionTower;
 		[SerializeField] private AudioSource _machineMotor;
@@ -26,13 +27,13 @@ namespace Deforestation.Audio
 		[Header("Music")]
 		[SerializeField] private AudioSource _musicMachine;
 		[SerializeField] private AudioSource _musicHuman;
-		#endregion
+        #endregion
 
-		#region Properties
-		#endregion
+        #region Properties
+        #endregion
 
-		#region Unity Callbacks	
-		private void Awake()
+        #region Unity Callbacks	
+        private void Awake()
 		{
 			GameController.Instance.OnMachineModeChange += SetMachineMusicState;
 			GameController.Instance.MachineController.OnMachineDriveChange += SetMachineDriveEffect;
@@ -40,6 +41,7 @@ namespace Deforestation.Audio
 			GameController.Instance.FirstDialogue.OnTowerJustDestroyed += ExplosionTower;
 			GameController.Instance.InteractionSystem.OnCollect += GrabObject;
 			GameController.Instance.TowerInteraction.OnRepairTower += FixTower;
+			GameController.Instance.FirstDialogue.OnBrokenNoise += BrokenNoise;
 			
 
         }		
@@ -102,7 +104,8 @@ namespace Deforestation.Audio
 
 		private void ExplosionTower()
 		{
-			_explosionTower.Play();			
+			_explosionTower.Play();		
+			_brokenNoise.enabled = false;
 		}
 		private void GrabObject()
 		{
@@ -112,6 +115,10 @@ namespace Deforestation.Audio
 		private void FixTower()
 		{
 			_repairTower.Play();
+		}
+		private void BrokenNoise()
+		{
+			_brokenNoise.Play();
 		}
 		#endregion
 

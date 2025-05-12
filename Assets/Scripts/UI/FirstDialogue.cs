@@ -10,6 +10,7 @@ namespace Deforestation.Dialogue
 {
     public class FirstDialogue : MonoBehaviour
     {
+        public Action OnBrokenNoise;
         public Action OnTowerJustDestroyed;
         public Action OnNextImage;
         public Action OnFinishImages;
@@ -46,12 +47,18 @@ namespace Deforestation.Dialogue
 
                 if(_mensajeActual == 2)
                     OnNextImage?.Invoke();
+
+               if(_mensajeActual == 4)
+                    OnBrokenNoise?.Invoke();
+
                 if (_mensajeActual == 5)
                 {
+                    
                     OnTowerJustDestroyed?.Invoke();
                     _movilIcon?.SetActive(false);
                     
                 }
+
                 if(_mensajeActual == 6)
                     OnNextImage?.Invoke();
 
