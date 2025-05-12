@@ -1,35 +1,38 @@
-# Tittle
+# 🌴 Deforestation
 
-Deforestation
+## ⌨️ Concept
+Un juego de aventura y supervivencia donde tecnología y naturaleza chocan en una isla llena de secretos... ¡y dinosaurios!
+¿De qué va el juego?
+Eres un trabajador de una empresa de recolección de recursos que ha tenido un pequeño gran problema: tu robot recolector se ha estropeado, la torre de comunicaciones está caída y... estás atrapado en una isla remota.
 
-# Concept
-
-Somos un trabajador de una empresa de recoleccion de recursos. Nuestro robot recolector se ha estropeado. Tenemos que arreglarlo y volver a base mientras recogemos recursos.
-
-# Genero
-
+## Genero
 FPS + control de robot en tercera persona + gestion de recursos.
 
-# Plataforma
-
+## Plataforma
 PC 
 
-A futuro en Realidad Virtual
+## 🚀Jugabilidad/Mecánicas. Tu mision: 
+- 🧰 Arregla tu máquina recolectora.  
+- 💎 Recolecta cristales preciosos repartidos por toda la isla.  
+- 🦖 ¡Evita o enfrenta a dinosaurios salvajes que no están muy contentos de verte!  
+- 📡 Y, sobre todo, **repara la torre para poder pedir ayuda y volver a casa**.
 
-# Target
+Pero cuidado… si tu máquina sufre demasiado daño, podrías quedarte atrapado para siempre.
 
-Empresas videojuegos.
+---
 
-# Jugabilidad/Mecánicas
+## 🧪 Mecánicas principales
 
-- Movimiento + Salto FPS
-- Movimiento + Salto Robot
-- Inspeccionar robot/objetos.
-- Fixear/Upgradear partes robot.
-- Recolectar recursos.
-- Cambiar de vista/control.
-- Disparo robot.
+- ✅ Controla tanto al jugador como al robot recolector.
+- 🔄 Cambia entre ambos para avanzar estratégicamente.
+- 🛠️ Gestiona la salud y el mantenimiento de la máquina*.
+- 💎 Explora y recolecta recursos valiosos antes de que se acaben.
+- 📡 Repara zonas clave de la torre para recuperar cobertura.
+- 🦕 Escóndete, corre o enfrenta a los enemigos prehistóricos.
 
-# Arte
+## 🚀 Estado del proyecto
+ 🔧 En desarrollo (versión demo / prototipo jugable)
+Estamos mejorando el comportamiento de la IA de los dinosaurios y ajustando los controles del robot. ¡Toda sugerencia es bienvenida!
 
-Siguiendo la estética del robot. Realista Low.
+
+
