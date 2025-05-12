@@ -1,6 +1,6 @@
-##Deforestation
+## 🌴 Deforestation
 
-#⌨️ Concept
+# ⌨️ Concept
 Un juego de aventura y supervivencia donde tecnología y naturaleza chocan en una isla llena de secretos... ¡y dinosaurios!
 ¿De qué va el juego?
 Eres un trabajador de una empresa de recolección de recursos que ha tenido un pequeño gran problema: tu robot recolector se ha estropeado, la torre de comunicaciones está caída y... estás atrapado en una isla remota.
@@ -30,7 +30,7 @@ Pero cuidado… si tu máquina sufre demasiado daño, podrías quedarte atrapado
 - 📡 Repara zonas clave de la torre para recuperar cobertura.
 - 🦕 Escóndete, corre o enfrenta a los enemigos prehistóricos.
 
-#🚀 Estado del proyecto
+# 🚀 Estado del proyecto
  🔧 En desarrollo (versión demo / prototipo jugable)
 Estamos mejorando el comportamiento de la IA de los dinosaurios y ajustando los controles del robot. ¡Toda sugerencia es bienvenida!
 
