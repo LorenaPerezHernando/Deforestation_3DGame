@@ -4,6 +4,7 @@ using Deforestation.Recolectables;
 using Unity.VisualScripting;
 using UnityEngine;
 using System;
+using static UnityEngine.EventSystems.StandaloneInputModule;
 namespace Deforestation.Machine
 {
 	[RequireComponent(typeof(Rigidbody))]
@@ -11,9 +12,12 @@ namespace Deforestation.Machine
 	{
 		#region Fields
 		public Action OnNoCrystals;
-		[SerializeField] private float jumpForce = 500000;
-		[SerializeField] private float groundCheckDistance = 20;
-		[SerializeField] private bool isGrounded;
+        private bool _jumpPressed;
+        [SerializeField] private LayerMask _groundLayer;
+        [SerializeField] private float _jumpForce = 500000;
+		[SerializeField] private float _groundCheckDistance = 20;
+		[SerializeField] private bool _isGrounded;
+		[SerializeField] private float _forceDown;
 
 		[SerializeField] private float _speedForce = 50;
 		[SerializeField] private float _speedRotation = 15;
@@ -35,8 +39,7 @@ namespace Deforestation.Machine
 
         #region Unity Callbacks	
         private void Awake()
-		{
-			
+		{			
 			_rb = GetComponent<Rigidbody>();
 			_machineController = GetComponent<MachineController>();
 		}
@@ -44,106 +47,77 @@ namespace Deforestation.Machine
         private void Start()
         {
 			//StartCoroutine(TextSalirMaquina());
-			
-        }
-
-        private void Update()
-		{
-			TextSalirMaquina();
-            Debug.DrawRay(transform.position, transform.right * 3f, Color.blue); // Hacia donde "mira" la máquina
-            if (_inventory.HasResource(RecolectableType.HyperCrystal))
-			{
-                //Movement
-                _moveInput = Input.GetAxis("Vertical");
-                _rotateInput = Input.GetAxis("Horizontal");
-                _movementDirection = new Vector3(Input.GetAxis("Vertical"), 0, 0);
-				transform.Rotate(Vector3.up * _speedRotation * Time.deltaTime * Input.GetAxis("Horizontal"));
-				Debug.DrawRay(transform.position, transform.InverseTransformDirection(_movementDirection.normalized) * _speedForce);
-
-				//Energy
-				if (isGrounded && (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0))
-				{
-                    
-                    energyTimer += Time.deltaTime;
-					if (energyTimer >= energyDecayRate)
-					{
-						_inventory.UseResource(RecolectableType.HyperCrystal);
-						energyTimer = 0f; //Puede (reiniciar timer)
-					}
-				}
-
-				
-				//Salto 
-				if (Input.GetKeyUp(KeyCode.Space) && isGrounded)
-				{
-					_rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-					
-				}
-			}
-
-			else
-			{
-				GameController.Instance.MachineController.StopMoving();
-				Debug.Log("Not enough Crystals");
-				OnNoCrystals?.Invoke();
-			}
-
 			CheckGround();
-		}
+        }
+        private void Update()
+        {
+            if (_inventory.HasResource(RecolectableType.HyperCrystal))
+            {
+                _moveInput = Input.GetAxis("Vertical");
+                ////Movement
+                //transform.Rotate(Vector3.up * _speedRotation * Time.deltaTime * Input.GetAxis("Horizontal"));
 
-		IEnumerator TextSalirMaquina()
-		{
-            _textSalirMaquina.SetActive(true);
-			yield return new WaitForSeconds(5f);
-			_textSalirMaquina.SetActive(false);
+
+
+                //Energy
+                //if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+                //{
+                //    energyTimer += Time.deltaTime;
+                //    if (energyTimer >= energyDecayRate)
+                //        _inventory.UseResource(RecolectableType.HyperCrystal);
+                //}
+            }
+            else
+            {
+                GameController.Instance.MachineController.StopMoving();
+                Debug.Log("Not enough Crystals");
+                OnNoCrystals?.Invoke();
+
+            }
+
+
         }
 
         private void FixedUpdate()
         {
+            //CheckGround();
             Vector3 flatForward = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
-            Vector3 move = flatForward * _moveInput * _speedForce * Time.fixedDeltaTime/2;
-           
-            _rb.MovePosition(_rb.position + move);
+            Vector3 move = flatForward * _moveInput ;
+            _rb.velocity = move * _speedForce;
 
             // Rotación en Y
-            Quaternion turn = Quaternion.Euler(0f, _rotateInput * _speedRotation * Time.fixedDeltaTime/2, 0f);
-            _rb.MoveRotation(_rb.rotation * turn);
+            _rotateInput = Input.GetAxis("Horizontal");
+            float rotationDegrees = _rotateInput * _speedRotation;
+            float rotationRadians = rotationDegrees * Mathf.Deg2Rad;
+            _rb.angularVelocity = new Vector3(0f, rotationRadians, 0f);
+
         }
-       
-        private bool RaycastGround(Vector3 offset)
-        {
-            int layerMask = 0 << LayerMask.NameToLayer("Terrain"); // O usa ~0 para todo
-            Vector3 origin = transform.position + offset;
-            Debug.DrawRay(origin, Vector3.down * groundCheckDistance, Color.red); // Para depurar
-            return Physics.Raycast(origin, Vector3.down, groundCheckDistance, layerMask);
-        }
+
         void CheckGround()
-		{
-            bool grounded =
-			RaycastGround(Vector3.zero) || // Centro
-			RaycastGround(Vector3.right * 1f) ||
-			RaycastGround(Vector3.left * 1f) ||
-			RaycastGround(Vector3.forward * 1f) ||
-			RaycastGround(Vector3.back * 1f);
+        {
+            RaycastHit hit;
+            float maxDistance = 3f;
+            float force = 100000;
+            Vector3 direction = -transform.up;
+            Debug.DrawRay(transform.position, direction * maxDistance, Color.red);
 
-			
-            isGrounded = grounded;
+            int layerMask = 1 << LayerMask.NameToLayer("Terrain");
 
-			// Si no está en el suelo, aplica fuerza hacia abajo
-			if (!isGrounded)
-			{
-				_rb.AddRelativeForce(Vector3.down * 100000f);
+            //Lanza un rayo hacia abajo desde la posición del objeto
+            //if (!Physics.Raycast(transform.position, direction, out hit, maxDistance, layerMask))
+            //    _rb.AddRelativeForce(direction * force);
 
-			}
 
         }
 
-		private void OnTriggerEnter(Collider other)
+
+        private void OnTriggerEnter(Collider other)
 		{
 			if (other.tag == "Tree")
 			{
 				int index = other.GetComponent<Tree>().Index;
 				GameController.Instance.TerrainController.DestroyTree(index, other.transform.position);
+                Destroy(other.gameObject);
 			}          
 
         }

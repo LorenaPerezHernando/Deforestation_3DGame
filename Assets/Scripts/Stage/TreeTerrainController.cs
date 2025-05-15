@@ -49,10 +49,10 @@ namespace Deforestation
 			return newTree.gameObject;
 		}
 
-		void OnDestroy()
-		{
-			_terrain.terrainData.treeInstances = _trees;
-		}
+		//void OnDestroy()
+		//{
+		//	_terrain.terrainData.treeInstances = _trees;
+		//}
 		#endregion
 
 		#region Public Methods

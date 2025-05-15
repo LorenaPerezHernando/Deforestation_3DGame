@@ -68,7 +68,7 @@ namespace Deforestation.Machine.Weapon
 						{
 							Shoot(hit.point);
 						}
-						if (rock.requiredCrystal == 0)
+						else
 						{
 							Debug.Log("Not enough Crystals to shoot Rock ");
 							OnNoCrystals?.Invoke();

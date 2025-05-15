@@ -43,10 +43,10 @@ namespace Deforestation.Recolectables
 		}
 		public bool NoResource(RecolectableType type)
 		{
-			return (InventoryStack.ContainsKey(type) && InventoryStack[type] == 0);
-                //return true;
+			if(InventoryStack.ContainsKey(type) && InventoryStack[type] == 0);
+                return true;
 
-            //return false;
+            return false;
         }
         #endregion
 

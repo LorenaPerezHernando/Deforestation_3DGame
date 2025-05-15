@@ -64,7 +64,8 @@ namespace Deforestation.UI
 			_settingsButton.onClick.AddListener(SwitchSettings);
 			_musicSlider.onValueChanged.AddListener(MusicVolumeChange);
 			_fxSlider.onValueChanged.AddListener(FXVolumeChange);
-		}		
+		}	
+		
 
 		private void SwitchSettings()
 		{
