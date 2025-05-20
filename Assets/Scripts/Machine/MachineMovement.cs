@@ -46,26 +46,26 @@ namespace Deforestation.Machine
 
         private void Start()
         {
-			//StartCoroutine(TextSalirMaquina());
-			CheckGround();
+            //StartCoroutine(TextSalirMaquina());
+
+            //CheckGround();
+            //isGrounded();
         }
         private void Update()
         {
+                _moveInput = Input.GetAxis("Vertical");
+                _rotateInput = Input.GetAxisRaw("Horizontal");
+           
+                //transform.Rotate(Vector3.up * _speedRotation * Time.deltaTime * _rotateInput);
+
             if (_inventory.HasResource(RecolectableType.HyperCrystal))
             {
-                _moveInput = Input.GetAxis("Vertical");
-                ////Movement
-                //transform.Rotate(Vector3.up * _speedRotation * Time.deltaTime * Input.GetAxis("Horizontal"));
+
+                //energyTimer += Time.deltaTime;
+                //if (energyTimer >= energyDecayRate)
+                //    _inventory.UseResource(RecolectableType.HyperCrystal);
 
 
-
-                //Energy
-                //if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-                //{
-                //    energyTimer += Time.deltaTime;
-                //    if (energyTimer >= energyDecayRate)
-                //        _inventory.UseResource(RecolectableType.HyperCrystal);
-                //}
             }
             else
             {
@@ -75,23 +75,68 @@ namespace Deforestation.Machine
 
             }
 
+            isGrounded();
+            
 
+
+        }
+        bool isGrounded()
+        {
+            float checkDistance = 5f;
+            int terrainLayer = 1 << LayerMask.NameToLayer("Terrain");
+
+            Vector3[] offsets = new Vector3[]
+            {
+                Vector3.zero,
+                Vector3.right * 1f,
+                Vector3.left * 1f,
+                Vector3.forward * 1f,
+                Vector3.back * 1f
+            };
+
+            foreach (var offset in offsets)
+            {
+                Vector3 origin = transform.position + offset;
+                Debug.DrawRay(origin, Vector3.down * checkDistance, Color.red);
+
+                if (Physics.Raycast(origin, Vector3.down, checkDistance, terrainLayer))
+                    return true;
+            }
+            return false;
         }
 
         private void FixedUpdate()
         {
-            //CheckGround();
             Vector3 flatForward = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
             Vector3 move = flatForward * _moveInput ;
             _rb.velocity = move * _speedForce;
 
-            // Rotación en Y
-            _rotateInput = Input.GetAxis("Horizontal");
-            float rotationDegrees = _rotateInput * _speedRotation;
-            float rotationRadians = rotationDegrees * Mathf.Deg2Rad;
-            _rb.angularVelocity = new Vector3(0f, rotationRadians, 0f);
+            if (Math.Abs(_rotateInput) > 0.01f)
+            {
+                float rotationDegrees = _rotateInput * _speedRotation * Time.fixedDeltaTime;
+                Quaternion deltaRotation = Quaternion.Euler(0f, rotationDegrees, 0f);
+                _rb.MoveRotation(_rb.rotation * deltaRotation);
+
+            }
+
+
+
+            //Snap to the ground
+            bool grounded = isGrounded();
+
+            if (grounded)
+            {
+                print("Grounded");
+                _isGrounded = true;
+            }
+            else
+            {
+                _rb.AddForce(Vector3.down * _forceDown, ForceMode.Acceleration);
+            }
 
         }
+
+        
 
         void CheckGround()
         {
