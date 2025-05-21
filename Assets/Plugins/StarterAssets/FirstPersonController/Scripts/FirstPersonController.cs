@@ -60,7 +60,7 @@ namespace StarterAssets
 		private float _speed;
 		private float _rotationVelocity;
 		private float _verticalVelocity;
-		private float _terminalVelocity = 53.0f;
+		private float _terminalVelocity = 50.0f;
 
 		// timeout deltatime
 		private float _jumpTimeoutDelta;
@@ -140,14 +140,15 @@ namespace StarterAssets
 		{
 			// set sphere position, with offset
 			//Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-			Grounded = Physics.CheckSphere(groundCheck.position, GroundLayers);
-			bool isWater = (GroundLayers  & (1 << LayerMask.NameToLayer("Water"))) != 0;
+			Grounded = Physics.CheckSphere(groundCheck.position, GroundedRadius, GroundLayers);
+			
 
-            if (isWater) 
-				Grounded = false;
-		}
+           
 
-		private void CameraRotation()
+
+        }
+
+        private void CameraRotation()
 		{
 			// if there is an input
 			if (_input.look.sqrMagnitude >= _threshold)
