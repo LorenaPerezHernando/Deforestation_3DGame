@@ -43,7 +43,7 @@ namespace Deforestation.Recolectables
 		}
 		public bool NoResource(RecolectableType type)
 		{
-			if(InventoryStack.ContainsKey(type) && InventoryStack[type] == 0);
+			if(InventoryStack.ContainsKey(type) && InventoryStack[type] == 0)
                 return true;
 
             return false;

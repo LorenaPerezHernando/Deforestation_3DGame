@@ -58,10 +58,12 @@ namespace Deforestation.Interaction
 
 		IEnumerator DoorToInitialPos()
 		{
+			
 			_initialPosDoor.GetComponent<Collider>().enabled = false;
 			yield return new WaitForSeconds(5);
 			transform.position = _initialPosDoor.position;
             _initialPosDoor.GetComponent<Collider>().enabled = true;
+          ;
         }
 
 		#endregion

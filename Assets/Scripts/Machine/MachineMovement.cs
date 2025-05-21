@@ -107,8 +107,8 @@ namespace Deforestation.Machine
 
         private void FixedUpdate()
         {
-            Vector3 flatForward = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
-            Vector3 move = flatForward * _moveInput ;
+            Vector3 flatForward = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
+            Vector3 move = flatForward * _moveInput  * _speedForce;
             _rb.velocity = move * _speedForce;
 
             if (Math.Abs(_rotateInput) > 0.01f)
