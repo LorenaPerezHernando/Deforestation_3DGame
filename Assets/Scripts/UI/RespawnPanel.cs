@@ -10,7 +10,7 @@ namespace Deforestation.UI
     public class RespawnPanel : MonoBehaviour
     {
         public Action OnRevive;
-        [SerializeField] private GameObject _deathPanel;
+        private GameObject _deathPanel;
 
         private void Awake()
         {

@@ -35,7 +35,7 @@ namespace Deforestation.Checkpoints
         {
 
             OnCheckpoint?.Invoke(); //Guarda la pos del Player y Maquina en el GameController
-            _dialogueCheckpoint?.SetActive(true);
+            //_dialogueCheckpoint?.SetActive(true);
             StartCoroutine(CheckFalse());
             Debug.Log("Partida guardada");
             return;

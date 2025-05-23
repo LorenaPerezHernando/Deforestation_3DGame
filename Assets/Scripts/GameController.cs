@@ -11,6 +11,7 @@ using Deforestation.Checkpoints;
 using StarterAssets;
 using Deforestation.Player;
 using TMPro;
+using Deforestation.Dinosaurus;
 
 namespace Deforestation
 {
@@ -48,6 +49,8 @@ namespace Deforestation
 		#endregion
 
 		#region Fields
+		[Header("Dino")]
+		[SerializeField] protected Velociraptor[] _velociraptor;
 		[Header("Respawn")]
 		[SerializeField] protected RespawnPanel _respawnPanel;
 		[Header("Checkpoint")]
@@ -109,6 +112,13 @@ namespace Deforestation
 			//Respawn
 			_playerHealth.OnDeath += () => Died_VariablesforRevive();
 			_respawnPanel.OnRevive += () => Revive();
+            //Dinosaur
+           _velociraptor = FindObjectsOfType<Velociraptor>();
+
+            foreach (var v in _velociraptor)
+            {
+                v.OnHurt += _uiController.HurtText;
+            }
 
 
 

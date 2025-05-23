@@ -45,6 +45,8 @@ namespace Deforestation.UI
 		[SerializeField] private GameObject _fixTowerDialogue;
 		[SerializeField] private GameObject _repairedTowerDialogue;
 		[SerializeField] private TextMeshProUGUI _towerPartText;
+		[Header("Hurt")]
+		[SerializeField] private TextMeshProUGUI _hurtDialogue;
 
 		private bool _settingsOn = false;
 		private
@@ -118,6 +120,19 @@ namespace Deforestation.UI
             _salirMaquina.gameObject.SetActive(true);
             yield return new WaitForSeconds(1);
             _salirMaquina.gameObject.SetActive(false);
+        }
+		public void HurtText()
+		{
+			StartCoroutine(HurtTextCoroutine());
+		}
+		private IEnumerator HurtTextCoroutine()
+		{
+			//_dialoguePanel.gameObject.SetActive(true);
+			_hurtDialogue.gameObject.SetActive(true);
+			yield return new WaitForSeconds(1);
+			//_dialoguePanel.gameObject.SetActive(false);
+			_hurtDialogue.gameObject.SetActive(false);
+
         }
 
 

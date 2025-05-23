@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Deforestation.Dinosaurus;
@@ -9,6 +10,7 @@ namespace Deforestation.Dinosaurus
 
     public class Velociraptor : Dinosaur
     {
+        public Action OnHurt;
         #region Fields
         [Header("Hurt Dialogue")]
         [Header("Tower NOT Repaired")]
@@ -120,9 +122,6 @@ namespace Deforestation.Dinosaurus
         #region Private Methods
         private void Idle()
         {
-            if (_hurtDialogue != null)
-                _hurtDialogue.SetActive(false);
-            _dialoguePanel.SetActive(false);
             _anim.SetBool("Run", false);
             _anim.SetBool("Attack", false);
             _agent.isStopped = true;
@@ -133,9 +132,6 @@ namespace Deforestation.Dinosaurus
         private void ChasePlayer()
         {
             _agent.SetDestination(_playerPos.position);
-            if(_hurtDialogue != null) 
-                _hurtDialogue.SetActive(false);
-            _dialoguePanel.SetActive(false);
             _anim.SetBool("Run", true);
             _anim.SetBool("Attack", false); 
             
@@ -146,9 +142,7 @@ namespace Deforestation.Dinosaurus
 
         private void Attack()
         {
-            
-            _hurtDialogue.SetActive(true);
-            _dialoguePanel.SetActive(true);
+            OnHurt?.Invoke();
             _anim.SetBool("Run", false);
             _anim.SetBool("Attack", true);
             _agent.isStopped = true;

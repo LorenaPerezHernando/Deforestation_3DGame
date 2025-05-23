@@ -38,7 +38,7 @@ namespace Deforestation.Tower
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyUp(KeyCode.Return))
+            if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.E))
             {
                 _mensajeActual++;
                 InitialMessages();
@@ -48,6 +48,7 @@ namespace Deforestation.Tower
 
         public void InitialMessages()
         {
+            StartCoroutine(MensajesAutomaticos());
             if (_mensajeActual < _initialMessages.Length)
             {
                 _text.text = _initialMessages[_mensajeActual];
@@ -64,6 +65,14 @@ namespace Deforestation.Tower
                 _dialoguePanel?.SetActive(false);
                 Destroy(gameObject);
             }
+        }
+        IEnumerator MensajesAutomaticos()
+        {
+            Debug.Log("Corrutina Dialogos");
+            yield return new WaitForSeconds(4f);
+            _mensajeActual++;
+            InitialMessages();
+
         }
     }
 }
