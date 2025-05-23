@@ -27,10 +27,8 @@ namespace Deforestation.Tower
             {
 
                 if (_prefabRepairTowerDialogue != null)
-                { 
-                    _dialoguePanel.SetActive(true);
-                    _prefabRepairTowerDialogue.SetActive(true);
-                    Debug.Log("Tower Trigger");
+                {
+                    FirstDialogueTower();
                 }
 
                 if (isRepaired)
@@ -42,6 +40,12 @@ namespace Deforestation.Tower
             }
 
         } 
+        private void FirstDialogueTower()
+        {
+            _dialoguePanel.SetActive(true);
+            _prefabRepairTowerDialogue.SetActive(true);
+            Debug.Log("Tower Trigger");
+        }
 
 
         

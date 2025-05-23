@@ -32,10 +32,9 @@ namespace Deforestation.Tower
         {
             //_dialoguePanel.SetActive(true);
             _text.text = _initialMessages[_mensajeActual]; // Mostrar primer mensaje
-
+            StartCoroutine(MensajesAutomaticos());
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.E))
