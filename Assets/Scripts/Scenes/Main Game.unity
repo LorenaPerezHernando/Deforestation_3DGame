@@ -6378,6 +6378,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.024426619, y: 0.020186434, z: 0.015077197}
   m_Center: {x: 0.0036574404, y: 0.00049615523, z: 0.00008394815}
+--- !u!114 &562510177 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9049743735121243792, guid: 2de06dbe4506e9a41bd894ab145e3177,
+    type: 3}
+  m_PrefabInstance: {fileID: 5233478279074632084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f17e69e7ce5b5e4a85bcc2a09211fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &590847420 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7681505501523326024, guid: 2de06dbe4506e9a41bd894ab145e3177,
@@ -7558,7 +7570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &685124565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16965,6 +16977,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5233478279074632084}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1599001178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6268917439130255743, guid: 2de06dbe4506e9a41bd894ab145e3177,
+    type: 3}
+  m_PrefabInstance: {fileID: 5233478279074632084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599001176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1602028615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4742623214083810375, guid: 496ed2959385720418ab652aff3bb105,
@@ -57558,7 +57582,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _respawnPanel
       value: 
-      objectReference: {fileID: 685124566}
+      objectReference: {fileID: 562510177}
     - target: {fileID: 1982293663553735239, guid: e6336447900ecd742acaa1bebc4da4e8,
         type: 3}
       propertyPath: _uiController
@@ -62107,7 +62131,8 @@ MonoBehaviour:
   _speedRotation: 5
   _bulletPrefab: {fileID: 1845430594169597782, guid: e85a8ef64d8ebce488852c2b0e75f43e,
     type: 3}
-  _blackBulletPrefab: {fileID: 0}
+  _blackBulletPrefab: {fileID: 1845430594169597782, guid: 759361dc3de92ac42bddc2b6e0a1f229,
+    type: 3}
   _smokeShoot1: {fileID: 3013972224876993429}
   _smokeShoot2: {fileID: 939864638595551453}
   _machine: {fileID: 0}
@@ -63505,6 +63530,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponController: {fileID: 2456314448474448134}
   MachineMovement: {fileID: 0}
+  _machineModel: {fileID: 350635699121067210}
+  _machineScale: {x: 300, y: 300, z: 300}
 --- !u!4 &2990528426186064097
 Transform:
   m_ObjectHideFlags: 0
@@ -87871,14 +87898,12 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _jumpForce: 500000
-  _groundCheckDistance: 20
+  _forceDown: 1000
   _isGrounded: 0
-  _forceDown: 100
-  _speedForce: 100
+  _speedForce: 5
   _speedRotation: 25
   _textSalirMaquina: {fileID: 1599001176}
-  energyDecayRate: 20
+  energyDecayRate: 2
 --- !u!23 &3796739179028538328
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94991,6 +95016,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 7e952b947d0ff2649b27c2146b64657d,
         type: 3}
+    - target: {fileID: 4971345285068911131, guid: 2de06dbe4506e9a41bd894ab145e3177,
+        type: 3}
+      propertyPath: _salirMaquina
+      value: 
+      objectReference: {fileID: 1599001178}
     - target: {fileID: 4971345285068911131, guid: 2de06dbe4506e9a41bd894ab145e3177,
         type: 3}
       propertyPath: _notEnoughCrystals

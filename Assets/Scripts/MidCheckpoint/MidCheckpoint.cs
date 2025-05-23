@@ -38,6 +38,7 @@ namespace Deforestation.Checkpoints
             _dialogueCheckpoint?.SetActive(true);
             StartCoroutine(CheckFalse());
             Debug.Log("Partida guardada");
+            return;
         }
 
 

@@ -30,6 +30,7 @@ namespace Deforestation.Tower
                 { 
                     _dialoguePanel.SetActive(true);
                     _prefabRepairTowerDialogue.SetActive(true);
+                    Debug.Log("Tower Trigger");
                 }
 
                 if (isRepaired)

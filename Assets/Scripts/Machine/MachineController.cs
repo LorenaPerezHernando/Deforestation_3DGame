@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using Deforestation.Machine.Weapon;
+using System.Collections;
 
 namespace Deforestation.Machine
 {
@@ -10,6 +11,7 @@ namespace Deforestation.Machine
 	{
 		#region Properties
 		public bool isDriving { get; private set; }
+		public Action OnTextSalirMaquina;
 
 		public HealthSystem HealthSystem => _health;
 		public WeaponController WeaponController;
@@ -19,6 +21,8 @@ namespace Deforestation.Machine
 		#endregion
 
 		#region Fields
+		[SerializeField] private GameObject _machineModel;
+        [SerializeField] private Vector3 _machineScale = new Vector3(300, 300, 300);
 		private HealthSystem _health;
 		private Animator _anim;
 
@@ -47,6 +51,7 @@ namespace Deforestation.Machine
                 StopDriving();
 
             }
+			
 
         }		
 
@@ -55,14 +60,22 @@ namespace Deforestation.Machine
 		#region Public Methods
 		public void StopDriving()
 		{
-			GameController.Instance.MachineMode(false);
+           
+            GameController.Instance.MachineMode(false);
 			StopMoving();
 			OnMachineDriveChange?.Invoke(false);
 
-		}
+            StartCoroutine(ScaleMachine());
 
-		public void StartDriving(bool machineMode)
+        }
+
+	
+
+        public void StartDriving(bool machineMode)
 		{
+			_anim.enabled = true;
+
+            OnTextSalirMaquina?.Invoke();
 			enabled = machineMode;
 			MachineMovement.enabled = machineMode;
 			_anim.SetTrigger("WakeUp");
@@ -75,11 +88,26 @@ namespace Deforestation.Machine
 		{
 			MachineMovement.enabled = false;
 			_anim.SetBool("Move", false);
-		}
-		#endregion
 
-		#region Private Methods
-		#endregion
-	}
+           
+         
+
+        }
+
+        private IEnumerator ScaleMachine()
+        {
+            _anim.enabled = false;
+            yield return null; 
+            Debug.Log("Scale Maquina");
+
+            _machineModel.transform.localScale = _machineScale;
+
+
+        }
+        #endregion
+
+        #region Private Methods
+        #endregion
+    }
 
 }

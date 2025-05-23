@@ -16,6 +16,7 @@ namespace Deforestation.Dialogue
         {
             _dialoguePanel.SetActive(true);
             _uiText.text = _initialMessages[_mensajeActual]; // Mostrar primer mensaje
+            StartCoroutine(MensajesAutomaticos());
 
         }
 
@@ -32,9 +33,11 @@ namespace Deforestation.Dialogue
 
         public void InitialMessages()
         {
+            StartCoroutine(MensajesAutomaticos());
             if (_mensajeActual < _initialMessages.Length)
             {
                 _uiText.text = _initialMessages[_mensajeActual];
+               
             }
 
 
@@ -43,6 +46,16 @@ namespace Deforestation.Dialogue
                 _dialoguePanel.SetActive(false);
                 Destroy(gameObject);
             }
+        }
+
+
+        IEnumerator MensajesAutomaticos()
+        {
+            Debug.Log("Corrutina Dialogos");
+            yield return new WaitForSeconds(4f);
+            _mensajeActual++;
+            InitialMessages();
+
         }
     }
 }

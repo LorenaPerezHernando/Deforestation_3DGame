@@ -32,7 +32,8 @@ namespace Deforestation.UI
 		[SerializeField] private TextMeshProUGUI _crystal1Text;
 		[SerializeField] private TextMeshProUGUI _crystal2Text;
         [SerializeField] private TextMeshProUGUI _crystal3Text;
-		[SerializeField] private TextMeshProUGUI _notEnoughCrystals; 
+		[SerializeField] private TextMeshProUGUI _notEnoughCrystals;
+		[SerializeField] private TextMeshProUGUI _salirMaquina;
         [Header("Interaction")]
 		[SerializeField] private InteractionPanel _interactionPanel;
 		[Header("Live")]
@@ -55,6 +56,7 @@ namespace Deforestation.UI
             GameController.Instance.TowerInteraction.OnRepairTower += RepairedTower;
             _settingsPanel.SetActive(false);
 			_fixTowerDialogue.SetActive(false);
+			NotEnoughCrystals();
 
 			//My Events
 			_inventory.OnInventoryUpdated += UpdateUIInventory;
@@ -102,16 +104,27 @@ namespace Deforestation.UI
 		public IEnumerator NotEnoughCrystalsCoroutine()
 		{
             _notEnoughCrystals.gameObject.SetActive(true);
-			yield return new WaitForSeconds(1);
+			StartCoroutine(TextSalirMaquinaCoroutine());
+            yield return new WaitForSeconds(1);
 
             _notEnoughCrystals.gameObject.SetActive(false);
         }
-	
+		public void TextSalirMaquina()
+		{
+			StartCoroutine(TextSalirMaquinaCoroutine());
+		}
+		private IEnumerator TextSalirMaquinaCoroutine()
+		{
+            _salirMaquina.gameObject.SetActive(true);
+            yield return new WaitForSeconds(1);
+            _salirMaquina.gameObject.SetActive(false);
+        }
 
-		#endregion
 
-		#region Private Methods
-		private void UpdateUIInventory()
+        #endregion
+
+        #region Private Methods
+        private void UpdateUIInventory()
 		{
 			if (_inventory.InventoryStack.ContainsKey(RecolectableType.SuperCrystal))
 				_crystal1Text.text = _inventory.InventoryStack[RecolectableType.SuperCrystal].ToString();

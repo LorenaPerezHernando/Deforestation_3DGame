@@ -10,6 +10,7 @@ using Deforestation.Tower;
 using Deforestation.Checkpoints;
 using StarterAssets;
 using Deforestation.Player;
+using TMPro;
 
 namespace Deforestation
 {
@@ -85,11 +86,16 @@ namespace Deforestation
 
         #region Unity Callbacks
 
+
+
         void Start()
 		{
+
 			SaveCheckpoint();
 			_midCheckpoint.OnCheckpoint += SaveCheckpoint;
 			//UI No Crystals Notification		
+			_machine.OnTextSalirMaquina += _uiController.TextSalirMaquina;
+			_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
             _machine.MachineMovement.OnNoCrystals += _uiController.NotEnoughCrystals;
 			_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
 			//UI Update
@@ -164,7 +170,7 @@ namespace Deforestation
 
 		internal void MachineMode(bool machineMode)
 		{
-			MachineModeOn = machineMode;
+            MachineModeOn = machineMode;
 			//Player
 			_player.gameObject.SetActive(!machineMode);
 			
@@ -173,8 +179,9 @@ namespace Deforestation
 			//Cursor + UI
 			if (machineMode)
 			{
-				//Start Driving
-				if (Inventory.HasResource(RecolectableType.HyperCrystal))
+                _uiController.TextSalirMaquina();
+                //Start Driving
+                if (Inventory.HasResource(RecolectableType.HyperCrystal))
 					_machine.StartDriving(machineMode);
 
 				_player.transform.parent = _machineFollow;
@@ -187,7 +194,7 @@ namespace Deforestation
 				_machine.WeaponController.enabled = true;
 				_machine.GetComponent<MachineMovement>().enabled = true;
 
-			}
+            }
 			else
 			{
 				_machine.enabled = false;
@@ -196,8 +203,9 @@ namespace Deforestation
 				_player.transform.rotation = _originalPlayerRotation;
 				_player.transform.parent = null;
 
-				//Camera
-				_virtualCamera.Follow = _playerFollow;
+
+                //Camera
+                _virtualCamera.Follow = _playerFollow;
 				Cursor.lockState = CursorLockMode.Locked;
 			}
 			Cursor.visible = machineMode;
