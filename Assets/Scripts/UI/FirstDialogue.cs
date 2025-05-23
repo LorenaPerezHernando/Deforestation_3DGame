@@ -41,7 +41,7 @@ namespace Deforestation.Dialogue
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyUp(KeyCode.Return))
+            if (Input.GetKeyUp(KeyCode.Return) || Input.GetKeyUp(KeyCode.E))
             {
                 _mensajeActual++;
 

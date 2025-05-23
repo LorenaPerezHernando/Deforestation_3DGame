@@ -46,7 +46,7 @@ namespace Deforestation.Machine
 		void Update()
 		{
             //TODO Input en MachineMovement
-            if (Input.GetKeyUp(KeyCode.LeftShift))
+            if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.E))
             {
                 StopDriving();
 
