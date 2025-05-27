@@ -20496,10 +20496,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket.01
       objectReference: {fileID: 0}
+    - target: {fileID: 5316167412081167799, guid: acaa1f402b6b976448a6cf3b82e0d830,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7547054323790105701, guid: acaa1f402b6b976448a6cf3b82e0d830,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -152.92932
+      value: -714
       objectReference: {fileID: 0}
     - target: {fileID: 7547054323790105701, guid: acaa1f402b6b976448a6cf3b82e0d830,
         type: 3}
@@ -20509,7 +20514,7 @@ PrefabInstance:
     - target: {fileID: 7547054323790105701, guid: acaa1f402b6b976448a6cf3b82e0d830,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -589.4679
+      value: -1167.3
       objectReference: {fileID: 0}
     - target: {fileID: 7547054323790105701, guid: acaa1f402b6b976448a6cf3b82e0d830,
         type: 3}
@@ -26820,7 +26825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &340782836901801125
 Transform:
   m_ObjectHideFlags: 0
@@ -117443,6 +117448,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 104.91
       objectReference: {fileID: 0}
+    - target: {fileID: 1000544953274669378, guid: d070133d542c1af44ba05a85e1141464,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525954812666371449, guid: d070133d542c1af44ba05a85e1141464,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2479447974905184353, guid: d070133d542c1af44ba05a85e1141464,
         type: 3}
       propertyPath: m_IsActive
@@ -117532,6 +117547,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370750246420278527, guid: d070133d542c1af44ba05a85e1141464,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8370750246420278527, guid: d070133d542c1af44ba05a85e1141464,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

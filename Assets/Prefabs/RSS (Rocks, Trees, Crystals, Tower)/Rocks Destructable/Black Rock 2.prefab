@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4549951317997157435}
   - component: {fileID: 180160293562371810}
   - component: {fileID: 3794923756154079520}
-  - component: {fileID: 4458778228649295254}
   - component: {fileID: 4283574018081320135}
+  - component: {fileID: 6493663412197341449}
   m_Layer: 7
   m_Name: Black Rock 2
   m_TagString: Rock
@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50732836209829149}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000025728315, y: 0.00000019007395, z: 0.59420544, w: 0.80431336}
+  m_LocalRotation: {x: 0, y: 0, z: 0.5942054, w: 0.8043134}
   m_LocalPosition: {x: 78.48132, y: -71.11983, z: -121.99866}
   m_LocalScale: {x: 3.0334, y: 3.0334, z: 3.0334}
   m_ConstrainProportionsScale: 0
@@ -105,7 +105,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 96f4311df6dc9e24dac41477bbbeaaf1, type: 2}
+  - {fileID: 2100000, guid: 275324959367f724db2f33ae4d4b8952, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,28 +127,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4458778228649295254
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 50732836209829149}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 9fc428eadf2be4fd4bcd7e09ee65c9b6, type: 3}
 --- !u!54 &4283574018081320135
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -176,3 +154,26 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &6493663412197341449
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 50732836209829149}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7.0849996
+  m_Height: 26.191338
+  m_Direction: 1
+  m_Center: {x: -0.000061035156, y: 0.000030517578, z: -0.000030517578}

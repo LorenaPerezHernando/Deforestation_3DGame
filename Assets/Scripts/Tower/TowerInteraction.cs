@@ -20,12 +20,13 @@ namespace Deforestation.Tower
         [Header("Tower NOT Repaired")]
         [SerializeField] private GameObject _prefabRepairTowerDialogue;      
         [SerializeField] private GameObject _dialoguePanel;
+        [SerializeField] private bool _activeTowerDialogue = false;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Machine"))
+            if (!_activeTowerDialogue && other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Machine"))
             {
-
+                _activeTowerDialogue = true;
                 if (_prefabRepairTowerDialogue != null)
                 {
                     FirstDialogueTower();

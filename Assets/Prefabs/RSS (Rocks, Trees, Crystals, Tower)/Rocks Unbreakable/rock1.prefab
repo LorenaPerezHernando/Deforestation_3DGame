@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: -4831657061516657959}
   - component: {fileID: 5774619014223787933}
-  - component: {fileID: 8143335387210213581}
+  - component: {fileID: 6572159530986658202}
   m_Layer: 7
   m_Name: rock1
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -30,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 11.039214, y: 1.6584021, z: 0.94600415}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6.766263, y: 12.156946, z: 6.7662635}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!114 &-7734740012536606652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requiredCrystal: 0
   _crystalPrefab:
-  - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}
+  - {fileID: 1266612675375492439, guid: c5051c32e9dfda94e9ba3da162752cc4, type: 3}
   - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}
   - {fileID: 4003784123300178105, guid: 815568d5c48f22249897cf8df3777ee1, type: 3}
   - {fileID: 1266612675375492439, guid: c5051c32e9dfda94e9ba3da162752cc4, type: 3}
@@ -154,8 +154,8 @@ MonoBehaviour:
   _bloodParticle: {fileID: 0}
   _maxHealth: 100
   _currentHealth: 0
---- !u!135 &8143335387210213581
-SphereCollider:
+--- !u!65 &6572159530986658202
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -173,5 +173,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 5.5249996
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 9.09, y: 9.15, z: 7.73}
+  m_Center: {x: -0.000015258789, y: 0, z: 0.0000038146973}
