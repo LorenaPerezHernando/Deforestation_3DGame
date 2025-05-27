@@ -27,7 +27,7 @@ namespace Deforestation.Machine.Weapon
 		#region Unity Callbacks
 		private void Awake()
 		{
-			_machine = GameObject.FindGameObjectWithTag("Machine");
+
 		}
 
 		void Update()

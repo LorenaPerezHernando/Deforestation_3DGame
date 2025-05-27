@@ -39,7 +39,7 @@ public class DaggerHurts : MonoBehaviour
                 print("Hit Stega");
                 
                 stegasaurusHealth.TakeDamage(5f);
-                _stegasaurusBloodParticle.Play();
+                _stegasaurusBloodParticle?.Play();
             }
             if(healthSystem != null)
             {

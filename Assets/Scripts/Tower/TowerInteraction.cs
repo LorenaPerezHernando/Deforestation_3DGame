@@ -26,7 +26,7 @@ namespace Deforestation.Tower
         {
             if (!_activeTowerDialogue && other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Machine"))
             {
-                _activeTowerDialogue = true;
+                
                 if (_prefabRepairTowerDialogue != null)
                 {
                     FirstDialogueTower();
@@ -46,6 +46,7 @@ namespace Deforestation.Tower
             _dialoguePanel.SetActive(true);
             _prefabRepairTowerDialogue.SetActive(true);
             Debug.Log("Tower Trigger");
+            _activeTowerDialogue = true;
         }
 
 
