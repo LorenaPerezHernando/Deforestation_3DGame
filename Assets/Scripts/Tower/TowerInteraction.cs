@@ -24,7 +24,7 @@ namespace Deforestation.Tower
 
         private void OnTriggerEnter(Collider other)
         {
-            if (!_activeTowerDialogue && other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Machine"))
+            if (!_activeTowerDialogue && other.CompareTag("Player") || other.CompareTag("Machine"))
             {
                 
                 if (_prefabRepairTowerDialogue != null)
@@ -32,12 +32,12 @@ namespace Deforestation.Tower
                     FirstDialogueTower();
                 }
 
-                if (isRepaired)
-                {
-                    StartCoroutine(FixTheTower());
-                    
-                }
-                //DIALOGUE FOR PIECES
+                
+            }
+            if (isRepaired)
+            {
+                StartCoroutine(FixTheTower());
+
             }
 
         } 
@@ -47,6 +47,8 @@ namespace Deforestation.Tower
             _prefabRepairTowerDialogue.SetActive(true);
             Debug.Log("Tower Trigger");
             _activeTowerDialogue = true;
+
+
         }
 
 
@@ -56,8 +58,8 @@ namespace Deforestation.Tower
             OnRepairTower?.Invoke(); //Audio, Dialogo
             //TODO Particulas
             yield return new WaitForSeconds(1);
-            _goodTower.SetActive(true );
-            _badTower.SetActive(false );
+            _goodTower.SetActive(true);
+            _badTower.SetActive(false);
             yield return new WaitForSeconds(1);
             _dialoguePanel?.SetActive(false);
             _panelMisionCompleted.SetActive(true );   

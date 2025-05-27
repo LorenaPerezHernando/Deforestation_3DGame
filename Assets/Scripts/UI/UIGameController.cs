@@ -41,6 +41,7 @@ namespace Deforestation.UI
 		[SerializeField] private Slider _playerSlider;
 
 		[Header("Tower")]
+		[SerializeField] private int _crystalsToGather = 10;
 		[SerializeField] private GameObject _dialoguePanel;
 		[SerializeField] private GameObject _fixTowerDialogue;
 		[SerializeField] private GameObject _repairedTowerDialogue;
@@ -153,11 +154,11 @@ namespace Deforestation.UI
 				_crystal3Text.text = _inventory.InventoryStack[RecolectableType.MegaCrystal].ToString();
 			else
 				_crystal3Text.text = "0";
-			if(_inventory.InventoryStack.ContainsKey(RecolectableType.TowerPart))
-				_towerPartText.text = _inventory.InventoryStack[RecolectableType.TowerPart].ToString() + " /10";
+			if (_inventory.InventoryStack.ContainsKey(RecolectableType.TowerPart))
+				_towerPartText.text = _inventory.InventoryStack[RecolectableType.TowerPart].ToString() + " / " + _crystalsToGather;
 			else
 				_towerPartText.text = "0/10";
-            if (_inventory.InventoryStack.TryGetValue(RecolectableType.TowerPart, out int cantidad) && cantidad >= 10)
+            if (_inventory.InventoryStack.TryGetValue(RecolectableType.TowerPart, out int cantidad) && cantidad >= _crystalsToGather)
             {
                 _towerInteraction.isRepaired = true;
                 _dialoguePanel.SetActive(true);

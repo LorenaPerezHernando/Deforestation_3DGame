@@ -61,12 +61,15 @@ namespace Deforestation.Tower
                 _uiTowerText.enabled = true;
                 //TODO Camera enfoca a la torre destrozandose, explosion
                 //Particulas de explosion
-                _dialoguePanel?.SetActive(false);
+                _dialoguePanel.SetActive(false);
+                print("Dialogue panel false");
                 Destroy(gameObject);
             }
         }
         IEnumerator MensajesAutomaticos()
         {
+            if (_mensajeActual >= _initialMessages.Length)
+                yield break;
             Debug.Log("Corrutina Dialogos");
             yield return new WaitForSeconds(4f);
             _mensajeActual++;

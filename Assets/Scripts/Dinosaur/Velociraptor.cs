@@ -15,7 +15,6 @@ namespace Deforestation.Dinosaurus
         [Header("Hurt Dialogue")]
         [Header("Tower NOT Repaired")]
         [SerializeField] private GameObject _hurtDialogue;
-        [SerializeField] private GameObject _dialoguePanel;
         [Header("Attack")]
         [SerializeField] private float _distanceDetection = 50;
         [SerializeField] private float _attackDistance = 7;
@@ -37,7 +36,7 @@ namespace Deforestation.Dinosaurus
 
         private void Awake()
         {
-            _dialoguePanel = GameObject.FindGameObjectWithTag("DialoguePanel");
+
             _hurtDialogue = GameObject.FindGameObjectWithTag("HurtDialogue");
             _anim = GetComponent<Animator>();
            
