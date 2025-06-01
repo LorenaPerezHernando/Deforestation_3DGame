@@ -9,7 +9,7 @@ Eres un trabajador de una empresa de recolección de recursos que ha tenido un p
 FPS + control de robot en tercera persona + gestion de recursos.
 
 ## Plataforma
-PC 
+PC (Mov con teclas ASWD o flechas, y ratón) 
 
 ## 🚀Jugabilidad/Mecánicas. Tu mision: 
 - 🧰 Arregla tu máquina recolectora.  
