@@ -22,6 +22,11 @@ namespace Deforestation.Player
         #endregion
 
         #region Private Methods
+        private void Awake()
+        {
+            _hurtDialogue = GameObject.Find("DialogueHurt");
+            _dialoguePanel = GameObject.Find("DialoguePanel");
+        }
 
         private void OnTriggerEnter(Collider other)
         {

@@ -821,6 +821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7681505501523326024, guid: 4dd90183af3514942be07fda8b7f6895,
         type: 3}
+      propertyPath: m_Name
+      value: DIaloguePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7681505501523326024, guid: 4dd90183af3514942be07fda8b7f6895,
+        type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -1275,6 +1280,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3351816788718936091, guid: f71512950e068c04794e4725cec223e9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4188113961882836388, guid: f71512950e068c04794e4725cec223e9,
         type: 3}
       propertyPath: m_LocalPosition.y

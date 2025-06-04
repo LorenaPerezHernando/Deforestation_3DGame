@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using System;
 
 namespace Deforestation.Network
 {
@@ -10,8 +11,10 @@ namespace Deforestation.Network
     public class NetworkController : MonoBehaviourPunCallbacks
     {
         [SerializeField] private UINetwork _ui;
-        [SerializeField] private Transform[] _spawnPoints;
-        private static bool[] _spawnPointsTaken;
+        //Server/master
+        [SerializeField] private List<Transform> _spawnPoints;
+        private bool _waitingforSpawn = false; 
+
          void Start()
          {
             PhotonNetwork.ConnectUsingSettings();
@@ -26,8 +29,14 @@ namespace Deforestation.Network
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                _spawnPointsTaken = new bool[_spawnPoints.Length];
-                photonView.RPC("RPC_SpawnPlayer", RpcTarget.MasterClient);
+
+                SpawnMe(_spawnPoints[0].position);
+                _spawnPoints.RemoveAt(0);
+            }
+            else
+            {
+                _waitingforSpawn = true;
+                photonView.RPC("RPC_SpawnPoint", RpcTarget.MasterClient);
             }
             //Player tiene que estar en la carpeta llamada "Resources"
             
@@ -35,34 +44,31 @@ namespace Deforestation.Network
             _ui.LoadingComplete();
         }
 
-        [PunRPC]
-        void RPC_SpawnPlayer()
+        private void SpawnMe(Vector3 spawnPoint)
         {
-            int index = -1;
-            for(int i = 0;  i < _spawnPoints.Length; i++)
+            PhotonNetwork.Instantiate("PlayerMultiplayer", spawnPoint, Quaternion.identity);
+            PhotonNetwork.Instantiate("TheMachineMultiplayer", spawnPoint, Quaternion.identity);
+        }
+
+        [PunRPC]
+        void RPC_SpawnPoint()
+        {
+            photonView.RPC("RPC_ReceivePoint", RpcTarget.Others, _spawnPoints[0].position);
+            _spawnPoints.RemoveAt(0);
+        }
+        [PunRPC]
+        void RPC_ReceivePoint(Vector3 spawnPoint)
+        {
+
+            if (_waitingforSpawn)
             {
-                if (!_spawnPointsTaken[i])
-                {
-                    //Cogemos la primera pos no cogida
-                    index = i;
-                    _spawnPointsTaken[i] = true;
-                    break;
-                }
-            }
-            if(index != -1)
-            {
-                Transform spawnPoint = _spawnPoints[index];
-                PhotonNetwork.Instantiate("PlayerMultiplayer", spawnPoint.position, Quaternion.identity);
-                PhotonNetwork.Instantiate("TheMachineMultiplayer", spawnPoint.position, Quaternion.identity);
-            }
-            else
-            {
-                Debug.LogError("No hay puntos de spawn disponibles");
+                _waitingforSpawn = false;
+                SpawnMe(spawnPoint);
             }
         }
-        
 
-        
+
+
     }
 
 }
