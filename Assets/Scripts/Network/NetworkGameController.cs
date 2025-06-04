@@ -21,6 +21,8 @@ namespace Deforestation.Network
             _interactionSystem = interaction;
             _playerFollow = playerFollow;
             _dagger = dagger;
+
+            _virtualCamera.Follow = _playerFollow;
         }
         public void InitializeMachine(Transform follow, MachineController machine)
         {
