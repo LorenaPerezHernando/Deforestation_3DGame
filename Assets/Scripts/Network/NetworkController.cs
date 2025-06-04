@@ -23,7 +23,7 @@ namespace Deforestation.Network
         {
             //Player tiene que estar en la carpeta llamada "Resources"
             PhotonNetwork.Instantiate("PlayerMultiplayer",new Vector3(1747f, 126f, 360f), Quaternion.identity);
-            
+            PhotonNetwork.Instantiate("TheMachineMultiplayer", new Vector3(1700f, 126f, 360f), Quaternion.identity);
             _ui.LoadingComplete();
         }
     }

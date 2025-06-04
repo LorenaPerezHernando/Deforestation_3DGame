@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060f40b8691060d4f9bd90888c0e60dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _3DAvatar: {fileID: 4109535882234503395}
+  _3DAvatar: {fileID: 3305436463968713359}
   _health: {fileID: 3166796721564655423}
   _inventory: {fileID: 8886866317102091296}
   _interactionSystem: {fileID: 5897432276602127029}
@@ -67,6 +67,8 @@ MonoBehaviour:
   _firstPersonController: {fileID: 7846118951840968737}
   _inputs: {fileID: 8678431092464582644}
   _playerInput: {fileID: 4360472999162102651}
+  _playerFollow: {fileID: 2072879985020937403}
+  _dagger: {fileID: 0}
 --- !u!114 &3166796721564655423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +361,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 880110797643553820}
+  - {fileID: 7892110172576038941}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -590,12 +593,21 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b437d75b20d3ce74abfde943ed7f91f3,
         type: 3}
       propertyPath: m_Name
-      value: Vanguard By T. Choonyung
+      value: Avatar
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: b437d75b20d3ce74abfde943ed7f91f3,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 56bac1b4502bb184580573560d55a293, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b437d75b20d3ce74abfde943ed7f91f3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7892110172576038941}
   m_SourcePrefab: {fileID: 100100000, guid: b437d75b20d3ce74abfde943ed7f91f3, type: 3}
 --- !u!4 &2780010009709912117 stripped
 Transform:
@@ -603,6 +615,42 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2386394479062370270}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3305436463968713359 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b437d75b20d3ce74abfde943ed7f91f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2386394479062370270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7892110172576038941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3305436463968713359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: Run
+  - Type: 9
+    SynchronizeType: 1
+    Name: Hit
+  - Type: 9
+    SynchronizeType: 1
+    Name: Die
+  - Type: 9
+    SynchronizeType: 1
+    Name: Jump
+  m_SynchronizeLayers:
+  - SynchronizeType: 1
+    LayerIndex: 0
 --- !u!1001 &6036822941365170884
 PrefabInstance:
   m_ObjectHideFlags: 0

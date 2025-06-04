@@ -1308,10 +1308,8 @@ MonoBehaviour:
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _jumpForce: 500000
-  _groundCheckDistance: 2
-  _isGrounded: 0
   _forceDown: 1000
+  _isGrounded: 0
   _speedForce: 5
   _speedRotation: 25
   _textSalirMaquina: {fileID: 0}
@@ -1363,6 +1361,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponController: {fileID: 0}
   MachineMovement: {fileID: 4149890015856292245}
+  _machineModel: {fileID: 0}
+  _machineScale: {x: 300, y: 300, z: 300}
 --- !u!54 &8439241346670613039
 Rigidbody:
   m_ObjectHideFlags: 0

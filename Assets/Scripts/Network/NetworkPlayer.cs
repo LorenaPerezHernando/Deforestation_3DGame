@@ -7,53 +7,96 @@ using Deforestation.Recolectables;
 using Deforestation.Interaction;
 using StarterAssets;
 using UnityEngine.InputSystem;
+using System;
 
-public class NetworkPlayer : MonoBehaviourPun
+namespace Deforestation.Network
 {
-    [Header("Avatar")]
-    [SerializeField] private GameObject _3DAvatar;
-    [Header("Scripts in Player")]
-    private GameController _gameController;
-    [SerializeField] private HealthSystem _health;
-    [SerializeField] private Inventory _inventory;
-    [SerializeField] private InteractionSystem _interactionSystem;
-    [SerializeField] private CharacterController _characterController;
-    [SerializeField] private FirstPersonController _firstPersonController;
-    [SerializeField] private StarterAssetsInputs _inputs;
-    [SerializeField] private PlayerInput _playerInput;
-
-    private void Awake()
+    public class NetworkPlayer : MonoBehaviourPun
     {
-        _gameController = FindObjectOfType<GameController>(true);
+        [Header("Avatar")]
+        [SerializeField] private GameObject _3DAvatar;
+        [Header("Scripts in Player")]
+        private NetworkGameController _gameController;
+        [SerializeField] private HealthSystem _health;
+        [SerializeField] private Inventory _inventory;
+        [SerializeField] private InteractionSystem _interactionSystem;
+        [SerializeField] private CharacterController _characterController;
+        [SerializeField] private FirstPersonController _firstPersonController;
+        [SerializeField] private StarterAssetsInputs _inputs;
+        [SerializeField] private PlayerInput _playerInput;
+        [SerializeField] private Transform _playerFollow;
+        [SerializeField] private DaggerHurts _dagger;
 
-        _health = GetComponent<HealthSystem>();
-        _inventory = GetComponent<Inventory>();
-        _interactionSystem = GetComponent<InteractionSystem>();
-        _characterController = GetComponent<CharacterController>();
-        _firstPersonController = GetComponent<FirstPersonController>();
-        _inputs = GetComponent<StarterAssetsInputs>();
-        _playerInput = GetComponent<PlayerInput>();
+        private Animator _anim;
 
-    }
-    void Start()
-    {
-        if(photonView.IsMine)
+        private void Awake()
         {
-            //GameController
-            _3DAvatar.SetActive(false);
+            _gameController = FindObjectOfType<NetworkGameController>(true);
+
+            _anim = _3DAvatar.GetComponent<Animator>();
+            _dagger = GetComponentInChildren<DaggerHurts>();
+
+            _health = GetComponent<HealthSystem>();
+            _inventory = GetComponent<Inventory>();
+            _interactionSystem = GetComponent<InteractionSystem>();
+            _characterController = GetComponent<CharacterController>();
+            _firstPersonController = GetComponent<FirstPersonController>();
+            _inputs = GetComponent<StarterAssetsInputs>();
+            _playerInput = GetComponent<PlayerInput>();
+
         }
-        else
+        void Start()
+        {
+            if (photonView.IsMine)
+            {
+               _gameController.InitializePlayer(_health, _characterController, _inventory, _interactionSystem, _playerFollow, _dagger );
+                _health.OnHealthChanged += Hit;
+                _health.OnDeath += Die;
+            }
+            else
+            {
+               DisconectPlayer();
+
+            }
+        }
+        void Update()
+        {
+            if (photonView.IsMine)
+            {
+                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
+                {
+                    _anim.SetBool("Run", true);
+                }
+                else
+                {
+                    _anim.SetBool("Run", false);
+                }
+
+                if (Input.GetKeyUp(KeyCode.Space))
+                {
+                    _anim.SetTrigger("Jump");
+                }
+            }
+        }
+        private void DisconectPlayer()
         {
             //los otros players 
             Destroy(_health); Destroy(_inventory); Destroy(_interactionSystem); Destroy(_characterController);
-            Destroy(_firstPersonController); Destroy(_inputs); Destroy(_playerInput);
-            _3DAvatar.SetActive(true);
+            Destroy(_firstPersonController); Destroy(_inputs); Destroy(_playerInput); Destroy(_dagger);
         }
-    }
 
+        private void Die()
+        {
+            _anim.SetTrigger("Die");
+            DisconectPlayer();
+            enabled = false;
+        }
 
-    void Update()
-    {
+        private void Hit(float obj)
+        {
+            _anim.SetTrigger("Hit");
+        }
+
         
     }
 }

@@ -57,13 +57,16 @@ namespace Deforestation
 		[SerializeField] protected MidCheckpoint _midCheckpoint;
 		[SerializeField] private Vector3 _savedPlayerPos;
         [SerializeField] private Vector3 _savedMachinePos;
+
 		[Header("Player")]
-		private GameObject _thePlayer;
+		//private GameObject _thePlayer;
 		[SerializeField] protected CharacterController _player;
 		[SerializeField] protected HealthSystem _playerHealth;
 		[SerializeField] protected Inventory _inventory;
 		[SerializeField] protected InteractionSystem _interactionSystem;
+		[SerializeField] protected DaggerHurts _dagger;
 
+		[Header("Tower")]
 		[SerializeField] protected TowerInteraction _towerInteraction;
 
 		[Header("Camera")]
@@ -80,8 +83,6 @@ namespace Deforestation
 		[SerializeField] protected InitialStory _initialStory;
 		[Header("Trees Terrain")]
 		[SerializeField] protected TreeTerrainController _terrainController;
-		[Header("Dinosaurs")]
-		[SerializeField] protected DaggerHurts _dagger;
 
 		private bool _machineModeOn;
 		private Quaternion _originalPlayerRotation;
@@ -93,32 +94,34 @@ namespace Deforestation
 
         void Start()
 		{
-			if (_midCheckpoint != null)
-			{
 				SaveCheckpoint();
 				_midCheckpoint.OnCheckpoint += SaveCheckpoint;
-
-			}
-				
+		
 			//UI No Crystals Notification	
-			
 			if(_uiController != null)
 			{
 				_machine.OnTextSalirMaquina += _uiController.TextSalirMaquina;
 				_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
 				_machine.MachineMovement.OnNoCrystals += _uiController.NotEnoughCrystals;
 				_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
-				//UI Update
+
+			}
+			
+			//UI Update
+
+			_firstDialogue.OnNextImage += _initialStory.ShowNextImage;
+			_firstDialogue.OnFinishImages += _initialStory.NoImages;
+
 				_playerHealth.OnHealthChanged += _uiController.UpdatePlayerHealth;
 				_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
-				MachineModeOn = false;
-				_originalPlayerRotation =_player.transform.rotation;
-				_firstDialogue.OnNextImage += _initialStory.ShowNextImage;
-				_firstDialogue.OnFinishImages += _initialStory.NoImages;
 				//Respawn
 				_playerHealth.OnDeath += () => Died_VariablesforRevive();
 				_respawnPanel.OnRevive += () => Revive();
-			}
+				_originalPlayerRotation =_player.transform.rotation;
+			
+
+			MachineModeOn = false;
+			
 
             //Dinosaur
            _velociraptor = FindObjectsOfType<Velociraptor>();
@@ -141,8 +144,12 @@ namespace Deforestation
 
 		public void SaveCheckpoint()
 		{
-			_savedPlayerPos = _inventory.transform.position;
-			_savedMachinePos = _machine.transform.position;
+			if(_player != null && _machine != null)
+			{
+				_savedPlayerPos = _inventory.transform.position;
+				_savedMachinePos = _machine.transform.position;
+
+			}
 
 		}
 		public void Died_VariablesforRevive()

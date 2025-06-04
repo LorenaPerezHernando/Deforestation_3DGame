@@ -16,13 +16,17 @@ namespace Deforestation.Interaction
         #region Fields
   //      [SerializeField] float _widthDetector = 1;
 		//[SerializeField] float _distanceDetector = 5;
-		[SerializeField] Inventory _inventory;
+		[SerializeField] private Inventory _inventory;
 		private bool _interactebleDetected = false;
 		private IInteractable _currentInteraction;
-		#endregion
+        #endregion
 
-		#region Unity Callbacks		
-		private void Update()
+        #region Unity Callbacks		
+        private void Awake()
+        {
+            _inventory = GetComponent<Inventory>();
+        }
+        private void Update()
 		{
 			if (_interactebleDetected && Input.GetKeyUp(KeyCode.E))
 			{
@@ -49,6 +53,7 @@ namespace Deforestation.Interaction
         void FixedUpdate()
 		{
 			RaycastHit hit;
+			
 			if (Physics.SphereCast(Camera.main.transform.position, 1f, Camera.main.transform.forward, out hit, 5))
 			{
 				//print(hit.collider.name); //Para saber que estamos detectando para depurar si alguna deteccion falla.

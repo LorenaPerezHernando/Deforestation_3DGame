@@ -53,7 +53,7 @@ namespace Deforestation.Audio
 
 		private void Update()
 		{
-			//TODO: MOVER A inputcontroller
+			
 			if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
 			{
 				if (!_steps.isPlaying)
