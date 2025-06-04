@@ -16,9 +16,9 @@ namespace Deforestation.UI
 		#endregion
 
 		#region Fields
-		private Inventory _inventory => GameController.Instance.Inventory;		
-		private TowerInteraction _towerInteraction => GameController.Instance.TowerInteraction;
-		private InteractionSystem _interactionSystem => GameController.Instance.InteractionSystem;
+		private Inventory _inventory => GameController.Instance?.Inventory;		
+		private TowerInteraction _towerInteraction => GameController.Instance?.TowerInteraction;
+		private InteractionSystem _interactionSystem => GameController.Instance?.InteractionSystem;
         
 
 		[Header("Settings")]
@@ -56,6 +56,8 @@ namespace Deforestation.UI
 		#region Unity Callbacks
 		void Start()
 		{
+			if(_inventory == null)
+				return;
             GameController.Instance.TowerInteraction.OnRepairTower += RepairedTower;
             _settingsPanel.SetActive(false);
 			_fixTowerDialogue.SetActive(false);

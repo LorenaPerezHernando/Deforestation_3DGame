@@ -93,25 +93,33 @@ namespace Deforestation
 
         void Start()
 		{
+			if (_midCheckpoint != null)
+			{
+				SaveCheckpoint();
+				_midCheckpoint.OnCheckpoint += SaveCheckpoint;
 
-			SaveCheckpoint();
-			_midCheckpoint.OnCheckpoint += SaveCheckpoint;
-			//UI No Crystals Notification		
-			_machine.OnTextSalirMaquina += _uiController.TextSalirMaquina;
-			_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
-            _machine.MachineMovement.OnNoCrystals += _uiController.NotEnoughCrystals;
-			_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
-			//UI Update
-			_playerHealth.OnHealthChanged += _uiController.UpdatePlayerHealth;
-			_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
-			MachineModeOn = false;
-			_originalPlayerRotation =_player.transform.rotation;
-            _firstDialogue.OnNextImage += _initialStory.ShowNextImage;
-			_firstDialogue.OnFinishImages += _initialStory.NoImages;
+			}
+				
+			//UI No Crystals Notification	
+			
+			if(_uiController != null)
+			{
+				_machine.OnTextSalirMaquina += _uiController.TextSalirMaquina;
+				_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
+				_machine.MachineMovement.OnNoCrystals += _uiController.NotEnoughCrystals;
+				_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
+				//UI Update
+				_playerHealth.OnHealthChanged += _uiController.UpdatePlayerHealth;
+				_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
+				MachineModeOn = false;
+				_originalPlayerRotation =_player.transform.rotation;
+				_firstDialogue.OnNextImage += _initialStory.ShowNextImage;
+				_firstDialogue.OnFinishImages += _initialStory.NoImages;
+				//Respawn
+				_playerHealth.OnDeath += () => Died_VariablesforRevive();
+				_respawnPanel.OnRevive += () => Revive();
+			}
 
-			//Respawn
-			_playerHealth.OnDeath += () => Died_VariablesforRevive();
-			_respawnPanel.OnRevive += () => Revive();
             //Dinosaur
            _velociraptor = FindObjectsOfType<Velociraptor>();
 
