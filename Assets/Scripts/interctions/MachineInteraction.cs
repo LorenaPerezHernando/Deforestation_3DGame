@@ -36,15 +36,15 @@ namespace Deforestation.Interaction
 
 		public virtual void Interact()
 		{
-			if (_type == MachineInteractionType.Door)
-			{
+			//if (_type == MachineInteractionType.Door)
+			//{
 				
-				//Move Door
+			//	//Move Door
 				
 				
-				transform.position = _target.position;
-				StartCoroutine(DoorToInitialPos());
-			}
+			//	transform.position = _target.position;
+			//	StartCoroutine(DoorToInitialPos());
+			//}
 			if (_type == MachineInteractionType.Stairs)
 			{
 				//Teleport Player
@@ -63,7 +63,7 @@ namespace Deforestation.Interaction
 			yield return new WaitForSeconds(5);
 			transform.position = _initialPosDoor.position;
             _initialPosDoor.GetComponent<Collider>().enabled = true;
-          ;
+          
         }
 
 		#endregion

@@ -1309,7 +1309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _machine: {fileID: 9012173038687822064}
-  _machineFollow: {fileID: 7385923874870436326}
+  machineFollow: {fileID: 722689292626697034}
 --- !u!114 &4149890015856292245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1343,6 +1343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4360ec04653ff4a97ccfa15b9b1f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ui: {fileID: 0}
   _deathParticle: {fileID: 0}
   _bloodParticle: {fileID: 0}
   _maxHealth: 1000
@@ -1378,7 +1379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponController: {fileID: 0}
   MachineMovement: {fileID: 4149890015856292245}
-  _machineModel: {fileID: 0}
+  _machineModel: {fileID: 5342341045016449743}
   _machineScale: {x: 300, y: 300, z: 300}
 --- !u!54 &8439241346670613039
 Rigidbody:
@@ -7518,7 +7519,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.003, y: 0.001, z: 0.01}
   m_Center: {x: 0.00000047485636, y: -0.009, z: 0.0014}
@@ -17890,7 +17891,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.003, y: 0.001, z: 0.01}
   m_Center: {x: -0.0000000018513158, y: -0.009, z: 0.0014}
@@ -18038,8 +18039,8 @@ Transform:
   m_GameObject: {fileID: 3188666372705281071}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0.00000008429369, z: 0.00000008429371, w: 0.7071067}
-  m_LocalPosition: {x: -0.0082, y: -0.001, z: 0.0228}
-  m_LocalScale: {x: 1, y: 1.0000001, z: 1.8389002}
+  m_LocalPosition: {x: -0.0082, y: 0.0016408, z: 0.0228}
+  m_LocalScale: {x: 1, y: 1.0000001, z: 1.1856934}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7694570772030238234}
@@ -23065,8 +23066,8 @@ Transform:
   m_GameObject: {fileID: 5123566465431493610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00153, y: 0.0419, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.00153, y: 0.0419, z: 0.0020818}
+  m_LocalScale: {x: 1, y: 1, z: 1.2699}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5197380376166958143}
@@ -23897,7 +23898,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.0039489036, y: 0.003121737, z: 0.010210978}
   m_Center: {x: 0.000000001832666, y: -0.009, z: 0}
@@ -31974,6 +31975,7 @@ GameObject:
   - component: {fileID: 2252024422661784372}
   - component: {fileID: 1481670007292563272}
   - component: {fileID: 2038375043453852152}
+  - component: {fileID: 2719856687858044625}
   m_Layer: 0
   m_Name: Pantalla Interactable
   m_TagString: Untagged
@@ -32080,7 +32082,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 2
-  _target: {fileID: 0}
+  _target: {fileID: 7385923874870436326}
+  _interactableInfo:
+    Action: Drive
+    Type: 
+  _initialPosDoor: {fileID: 486810737045647060}
+--- !u!114 &2719856687858044625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6821900767602534505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d3246d6f610d6f45b7bee89eb72f530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _type: 2
+  _target: {fileID: 7385923874870436326}
   _interactableInfo:
     Action: Drive
     Type: 
@@ -41503,8 +41523,8 @@ Transform:
   m_GameObject: {fileID: 8469502522232034083}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00143, y: -0.0042, z: -0.00068}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.00143, y: -0.0042, z: 0.0012183}
+  m_LocalScale: {x: 1, y: 1, z: 1.2699}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5197380376166958143}
@@ -44256,7 +44276,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.003948904, y: 0.003121736, z: 0.010210978}
   m_Center: {x: 0.00000047525813, y: -0.009, z: 0}

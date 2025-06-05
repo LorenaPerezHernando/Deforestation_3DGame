@@ -61,7 +61,7 @@ namespace Deforestation.Interaction
 				if (interaction != null)
 				{
 					InteractableInfo info = interaction.GetInfo();
-					OnShowInteraction.Invoke("E - To " + info.Action + " " + info.Type);
+					OnShowInteraction?.Invoke("E - To " + info.Action + " " + info.Type);
 					_interactebleDetected = true;
 					_currentInteraction = interaction;
 					return;
@@ -71,12 +71,6 @@ namespace Deforestation.Interaction
 			OnHideInteraction?.Invoke();
 			
 		}
-		#endregion
-
-		#region Public Methods
-		#endregion
-
-		#region Private Methods
 		#endregion
 
 		void OnDrawGizmos()

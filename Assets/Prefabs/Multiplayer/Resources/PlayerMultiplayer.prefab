@@ -38,8 +38,8 @@ Transform:
   m_GameObject: {fileID: 4109535882234503395}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1747.1335, y: 126.09788, z: 360.47458}
-  m_LocalScale: {x: 1, y: 1.5785, z: 1}
+  m_LocalPosition: {x: 1747.1335, y: 126.65, z: 360.47458}
+  m_LocalScale: {x: 1, y: 0.9682362, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2072879985020937403}
@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4360ec04653ff4a97ccfa15b9b1f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ui: {fileID: 0}
   _deathParticle: {fileID: 0}
   _bloodParticle: {fileID: 0}
   _maxHealth: 100
@@ -109,8 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015ed5dd3123b3940b0a90a1f4efc9ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hurtDialogue: {fileID: 0}
-  _dialoguePanel: {fileID: 0}
   _prefabfireParticles: {fileID: 3652233987935790151, guid: 03b8738dca897e54f9df4ad1bfaaf010,
     type: 3}
   _playerFireParticle: []
@@ -595,6 +594,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Avatar
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b437d75b20d3ce74abfde943ed7f91f3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: b437d75b20d3ce74abfde943ed7f91f3,
         type: 3}
       propertyPath: m_Controller
@@ -667,7 +671,7 @@ PrefabInstance:
     - target: {fileID: 2970771143448931694, guid: 59abd678755f28047818d5cd235f705d,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5231619895137476490, guid: 59abd678755f28047818d5cd235f705d,
         type: 3}

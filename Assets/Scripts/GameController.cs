@@ -12,6 +12,7 @@ using StarterAssets;
 using Deforestation.Player;
 using TMPro;
 using Deforestation.Dinosaurus;
+using Unity.VisualScripting;
 
 namespace Deforestation
 {
@@ -86,6 +87,7 @@ namespace Deforestation
 
 		private bool _machineModeOn;
 		private Quaternion _originalPlayerRotation;
+		[SerializeField] private GameObject _avatar;
         #endregion
 
         #region Unity Callbacks
@@ -94,16 +96,17 @@ namespace Deforestation
 
         void Start()
 		{
+			//_avatar = _player.transform.Find("Avatar")?.gameObject;
 				SaveCheckpoint();
 				_midCheckpoint.OnCheckpoint += SaveCheckpoint;
 		
 			//UI No Crystals Notification	
 			if(_uiController != null)
 			{
-				_machine.OnTextSalirMaquina += _uiController.TextSalirMaquina;
-				_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
-				_machine.MachineMovement.OnNoCrystals += _uiController.NotEnoughCrystals;
-				_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
+				//_machine.OnTextSalirMaquina += _uiController.TextSalirMaquina;
+				//_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
+				//_machine.MachineMovement.OnNoCrystals += _uiController.NotEnoughCrystals;
+				//_machine.WeaponController.OnNoCrystals += _uiController.NotEnoughCrystals;
 
 			}
 			
@@ -112,15 +115,17 @@ namespace Deforestation
 			_firstDialogue.OnNextImage += _initialStory.ShowNextImage;
 			_firstDialogue.OnFinishImages += _initialStory.NoImages;
 
+			if(_playerHealth != null && _machine != null)
+			{			
 				_playerHealth.OnHealthChanged += _uiController.UpdatePlayerHealth;
 				_machine.HealthSystem.OnHealthChanged += _uiController.UpdateMachineHealth;
 				//Respawn
 				_playerHealth.OnDeath += () => Died_VariablesforRevive();
 				_respawnPanel.OnRevive += () => Revive();
 				_originalPlayerRotation =_player.transform.rotation;
-			
+            }
 
-			MachineModeOn = false;
+            MachineModeOn = false;
 			
 
             //Dinosaur
@@ -218,6 +223,7 @@ namespace Deforestation
 				_machine.enabled = true;
 				_machine.WeaponController.enabled = true;
 				_machine.GetComponent<MachineMovement>().enabled = true;
+				//_avatar.SetActive(false);
 
             }
 			else
@@ -227,9 +233,11 @@ namespace Deforestation
 				_machine.GetComponent<MachineMovement>().enabled = false;
 				_player.transform.rotation = _originalPlayerRotation;
 				_player.transform.parent = null;
+				//_avatar.SetActive(true);
 
 
-                //Camera
+				//Camera
+				Debug.Log("FollowPlayer");
                 _virtualCamera.Follow = _playerFollow;
 				Cursor.lockState = CursorLockMode.Locked;
 			}

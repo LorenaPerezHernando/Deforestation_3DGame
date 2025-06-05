@@ -42,6 +42,14 @@ MonoBehaviour:
   - RPC_SpawnPlayer
   - RPC_ReceivePoint
   - RPC_SpawnPoint
+  - OthersShoot
+  - RefreshHealth
+  - RPC_RecivePont
+  - RPC_RecievePiont
+  - RPC_RecievePoint
+  - RPC_PlayerDied
+  - RPC_CheckVictory
+  - RPC_DisableObjectByName
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -4,13 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
+using Deforestation.UI;
+using Deforestation.Network;
+using Photon.Pun;
 
 namespace Deforestation
 {
 
-	public class HealthSystem : MonoBehaviour
+	public class HealthSystem : MonoBehaviourPun
 	{
-		public event Action<float> OnHealthChanged;
+        [SerializeField] private UINetwork _ui;
+        public float MaxHealth => _maxHealth;
+        public float CurrentHealth => _currentHealth;
+
+        public event Action<float> OnHealthChanged;
 		public event Action OnDeath;
 
 
@@ -21,7 +28,7 @@ namespace Deforestation
 
 		private void Awake()
 		{
-			
+			_ui = GameObject.FindAnyObjectByType<UINetwork>();
 			_deathParticle = GetComponentInChildren<ParticleSystem>();
 			if( _deathParticle != null )
 			_deathParticle.gameObject.SetActive(false);
@@ -46,7 +53,8 @@ namespace Deforestation
 				_bloodParticle.Play();
 			if (_currentHealth <= 0)
 			{
-				print("Died"); print( "Died" +name + ": " + _currentHealth.ToString());
+				print("Died"); print("Died" + name + ": " + _currentHealth.ToString());
+				//gameObject.SetActive(false);
 				Die();
 			}
 		}
@@ -80,12 +88,62 @@ namespace Deforestation
 			if(gameObject.tag == "Rock")
 				Destroy(gameObject);
 
-			if(gameObject.tag == "Player" || gameObject.tag == "Machine")
-			{
-				OnDeath?.Invoke();
-				Debug.Log("Invoked Player Death");
-			}
-			
+            if (gameObject.CompareTag("Player") || gameObject.CompareTag("Machine"))
+            {
+
+                NetworkController network = FindObjectOfType<NetworkController>();
+                if (network != null && photonView.IsMine)
+                {
+                    //network.photonView.RPC("RPC_CheckVictory", RpcTarget.All);
+                    //gameObject.SetActive(false);
+                    network.photonView.RPC("RPC_DisableObjectByName", RpcTarget.All, gameObject.name);
+                }
+
+               
+                OnDeath?.Invoke();
+            }
+
+            //if(gameObject.tag == "Player")
+            //{
+            //             gameObject.SetActive(false);
+
+
+            //             GameObject[] remainingPlayers = GameObject.FindGameObjectsWithTag("Player");
+            //             if (remainingPlayers.Length == 1)
+            //             {
+            //                 Debug.Log("VICTORIA");
+            //                 photonView.RPC("RPC_PlayerDied", RpcTarget.All);
+
+            //             }
+            //             OnDeath?.Invoke();
+            //	Debug.Log("Invoked Player Death");
+
+            //}
+
+            //if(gameObject.tag == "Machine")
+            //{
+
+            //	gameObject.SetActive(false);
+
+
+            //             GameObject[] remainingMachines = GameObject.FindGameObjectsWithTag("Machine");
+            //             if (remainingMachines.Length == 1)
+            //             {
+            //                 Debug.Log("VICTORIA");
+            //                 _ui.EndGamePanel.SetActive(true);
+
+            //             }
+            //             OnDeath?.Invoke();
+            //             Debug.Log("Invoked Machine Death");
+            //         }
+
+        }
+
+		[PunRPC]
+		public void RPC_PlayerDied()
+		{
+			gameObject.SetActive(false) ;
+            _ui.EndGamePanel.SetActive(true);
         }
 
 		IEnumerator DinoDied()

@@ -27,7 +27,7 @@ namespace Deforestation.Machine.Weapon
 		}
 		private void OnTriggerEnter(Collider other)
 		{
-            if (other.CompareTag("Player") || other.CompareTag("Machine"))
+            if (other.CompareTag("Player") ) //|| other.CompareTag("Machine")
                 return;
 
 

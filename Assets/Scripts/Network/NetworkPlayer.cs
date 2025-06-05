@@ -8,6 +8,7 @@ using Deforestation.Interaction;
 using StarterAssets;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.InputSystem.XR;
 
 namespace Deforestation.Network
 {
@@ -27,6 +28,7 @@ namespace Deforestation.Network
         [SerializeField] private Transform _playerFollow;
         [SerializeField] private DaggerHurts _dagger;
 
+
         private Animator _anim;
 
         private void Awake()
@@ -43,15 +45,25 @@ namespace Deforestation.Network
             _firstPersonController = GetComponent<FirstPersonController>();
             _inputs = GetComponent<StarterAssetsInputs>();
             _playerInput = GetComponent<PlayerInput>();
+           
 
         }
         void Start()
         {
             if (photonView.IsMine)
             {
-               _gameController.InitializePlayer(_health, _characterController, _inventory, _interactionSystem, _playerFollow, _dagger );
+                
+                _gameController.InitializePlayer(_health, _characterController, _inventory, _interactionSystem, _playerFollow, _dagger );
                 _health.OnHealthChanged += Hit;
                 _health.OnDeath += Die;
+                _health.enabled = true;
+                _inventory.enabled = true;
+                _interactionSystem.enabled = true;
+                _firstPersonController.enabled = true;
+                _characterController.enabled = true;
+
+                Invoke(nameof(AddInitialCrystals), 1);
+               
             }
             else
             {
@@ -77,6 +89,13 @@ namespace Deforestation.Network
                     _anim.SetTrigger("Jump");
                 }
             }
+        }
+
+        private void AddInitialCrystals()
+        {
+            _inventory.AddRecolectable(RecolectableType.SuperCrystal, 30);
+            _inventory.AddRecolectable(RecolectableType.HyperCrystal, 500);
+            _inventory.AddRecolectable(RecolectableType.MegaCrystal, 30);
         }
         private void DisconectPlayer()
         {

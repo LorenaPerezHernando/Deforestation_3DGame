@@ -8,12 +8,14 @@ namespace Deforestation.Player
     {
         #region Fields
         [Header("Dialogue Hurt")]
-        [SerializeField] private GameObject _hurtDialogue;
-        [SerializeField] private GameObject _dialoguePanel;
+        //[SerializeField] private GameObject _hurtDialogue;
+       // [SerializeField] private GameObject _dialoguePanel;
         [Header("Fire")]
         [SerializeField] private GameObject _prefabfireParticles;
         private bool _fireOn;
         [SerializeField] private GameObject[] _playerFireParticle;
+
+        private HealthSystem _healthSystem;
 
         private float _attackCoolDown;
         [SerializeField] private float _attackTime = 2;
@@ -24,8 +26,9 @@ namespace Deforestation.Player
         #region Private Methods
         private void Awake()
         {
-            _hurtDialogue = GameObject.Find("DialogueHurt");
-            _dialoguePanel = GameObject.Find("DialoguePanel");
+            _healthSystem = GetComponent<HealthSystem>();
+            // _hurtDialogue = GameObject.Find("DialogueHurt");
+            //_dialoguePanel = GameObject.Find("DialoguePanel");
         }
 
         private void OnTriggerEnter(Collider other)
@@ -38,8 +41,8 @@ namespace Deforestation.Player
                 {
                     _prefabfireParticles.SetActive(true);
                     _attackCoolDown = _attackTime;
-                    _hurtDialogue.SetActive(true);
-                    _dialoguePanel.SetActive(true);
+                    // _hurtDialogue.SetActive(true);
+                    // _dialoguePanel.SetActive(true);
 
                     if (_fireOn == false)
                     {
@@ -57,27 +60,39 @@ namespace Deforestation.Player
         {
             if (other.gameObject.name == "CollisionWater")
             {
-                print("Trigger Con agua");
-                _attackCoolDown -= Time.deltaTime;
-                if (_attackCoolDown <= 0)
+                if (GameController.Instance != null && GameController.Instance.HealthSystem != null)
                 {
-                    _prefabfireParticles.SetActive(true);
-                    _attackCoolDown = _attackTime;
+                    print("Trigger Con agua");
+                    _attackCoolDown -= Time.deltaTime;
 
-
-                    if (_fireOn == false)
+                    //GameController.Instance.HealthSystem.TakeDamage(_attackDamage);
+                    if (_attackCoolDown <= 0)
                     {
-                        GameObject fire = Instantiate(_prefabfireParticles, transform.position, Quaternion.identity, transform);
+                        _prefabfireParticles.SetActive(true);
+                        _attackCoolDown = _attackTime;
 
-                        _fireOn = true;
-                    }
 
-                    _playerFireParticle = GameObject.FindGameObjectsWithTag("Player Fire Particle");
-                    GameController.Instance.HealthSystem.TakeDamage(_attackDamage);
+                        if (_fireOn == false)
+                        {
+                            GameObject fire = Instantiate(_prefabfireParticles, transform.position, Quaternion.identity, transform);
 
-                    if(_playerFireParticle == null)
-                    {
-                        GameObject fire = Instantiate(_prefabfireParticles, transform.position, Quaternion.identity, transform);
+                            _fireOn = true;
+                        }
+
+                        _playerFireParticle = GameObject.FindGameObjectsWithTag("Player Fire Particle");
+                        //if (GameController.Instance != null && GameController.Instance.HealthSystem != null)
+                        //{
+                        //    GameController.Instance.HealthSystem.TakeDamage(_attackDamage);
+                        //}
+
+                        // GetComponent<HealthSystem>().TakeDamage(_attackDamage); // Usa el local, no GameController
+                        _healthSystem.TakeDamage(_attackDamage);
+
+                        if (_playerFireParticle == null)
+                        {
+                            GameObject fire = Instantiate(_prefabfireParticles, transform.position, Quaternion.identity, transform);
+                        }
+
                     }
 
                 }
@@ -87,8 +102,8 @@ namespace Deforestation.Player
 
         private void OnTriggerExit(Collider other)
         {
-            _hurtDialogue.SetActive(false);
-            _dialoguePanel.SetActive(false);
+            // _hurtDialogue.SetActive(false);
+            // _dialoguePanel.SetActive(false);
             _attackCoolDown = 0;
             foreach(GameObject fireParticle in _playerFireParticle) 
                 Destroy(fireParticle);
@@ -97,8 +112,8 @@ namespace Deforestation.Player
 
         internal void NotWater()
         {
-            _hurtDialogue.SetActive(false);
-            _dialoguePanel.SetActive(false);
+            // _hurtDialogue.SetActive(false);
+            // _dialoguePanel.SetActive(false);
             _attackCoolDown = 0;
             foreach (GameObject fireParticle in _playerFireParticle)
                 Destroy(fireParticle);
