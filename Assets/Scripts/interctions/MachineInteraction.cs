@@ -36,15 +36,15 @@ namespace Deforestation.Interaction
 
 		public virtual void Interact()
 		{
-			//if (_type == MachineInteractionType.Door)
-			//{
-				
-			//	//Move Door
-				
-				
-			//	transform.position = _target.position;
-			//	StartCoroutine(DoorToInitialPos());
-			//}
+			if (_type == MachineInteractionType.Door)
+			{
+
+				//Move Door
+
+
+				transform.position = _target.position;
+				StartCoroutine(DoorToInitialPos());
+			}
 			if (_type == MachineInteractionType.Stairs)
 			{
 				//Teleport Player

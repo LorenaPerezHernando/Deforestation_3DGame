@@ -41,12 +41,15 @@ namespace Deforestation
         {
             SceneManager.LoadScene(1);
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             _currentScene = 1;
         }
 
         public void SceneToSettings()
         {
             SceneManager.LoadScene(2);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             _currentScene = 2;
         }
         public void SceneToMainMenu()
