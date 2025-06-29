@@ -1,3 +1,4 @@
+#if ENABLE_MULTIPLAYER
 using Deforestation.Machine;
 using Deforestation.Network;
 using System.Collections;
@@ -86,3 +87,4 @@ namespace Deforestation.Network
 
 
 }
+#endif

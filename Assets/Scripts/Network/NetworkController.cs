@@ -1,8 +1,9 @@
+#if ENABLE_MULTIPLAYER
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using Photon.Realtime;
+using Photon.Pun;
 using System.Linq;
 using System;
 using Deforestation.UI;
@@ -176,3 +177,18 @@ namespace Deforestation.Network
     }
 
 }
+#else
+// Si NO hay multiplayer, creamos una versión vacía
+using UnityEngine;
+
+namespace Deforestation.Network
+{
+    public class NetworkController : MonoBehaviour
+    {
+        void Awake()
+        {
+            Debug.Log("Modo single-player: NetworkController no activo.");
+        }
+    }
+}
+#endif

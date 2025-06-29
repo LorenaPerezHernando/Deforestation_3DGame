@@ -343,7 +343,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &837106190
 RectTransform:
   m_ObjectHideFlags: 0
@@ -359,9 +359,9 @@ RectTransform:
   - {fileID: 1958014322}
   m_Father: {fileID: 949537895}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 949.5595, y: -759.65}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 105.119, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &837106191
@@ -495,7 +495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -255.1, y: 217.4}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &949537896
@@ -513,10 +513,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 897
     m_Right: 344
-    m_Top: 527
-    m_Bottom: 0
+    m_Top: 533
+    m_Bottom: -6
   m_ChildAlignment: 0
-  m_Spacing: -20.7
+  m_Spacing: 222.52
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -531,7 +531,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949537894}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 

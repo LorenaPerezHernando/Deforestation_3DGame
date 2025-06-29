@@ -1,0 +1,4 @@
+{
+	"name": "Network",
+	"defineConstraints": [ "ENABLE_MULTIPLAYER" ]
+}

@@ -1,3 +1,4 @@
+#if ENABLE_MULTIPLAYER
 using System.Collections;
 using System.Collections.Generic;
 using Deforestation.Interaction;
@@ -54,3 +55,4 @@ namespace Deforestation.Network
         }
     }
 }
+#endif

@@ -5,15 +5,25 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Linq;
 using Deforestation.UI;
-using Deforestation.Network;
+#if ENABLE_MULTIPLAYER
 using Photon.Pun;
+using Deforestation.Network;
+#endif
+
 
 namespace Deforestation
 {
 
-	public class HealthSystem : MonoBehaviourPun
-	{
+#if ENABLE_MULTIPLAYER
+    public class HealthSystem : MonoBehaviourPun
+#else
+    public class HealthSystem : MonoBehaviour
+#endif
+    {
+    #if ENABLE_MULTIPLAYER
         [SerializeField] private UINetwork _ui;
+    #endif
+       
         public float MaxHealth => _maxHealth;
         public float CurrentHealth => _currentHealth;
 
@@ -28,7 +38,9 @@ namespace Deforestation
 
 		private void Awake()
 		{
-			_ui = GameObject.FindAnyObjectByType<UINetwork>();
+#if ENABLE_MULTIPLAYER
+            _ui = GameObject.FindAnyObjectByType<UINetwork>();
+#endif
 			_deathParticle = GetComponentInChildren<ParticleSystem>();
 			if( _deathParticle != null )
 			_deathParticle.gameObject.SetActive(false);
@@ -91,15 +103,17 @@ namespace Deforestation
             if (gameObject.CompareTag("Player") || gameObject.CompareTag("Machine"))
             {
 
-                NetworkController network = FindObjectOfType<NetworkController>();
-                if (network != null && photonView.IsMine)
-                {
-                    //network.photonView.RPC("RPC_CheckVictory", RpcTarget.All);
-                    //gameObject.SetActive(false);
-                    network.photonView.RPC("RPC_DisableObjectByName", RpcTarget.All, gameObject.name);
-                }
+#if ENABLE_MULTIPLAYER
+				NetworkController network = FindObjectOfType<NetworkController>();
+				if (network != null && photonView.IsMine)
+{
+				network.photonView.RPC("RPC_DisableObjectByName", RpcTarget.All, gameObject.name);
+}
+#else
+                Debug.Log("Modo single-player: se simula la muerte sin red.");
+#endif
 
-               
+
                 OnDeath?.Invoke();
             }
 
@@ -139,14 +153,16 @@ namespace Deforestation
 
         }
 
-		[PunRPC]
-		public void RPC_PlayerDied()
-		{
-			gameObject.SetActive(false) ;
+#if ENABLE_MULTIPLAYER
+        [PunRPC]
+        public void RPC_PlayerDied()
+        {
+            gameObject.SetActive(false);
             _ui.EndGamePanel.SetActive(true);
         }
+#endif
 
-		IEnumerator DinoDied()
+        IEnumerator DinoDied()
 		{
 			yield return new WaitForSeconds(3f);
             //TODO Particula de nubes
